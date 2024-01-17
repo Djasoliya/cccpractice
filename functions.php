@@ -30,8 +30,36 @@
 // $b = explode("a", $str9);
 // print_r($b);
 
-$str10 = "converts special characters to HTML entities";
-echo htmlspecialchars($string);
-echo "hello";
+// $str10 = "converts special characters to HTML entities";
+// echo htmlspecialchars($str10);
+
+// Repeats a string a specified number of times.
+// echo str_repeat("dj", 7);
+
+// $str = "reverses a string";
+// echo strrev($str);
+
+// $name = "Dhruvit";
+// echo str_shuffle($name);
+
+// $splitstr = "string spliting";
+// echo str_split($splitstr);
+
+// $str="hello dj";
+// print_r(str_split($str));
+// echo "<br>"; 
+// print_r(str_split($str, 3)); 
+
+// $str = "i am dhruvit jasoliya";
+// echo str_word_count($str);
+
+// $subrep = "hello this is substring replacement";
+// echo substr_replace($subrep, "there", 6);
+// echo substr_replace($subrep, "there", 6, 4);
+
+// $str = "Hello World";
+// echo str_pad($str, 15,".");
+
+
 
 ?>
