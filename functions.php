@@ -32,6 +32,6 @@
 
 $str10 = "converts special characters to HTML entities";
 echo htmlspecialchars($string);
-
+echo "hello";
 
 ?>
