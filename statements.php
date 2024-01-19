@@ -120,5 +120,21 @@ switch($color){
         break;
 }
 
+echo "<br><br>";
+// for($i=0; $i<5;$i++){
+//     for($j=1;$j<5-$i;$j++){
+//         echo $j;
+//     }
+//     echo "<br>";
+// }
 
+for($i=1; $i<5;$i++){
+    for($j=1;$j<5;$j++){
+        echo $j;
+        if($i>$j){
+            break;
+        }
+    }
+    echo "<br>";
+}
 ?>
