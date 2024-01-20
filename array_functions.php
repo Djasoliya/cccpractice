@@ -1,5 +1,5 @@
 <?php
-echo "----------------------Array Creation and Initialization----------------------<br>";
+echo "----------------------------------Array Creation and Initialization----------------------------------<br>";
 echo "1. Creates a new array.<br>";
 $a= array("red", "blue", "black");
 print_r($a);
@@ -26,7 +26,7 @@ $number =  range(2,10,3);
 print_r($number);
 echo "<br><br>";
 
-echo "-----------------------------Array Modification------------------------------<br>";
+echo "-----------------------------------------Array Modification------------------------------------------<br>";
 echo "5. Adds one or more elements to the end of an array.<br>";
 array_push($students,"harsh","umesh");
 print_r($students);
@@ -56,7 +56,7 @@ array_splice($students, 1, 3, $x);
 print_r($students);
 echo "<br><br>";
 
-echo "--------------------------------Array Access---------------------------------<br>";
+echo "--------------------------------------------Array Access---------------------------------------------<br>";
 echo "10.Counts the number of elements in an array.<br>";
 $things = array("fruits"=>array("mango","orenge"),"cars"=>array("bmw","audi"));
 echo "normal count :". count($things)."<br>";
@@ -90,7 +90,7 @@ echo "14.Returns all the values of an array.<br>";
 print_r(array_values($b));
 echo "<br><br>";
 
-echo "--------------------------------Array Search---------------------------------<br>";
+echo "--------------------------------------------Array Search---------------------------------------------<br>";
 echo "15. Checks if a value exists in an array.<br>";
 if(in_array(10,$a)){
     echo "Value found!";
@@ -109,7 +109,7 @@ print_r(array_reverse($things));
 echo "<br><br>";
 
 
-echo "--------------------------------Array Sorting--------------------------------<br>";
+echo "--------------------------------------------Array Sorting--------------------------------------------<br>";
 // 18. sort($array):
 echo "18. Sorts an array.<br>";
 $sortarray= array("hello", "world", "hii","byy");
@@ -148,7 +148,7 @@ krsort($sorting);
 print_r($sorting);
 echo "<br><br>";
 
-echo "-------------------------------Array Filtering-------------------------------<br>";
+echo "-------------------------------------------Array Filtering-------------------------------------------<br>";
 echo "24. Filters elements of an array using a callback function.<br>";
 $arr1 = array(2,4,9,8,5,0,1);
 function filterfunction($num){
@@ -179,8 +179,30 @@ print_r(array_map(null,$arr1,$arr3));
 echo "<br><br>";
 
 echo "26. Iteratively reduces the array to a single value using a callback function.<br>";
+$arrayreduce = array("hello", "hii", "world", "good");
+function reducefanc($red1,$red2) {
+    return $red1."*".$red2;
+}
+print_r(array_reduce($arrayreduce,"reducefanc"));     //initial have to add 
+echo "<br>";
 
+function reducefanc1($red1,$red2) {
+    return $red1."*".$red2;
+}
+print_r(array_reduce($arr3,"reducefanc1", 7));     //initial value is 7 so it start with 7
+echo "<br><br>";
 
+echo "--------------------------------------------Array Slicing--------------------------------------------<br>";
+echo "27. Extracts a portion of the array.<br>";
+print_r(array_slice($arrayreduce, 2));
+echo "<br>";
+print_r(array_slice($arrayreduce, 1, 2));
+echo "<br>";
+print_r(array_slice($arrayreduce, -3, 1));
+echo "<br><br>";
 
+echo "28. Removes a portion of the array and replaces it with something else.<br>";
+array_splice($arrayreduce, 1, 2, $arr3);
+print_r($arrayreduce);
 
 ?>
