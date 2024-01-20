@@ -40,4 +40,23 @@ $product = array("scooter"=>50000, "honda"=>100000, "activa"=>80000);
 foreach($product as $x=>$y){
     echo " $x:$y <br>";
 }
+
+echo "<br><br>";
+for($i=0; $i<5;$i++){
+        for($j=1;$j<5-$i;$j++){
+                echo $j;
+        }
+    echo "<br>";
+}
+        
+echo "<br><br>";
+for($i=4; $i>0;$i--){
+    for($j=1;$j<5;$j++){
+        echo $j;
+        if($i==$j){
+            break;
+        }
+    }
+    echo "<br>";
+}
 ?>
