@@ -88,7 +88,7 @@ echo htmlspecialchars($str10, ENT_NOQUOTES);    //it will not converts anyone si
 #<-------Converts all applicable characters to HTML entities-------->
 //The htmlentities() function converts characters to HTML entities
 $str11 = '<a href = "googlr.com">Google</a>';
-// &lt;a href=&quot;https://www.w3schools.com&quot;&gt;Go to w3schools.com&lt;/a&gt;
+// &lt;a href=&quot;google.com&quot;&gt;Google&lt;/a&gt;
 echo htmlentities($str11, ENT_COMPAT);          // Will only convert double quotes
 //it shows only html code source, browser show same string
 */
@@ -128,7 +128,7 @@ $str = "i am dhruvit jasoliya & i am a intern";
 echo str_word_count($str)."<br>";           //it return the number of words but it not consider the special characters
 print_r(str_word_count($str,1));            //it return array of the words
 echo "<br>";           
-print_r(str_word_count($str,2));            //it return array of the words words starting index
+print_r(str_word_count($str,2));            //it return array of the words, words starting index
 echo "<br>";                                //only one symbol can be added
 print_r(str_word_count($str,1,"&"));        //it return array of the words and also it consider the secified symbol
 */

@@ -108,7 +108,7 @@ if($a == 30 || $b !== 47) {
 
 $a=false;
 if(!$a) {
-    echo "here a's value is not true <br><br>";
+    echo "here a's value is true <br><br>";
 }
 
 // 5.Increment and Decrement Operators:

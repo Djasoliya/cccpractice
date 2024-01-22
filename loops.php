@@ -37,21 +37,30 @@ foreach($x as $y){
 echo "<br><br>";
 
 $product = array("scooter"=>50000, "honda"=>100000, "activa"=>80000);
+foreach($product as $x){
+    echo " $x <br>";
+}
+echo "<br>";
 foreach($product as $x=>$y){
     echo " $x:$y <br>";
 }
 
 echo "<br><br>";
-for($i=0; $i<5;$i++){
-        for($j=1;$j<5-$i;$j++){
-                echo $j;
-        }
+$i=0;
+$iteration = 6;
+for($i; $i<$iteration;$i++){
+    $j=1;
+    for($j;$j<$iteration-$i;$j++){
+            echo $j;
+    }
     echo "<br>";
 }
         
 echo "<br><br>";
-for($i=4; $i>0;$i--){
-    for($j=1;$j<5;$j++){
+$i=4;
+for($i; $i>0;$i--){
+    $j=1;
+    for($j;$j<5;$j++){
         echo $j;
         if($i==$j){
             break;

@@ -48,6 +48,7 @@ print_r($students);
 echo "<br><br>";
 
 echo "9.Removes a portion of the array and replaces it with something else.<br>";
+$students=array("harry","dj","dhruv", "harsh");  
 array_splice($students, 1, 2, "hello");
 print_r($students);
 echo "<br>";
@@ -59,20 +60,21 @@ echo "<br><br>";
 echo "--------------------------------------------Array Access---------------------------------------------<br>";
 echo "10.Counts the number of elements in an array.<br>";
 $things = array("fruits"=>array("mango","orenge"),"cars"=>array("bmw","audi"));
-echo "normal count :". count($things)."<br>";
-echo "recursive count :". count($things,1);              
+echo "normal count :". count($things)."<br>";           //count only outer array element
+echo "recursive count :". count($things,1);             //it count all element outer+inner
 echo "<br><br>";
 
 echo "11.Alias of count().<br>";
-echo sizeof($things);       //recursive count is same like 'count' function
+echo sizeof($things);       //recursive count is same like normal 'count' function
 echo "<br><br>";
 
 echo "12.Checks if the given key or index exists in the array.<br>";
+$b= array("red"=>3, "blue"=>4, "black"=>9);
 if(array_key_exists("black", $b)){
-    echo "key is exists";
+    echo "key is exists<br>";
 }
 else{
-    echo "key is not exists";
+    echo "key is not exists<br>";
 }
 print_r($b);
 echo "<br><br>";
