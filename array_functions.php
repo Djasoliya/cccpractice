@@ -206,5 +206,34 @@ echo "<br><br>";
 echo "28. Removes a portion of the array and replaces it with something else.<br>";
 array_splice($arrayreduce, 1, 2, $arr3);
 print_r($arrayreduce);
+echo "<br><br>";
+
+echo "-------------------------------------------Extra functions-------------------------------------------<br>";
+$arr_chunk = array("dj"=>200, "hiren"=>38, "raj"=>130, "dhruv"=>90, "harsh"=>180);
+print_r(array_chunk($arr_chunk, 2));                //it divide the array into new array which have two-two chunk
+echo "<br><br>";
+
+$arr_intersect = array("umesh", "dhruv", "dj");             //it return the same element from two arrays
+$arr_intersect1 = array("dhruv", "dj", "harry");
+$arr_intersect2 = array_intersect($arr_intersect, $arr_intersect1);
+foreach($arr_intersect2 as $x){
+    echo "$x <br>";
+}
+echo "<br>";
+
+shuffle($arr_intersect);             //it suffele array all element
+print_r($arr_intersect);
+echo "<br><br>";
+
+echo current($arr_intersect1) . "<br>";      //it return the current element of array
+echo end($arr_intersect1);                   //it return the last element of the array
+echo "<br><br>";
+
+$arr_sum = array(2,5,23,9,54);
+echo array_sum($arr_sum)."<br><br>";
+
+$arr_sum1 = array("a"=>2.4, "b"=>27.76, "c"=>1.2);
+echo array_sum($arr_sum1);
+
 
 ?>
