@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <!-- <link rel = "stylesheet" href = "form.css"> -->
+    <style>
+        p {
+            font-size: 30px;
+            text-align: center;
+        }
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        label{
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        input[type='text'] {
+            width: 300px;
+            border-radius: 15px;
+            padding: 4px 10px;
+        }
+        input[type='select'] {
+            width: 300px;
+            border-radius: 15px;
+            padding: 4px 10px;
+        }
+        input[type='date'] {
+            padding-right: 10px;
+            font-size: 16px;
+            border-radius: 20px;
+            width: 60%;
+            text-align: center;
+        }
+        input[type='submit'] {
+            margin-left: 720px;
+            font-size: 20px;
+            border-radius: 20px;
+            width: 10%;
+        }
+        select{
+            font-size: 16px;
+            border-radius: 20px;
+            width: 60%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Product Form</p>
+    <table>
+        <form action="formsubmit.php" method="post">
+            <tr>
+                <td><label for="prodname">Product name : </lable>
+                </td>
+                <td><input type="text" name="prodname"><br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="sku">SKU : </lable>
+                </td>
+                <td><input type="text" name="sku"><br><br></td>
+            </tr>
+            
+            <tr>
+                <td><label for="producttype">Product Type : </lable></td>
+                <td><input type="radio" name="radiobtn" value="Simple">
+                    <label for="radiobtn1">Simple</label>
+                    <input type="radio" name="radiobtn" value="Bundle ">
+                    <label for="radiobtn2">Bundle</label><br><br></td>
+
+            <tr>
+                <td><label for="category">Category : </label></td>
+                <td><select name="category" id="category">
+                        <option value="Bar & Game Room">Bar & Game Room</option>
+                        <option value="Bedroom">Bedroom</option>
+                        <option value="Decor">Decor</option>
+                        <option value="Dining & Kitchen">Dining & Kitchen</option>
+                        <option value="Lighting">Lighting</option>
+                        <option value=" Living Room"> Living Room</option>
+                        <option value="Mattresses">Mattresses</option>
+                        <option value="Office">Office</option>
+                        <option value="Outdoor">Outdoor</option>
+                    </select> <br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="manufacturercost">Manufacturer Cost : </label></td>
+                <td><input type="text" name="manufacturercost"><br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="shippingcost">Shipping Cost : </label></td>
+                <td><input type="text" name="shippingcost"><br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="totalcost">Total Cost : </label></td>
+                <td><input type="text" name="totalcost"><br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="price">Price : </label></td>
+                <td><input type="text" name="price"><br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="status">Status : </label></td>
+                <td><select name="status" id="status">
+                        <option value="Enabled">Enabled</option>
+                        <option value="Disabled">Disabled</option>
+                    </select><br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="createddate">Created At : </label></td>
+                <td><input type="date" name="createddate"><br><br></td>
+            </tr>
+
+            <tr>
+                <td><label for="updateddate">Updated At : </label></td>
+                <td><input type="date" name="updateddate"><br><br></td>
+            </tr>
+
+    </table>
+    <input type="submit">
+    </form>
+
+</body>
+
+</html>
