@@ -16,12 +16,7 @@
             font-size: 20px;
             margin-bottom: 30px;
         }
-        input[type='text'] {
-            width: 300px;
-            border-radius: 15px;
-            padding: 4px 10px;
-        }
-        input[type='select'] {
+        input[type='text'],input[type='select']{
             width: 300px;
             border-radius: 15px;
             padding: 4px 10px;
@@ -34,10 +29,11 @@
             text-align: center;
         }
         input[type='submit'] {
-            margin-left: 720px;
+            margin-left: 260px;
             font-size: 20px;
             border-radius: 20px;
-            width: 10%;
+            width: 16%;
+            margin-bottom: 10px;
         }
         select{
             font-size: 16px;
@@ -45,35 +41,46 @@
             width: 60%;
             text-align: center;
         }
+        body{
+            background-color: rgb(136, 183, 221);
+            color: aliceblue;
+        }
+        div{
+            background-color: rgb(49, 46, 58);
+            align-items: center;
+            border-radius: 14px;
+            width: 40%;
+            padding: 1px 0px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
-<body>
+<body><div>
     <p>Product Form</p>
     <table>
         <form action="formsubmit.php" method="post">
             <tr>
-                <td><label for="prodname">Product name : </lable>
-                </td>
-                <td><input type="text" name="prodname"><br><br></td>
+                <td><label for="prodname">Product name : </lable></td>
+                <td><input type="text" id="prodname" name="group1[prodname]"><br><br></td>
             </tr>
 
             <tr>
-                <td><label for="sku">SKU : </lable>
-                </td>
-                <td><input type="text" name="sku"><br><br></td>
+                <td><label for="sku">SKU : </lable></td>
+                <td><input type="text" id="sku" name="group1[sku]"><br><br></td>
             </tr>
             
             <tr>
                 <td><label for="producttype">Product Type : </lable></td>
-                <td><input type="radio" name="radiobtn" value="Simple">
+                <td><input type="radio" id="radiobtn1" name="group1[radiobtn]" value="Simple">
                     <label for="radiobtn1">Simple</label>
-                    <input type="radio" name="radiobtn" value="Bundle ">
+                    <input type="radio" id="radiobtn2" name="group1[radiobtn]" value="Bundle ">
                     <label for="radiobtn2">Bundle</label><br><br></td>
 
             <tr>
                 <td><label for="category">Category : </label></td>
-                <td><select name="category" id="category">
+                <td><select name="group1[category]" id="category">
                         <option value="Bar & Game Room">Bar & Game Room</option>
                         <option value="Bedroom">Bedroom</option>
                         <option value="Decor">Decor</option>
@@ -88,27 +95,27 @@
 
             <tr>
                 <td><label for="manufacturercost">Manufacturer Cost : </label></td>
-                <td><input type="text" name="manufacturercost"><br><br></td>
+                <td><input type="text" id="manufacturercost" name="group1[manufacturercost]"><br><br></td>
             </tr>
 
             <tr>
                 <td><label for="shippingcost">Shipping Cost : </label></td>
-                <td><input type="text" name="shippingcost"><br><br></td>
+                <td><input type="text" id="shippingcost" name="group2[shippingcost]"><br><br></td>
             </tr>
 
             <tr>
                 <td><label for="totalcost">Total Cost : </label></td>
-                <td><input type="text" name="totalcost"><br><br></td>
+                <td><input type="text" id="totalcost" name="group2[totalcost]"><br><br></td>
             </tr>
 
             <tr>
                 <td><label for="price">Price : </label></td>
-                <td><input type="text" name="price"><br><br></td>
+                <td><input type="text" id="price" name="group2[price]"><br><br></td>
             </tr>
 
             <tr>
                 <td><label for="status">Status : </label></td>
-                <td><select name="status" id="status">
+                <td><select name="group2[status]" id="status">
                         <option value="Enabled">Enabled</option>
                         <option value="Disabled">Disabled</option>
                     </select><br><br></td>
@@ -116,18 +123,18 @@
 
             <tr>
                 <td><label for="createddate">Created At : </label></td>
-                <td><input type="date" name="createddate"><br><br></td>
+                <td><input type="date" id="createddate" name="group2[createddate]"><br><br></td>
             </tr>
 
             <tr>
                 <td><label for="updateddate">Updated At : </label></td>
-                <td><input type="date" name="updateddate"><br><br></td>
+                <td><input type="date" id="updateddate" name="group2[updateddate]"><br><br></td>
             </tr>
 
     </table>
     <input type="submit">
     </form>
-
+</div>
 </body>
 
 </html>
