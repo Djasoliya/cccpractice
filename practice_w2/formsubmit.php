@@ -18,18 +18,13 @@ else{
     echo "connection success<br>";
 }
 
-$pname = postFrom('group1','prodname');
+$data = getParam("group1");
+$data1 = getParam("group2");
+// print_r($data);
+// print_r($data1);
+// $sku = postFrom('group1','prodname');
 // $pname = getFrom('group1','prodname');
 // $pname = requestFrom('group1','prodname');
-$sku = postFrom('group1','sku');
-$radio = postFrom('group1','radiobtn');
-$pcategory = postFrom('group1','category');
-$manufacost = postFrom('group1','manufacturercost');              
-$shipcost = postFrom('group2','shippingcost');              
-$tcost = postFrom('group2','totalcost');              
-$prodprice = postFrom('group2','price');              
-$createdat = postFrom('group2','createddate');              
-$updatedat = postFrom('group2','updateddate');              
 
 // $pname = $_POST['prodname'];
 // $sku = $_POST['sku'];
@@ -41,12 +36,12 @@ $updatedat = postFrom('group2','updateddate');
 // $prodprice = $_POST['price'];
 // $createdat = $_POST['createddate'];
 // $updatedat = $_POST['updateddate'];
-
-$sql = "INSERT INTO ccc_product (`product_name`,`sku`,`product_type`,`category`,`manufacturer_cost`,`shipping_cost`,`total_cost`,`price`,`status`,`created_at`,`updated_at`)VALUES('$pname','$sku','$radio', '$pcategory','$manufacost','$shipcost','$tcost','$prodprice','$createdat','$createdat','$updatedat')";
-if(mysqli_query($conn, $sql)){
-    echo "new record inserted successfully";
-}
-else{
-    echo "error".$conn->error;
-}
+insert("producttb", $data);
+// $sql = "INSERT INTO ccc_product (`product_name`,`sku`,`product_type`,`category`,`manufacturer_cost`,`shipping_cost`,`total_cost`,`price`,`status`,`created_at`,`updated_at`)VALUES('$pname','$sku','$radio', '$pcategory','$manufacost','$shipcost','$tcost','$prodprice','$createdat','$createdat','$updatedat')";
+// if(mysqli_query($conn, $sql)){
+//     echo "new record inserted successfully";
+// }
+// else{
+//     echo "error".$conn->error;
+// }
 ?>

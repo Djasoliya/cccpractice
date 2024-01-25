@@ -9,7 +9,8 @@ function insert($table_name, $data){
     $values = implode(",",$values);                       
     echo "INSERT INTO {$table_name} ({$columns}) VALUES ({$values})";
 }
-insert("producttb",$_POST['group1']);
+insert("producttb",['prodname'=>'key','tcost'=>'200']);
+// insert("producttb",$_POST['group1']);
 echo "<br><br>";
 
 function update($table_name, $cols, $where){
