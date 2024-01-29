@@ -4,25 +4,35 @@
 include 'sql/connection.php';
 include 'sql/functions.php';
 include '/../practice_w2/phpfunctions.php';
-if($_GET['action']=='edit'){
-    $p_id=$_GET['id'];
+
+$action=isset($_GET['action'])?$_GET['action']:null;
+$p_id=isset($_GET['id'])?$_GET['id']:null;
+if($action=='edit'){
     $colarr = array("product_name","sku", "product_type","category","manufacturer_cost","shipping_cost","total_cost","price","status","created_at","updated_at");
-    $getcol = select("ccc_product",$colarr) .  " WHERE product_id = '$p_id' ";;
-    $query = mysqli_query($conn,$getcol);
-    $row = mysqli_fetch_assoc($query);
-    // print_r($row);
+    $getcol = selectwhere("ccc_product",$colarr,["product_id" => $p_id]);
+    // $getcol = select("ccc_product",$colarr) .  " WHERE product_id = '$p_id' ";;
+    // $query = mysqli_query($conn,$getcol);
+    $row = mysqli_fetch_assoc($getcol);
+}
+elseif($action=='delete'){
+    $p_id=$_GET['id'];
+    $where = array("product_id"=>"$p_id");
+    delete('ccc_product',$where);
+    header("location: product_list.php");
 }
 else{
-    echo "data not inserted";
+    $row['product_name']='';
+    $row['sku']='';
+    $row['product_type']='simple';
+    $row['category']='';
+    $row['manufacturer_cost']='';
+    $row['shipping_cost']='';
+    $row['total_cost']='';
+    $row['price']='';
+    $row['status']='';
+    $row['created_at']='';
+    $row['updated_at']='';
 }
-// $where = array('product_id'=>$p_id);
-// $up = update("ccc_product",$row, $where);
-// echo $up;
-// if($result=mysqli_query($conn,$up)){
-//     echo "updated sucessfully";
-// }
-
-
 ?>
 <head>
     <!-- <link rel = "stylesheet" href = "form.css"> -->
@@ -99,8 +109,8 @@ else{
                 <td><label for="producttype">Product Type : </lable></td>
                 <td><input type="radio" id="radiobtn1" name="group1[product_type]" value="Simple" <?php if($row['product_type']=="Simple"){?> checked="checked" <?php } ?> >
                 <label for="radiobtn1">Simple</label>
-                <input type="radio" id="radiobtn1" name="group1[product_type]" value="Bundle" <?php if($row['product_type']=="Bundle"){?> checked="checked" <?php } ?> >
-                <label for="radiobtn1">Bundle</label><br><br></td>
+                <input type="radio" id="radiobtn2" name="group1[product_type]" value="Bundle" <?php if($row['product_type']=="Bundle"){?> checked="checked" <?php } ?> >
+                <label for="radiobtn2">Bundle</label><br><br></td>
 
             <tr>
                 <td><label for="category">Category : </label></td>
@@ -115,6 +125,7 @@ else{
                         <option value="Office"<?php if($row['category']=="Office"){?> selected ="selected" <?php } ?> >Office</option>
                         <option value="Outdoor"<?php if($row['category']=="Outdoor"){?> selected ="selected" <?php } ?> >Outdoor</option>
                     </select> <br><br></td>
+                    
             </tr>
 
             <tr>
@@ -156,7 +167,8 @@ else{
             </tr>
 
     </table>
-    <input type="submit" name="editbtn" value= "Edit">
+    <input type="submit" name='submit' value="<?php echo $p_id ? 'update':'insert';?>">
+    <!-- <input type="submit" name="editbtn" value= "Edit"> -->
     </form>
     <?php
 

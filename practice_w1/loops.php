@@ -79,4 +79,56 @@ for($i=1;$i<=$n;$i++){
     }
     echo "<br>";
 }
+
+echo "<br><br>";
+
+$num=10;
+for($i=1;$i<=($num/2);$i++){
+    for($j=1;$j<=$num; $j++){
+        if($i>$j || $j>($num-$i)+1){
+            echo "-";
+        }
+        else{
+            echo $j;
+        }
+    }
+    echo "<br>";
+}
+for($i=($num/2)-1;$i>=1;$i--){
+    for($j=1;$j<=$num; $j++){
+        if($i>$j || $j>($num-$i)+1){
+            echo "-";
+        }
+        else{
+            echo $j;
+        }
+    }
+    echo "<br>";
+}
+echo "<br><br>";
+
+$num=11;
+for($i=1;$i<=($num/2)+1;$i++){
+    for($j=1;$j<=$num; $j++){
+        if($i>$j || $j>($num-$i)+1){
+            echo "-";
+        }
+        else{
+            echo $j;
+        }
+    }
+    echo "<br>";
+}
+for($i=($num/2)-1;$i>=0;$i--){
+    for($j=1;$j<=$num; $j++){
+        if($i>$j || $j>($num-$i)+1){
+            echo "-";
+        }
+        else{
+            echo $j;
+        }
+    }
+    echo "<br>";
+}
+
 ?>
