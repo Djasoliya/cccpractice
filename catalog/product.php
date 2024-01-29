@@ -3,17 +3,26 @@
 <?php
 include 'sql/connection.php';
 include 'sql/functions.php';
+include '/../practice_w2/phpfunctions.php';
+if($_GET['action']=='edit'){
+    $p_id=$_GET['id'];
+    $colarr = array("product_name","sku", "product_type","category","manufacturer_cost","shipping_cost","total_cost","price","status","created_at","updated_at");
+    $getcol = select("ccc_product",$colarr) .  " WHERE product_id = '$p_id' ";;
+    $query = mysqli_query($conn,$getcol);
+    $row = mysqli_fetch_assoc($query);
+    // print_r($row);
+}
+else{
+    echo "data not inserted";
+}
+// $where = array('product_id'=>$p_id);
+// $up = update("ccc_product",$row, $where);
+// echo $up;
+// if($result=mysqli_query($conn,$up)){
+//     echo "updated sucessfully";
+// }
 
-    if($_GET['action']=='edit'){
-        $p_id=$_GET['id'];
-        $colarr = array("product_name","sku", "product_type","category","manufacturer_cost","shipping_cost","total_cost","price","status","created_at","updated_at");
-        $getcol = select("ccc_product",$colarr) .  " WHERE product_id = '$p_id' ";;
-        // echo $getcol;
-        $query = mysqli_query($conn,$getcol);
-        echo $p_id;
-        $row = mysqli_fetch_assoc($query);
-        
-    }
+
 ?>
 <head>
     <!-- <link rel = "stylesheet" href = "form.css"> -->
@@ -43,7 +52,7 @@ include 'sql/functions.php';
             text-align: center;
         }
         input[type='submit'] {
-            margin-left: 260px;
+            margin-left: 230px;
             font-size: 20px;
             border-radius: 20px;
             width: 16%;
@@ -74,7 +83,8 @@ include 'sql/functions.php';
 <body><div>
     <p>Product Form</p>
     <table>
-        <form action="formsubmit.php" method="get">
+        <form action="update.php" method="get">
+        <input type="hidden" id="product_id" name="product_id" value = "<?php echo $p_id; ?>">
             <tr>
                 <td><label for="prodname">Product name : </lable></td>
                 <td><input type="text" id="prodname" value = "<?php echo $row['product_name'];?>" name="group1[product_name]"><br><br></td>
@@ -87,23 +97,23 @@ include 'sql/functions.php';
             
             <tr>
                 <td><label for="producttype">Product Type : </lable></td>
-                <td><input type="radio" id="radiobtn1" value = "<?php echo $row['product_type'];?>" name="group1[product_type]" value="Simple">
-                    <label for="radiobtn1">Simple</label>
-                    <input type="radio" id="radiobtn2" value = "<?php echo $row['product_type'];?>" name="group1[product_type]" value="Bundle ">
-                    <label for="radiobtn2">Bundle</label><br><br></td>
+                <td><input type="radio" id="radiobtn1" name="group1[product_type]" value="Simple" <?php if($row['product_type']=="Simple"){?> checked="checked" <?php } ?> >
+                <label for="radiobtn1">Simple</label>
+                <input type="radio" id="radiobtn1" name="group1[product_type]" value="Bundle" <?php if($row['product_type']=="Bundle"){?> checked="checked" <?php } ?> >
+                <label for="radiobtn1">Bundle</label><br><br></td>
 
             <tr>
                 <td><label for="category">Category : </label></td>
                 <td><select name="group1[category]" id="category">
-                        <option value="Bar & Game Room">Bar & Game Room</option>
-                        <option value="Bedroom">Bedroom</option>
-                        <option value="Decor">Decor</option>
-                        <option value="Dining & Kitchen">Dining & Kitchen</option>
-                        <option value="Lighting">Lighting</option>
-                        <option value=" Living Room"> Living Room</option>
-                        <option value="Mattresses">Mattresses</option>
-                        <option value="Office">Office</option>
-                        <option value="Outdoor">Outdoor</option>
+                        <option value="Bar & Game Room" <?php if($row['category']=="Bar & Game Room"){?> selected ="selected" <?php } ?> >Bar & Game Room</option>
+                        <option value="Bedroom"<?php if($row['category']=="Bedroom"){?> selected ="selected" <?php } ?> >Bedroom</option>
+                        <option value="Decor"<?php if($row['category']=="Decor"){?> selected ="selected" <?php } ?> >Decor</option>
+                        <option value="Dining & Kitchen"<?php if($row['category']=="Dining & Kitchen"){?> selected ="selected" <?php } ?> >Dining & Kitchen</option>
+                        <option value="Lighting"<?php if($row['category']=="Lighting"){?> selected ="selected" <?php } ?> >Lighting</option>
+                        <option value="Living Room"<?php if($row['category']=="Living Room"){?> selected ="selected" <?php } ?> > Living Room</option>
+                        <option value="Mattresses"<?php if($row['category']=="Mattresses"){?> selected ="selected" <?php } ?> >Mattresses</option>
+                        <option value="Office"<?php if($row['category']=="Office"){?> selected ="selected" <?php } ?> >Office</option>
+                        <option value="Outdoor"<?php if($row['category']=="Outdoor"){?> selected ="selected" <?php } ?> >Outdoor</option>
                     </select> <br><br></td>
             </tr>
 
@@ -129,9 +139,9 @@ include 'sql/functions.php';
 
             <tr>
                 <td><label for="status">Status : </label></td>
-                <td><select name="group1[status]" id="status">
-                        <option value="Enabled">Enabled</option>
-                        <option value="Disabled">Disabled</option>
+                <td><select name="group1[status]"  value = "<?php echo $row['price'];?>" id="status">
+                        <option value="Enabled"<?php if($row['status']=="Enabled"){?> selected ="selected" <?php } ?> >Enabled</option>
+                        <option value="Disabled"<?php if($row['status']=="Disabled"){?> selected ="selected" <?php } ?> >Disabled</option>
                     </select><br><br></td>
             </tr>
 
@@ -146,8 +156,11 @@ include 'sql/functions.php';
             </tr>
 
     </table>
-    <input type="submit">
+    <input type="submit" name="editbtn" value= "Edit">
     </form>
+    <?php
+
+    ?>
 </div>
 </body>
 

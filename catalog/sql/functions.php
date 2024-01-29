@@ -20,9 +20,10 @@ function update($table_name, $cols, $where){
     foreach($where as $col=>$val){
         $wherecond[] = "`$col` = '$val'";
     }
+    $table_name = "`$table_name`";
     $columns = implode(",",$columns);
     $wherecond = implode("AND",$wherecond);
-    return "UPDATE {$table_name} SET ({$columns}) WHERE ({$wherecond})";
+    return "UPDATE {$table_name} SET {$columns} WHERE ({$wherecond})";
 }
 // update("tabledata",['prodname'=>'key','tcost'=>'200'],['id'=>7,'category'=>'office']);
 // update("tabledata",$_POST['group2'],$_POST['group1']);

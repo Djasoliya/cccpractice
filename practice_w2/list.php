@@ -16,7 +16,7 @@
     $query = "SELECT * FROM ccc_product ORDER BY sr_no DESC LIMIT 10";
     $sql = mysqli_query($conn, $query);
 
-    while($rows= mysqli_fetch_assoc($sql)){
+    while($rows=mysqli_fetch_assoc($sql)){
         echo "<li>".$rows['product_name']." - ".$rows['sku']." - ".$rows['product_type']." - ".$rows['category']." - ".$rows['manufacturer_cost']." - ".$rows['shipping_cost']." - ".$rows['total_cost']." - ".$rows['price']." - ".$rows['status']." - ".$rows['created_at']." - ".$rows['updated_at']."</li>";   
     }
 
