@@ -23,9 +23,10 @@ function update($table_name, $cols, $where){
     }
     $columns = implode(",",$columns);
     $wherecond = implode("AND",$wherecond);
-    return "UPDATE {$table_name} SET ({$columns}) WHERE ({$wherecond})";
+    return "UPDATE {$table_name} SET {$columns} WHERE {$wherecond}";
 }
-// update("tabledata",['prodname'=>'key','tcost'=>'200'],['id'=>7,'category'=>'office']);
+// $a = update("tabledata",['prodname'=>'key','tcost'=>'200'],['id'=>7,'category'=>'office']);
+// echo $a;
 // update("tabledata",$_POST['group2'],$_POST['group1']);
 // echo "<br><br>";
 
