@@ -1,15 +1,18 @@
 <?php
 class product{
-    private $productId;
-    private $productname;
-    private $productprice;
-    public function __construct($productId, $productname, $productprice) {
+    public $productId;
+    public $productName;
+    public $productPrice;
+    public function __construct($productId, $productName, $productPrice) {
         $this->productId = $productId;
-        $this->productname = $productname;
-        $this->productprice = $productprice;
+        $this->productName = $productName;
+        $this->productPrice = $productPrice;
     }
     public function getPrice() {
-        return $this->productprice;
+        return $this->productPrice;
+    }
+    public function getInfo() {
+        echo "Product_id : $this->productId <br> Product_name : $this->productName <br> Product_price : $this->productPrice <br><br>";
     }
 }
 class shopingCart{
@@ -26,12 +29,12 @@ class shopingCart{
     }
     public function displayItem(){
         foreach($this->items as $item){
-            echo "{$item->getPrice()} - {$item->getPrice()} USD <br>";
+            $item->getInfo();
         }
     }
 }
-$product1 = new product(1,"car","6000");
-$product2 = new product(1,"bike","2000");
+$product1 = new product(1,"car",6000);
+$product2 = new product(2,"bike",2000);
 
 $cart = new shopingCart();
 $cart->addItem($product1);
