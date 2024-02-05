@@ -16,12 +16,7 @@ class Lib_Connection{
     public function exec($query){
         try{
             $test = $this->connect()->query($query);
-            if ($test === true) {
-                echo '<script>alert("Data added successfully");</script>';
-            } else {
-                echo '<script>alert("Failed to add data. Please check your input.");</script>';
-            }
-            return $test;
+                return $test;
         }
         catch(Exception $e){
             var_dump($e->getMessage());

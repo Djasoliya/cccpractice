@@ -35,9 +35,27 @@ class Lib_Sql_Query_Builder extends Lib_Connection{
         $wherecond = implode("AND",$wherecond);
         return "DELETE FROM {$table_name} WHERE ({$wherecond})";
     }
-    public function select($table_name,$columns=['*']){
-        $columns = implode(",",$columns);
-        return "SELECT {$columns} FROM {$table_name}";
+
+    public function select($table_name,$columns,$where){
+        $whereCond = [];
+        if (isset($where)) {
+            foreach ($where as $field => $val) {
+                $whereCond[] = " `$field` = '" . addslashes($val) . "'";
+            }
+        }
+        $columns = (is_array($columns) && count($columns) > 0) ? implode(",", $columns) : '*';
+        $whereCond = implode(" AND ", $whereCond);
+        $sql = ($where == null) ? "SELECT {$columns} FROM {$table_name}" : "SELECT {$columns} FROM {$table_name} WHERE {$whereCond};";
+        return $sql;
+    }
+    
+
+    public function fetchAssoc($result){
+        $data=[];
+        while($row=mysqli_fetch_assoc($result)){
+            $data[]=$row;   
+        }
+        return $data;
     }
 }
 ?>
