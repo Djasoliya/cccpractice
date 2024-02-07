@@ -7,8 +7,9 @@ class Lib_Connection{
     public function connect(){
         if(is_null($this->conn)){
             $this->conn = mysqli_connect("localhost","root", "","ccc_practice");
-            if($this->conn === false){
-                die("<h1>Error de conexión a la base de datos</h1>".mysql_connect_error());
+            if ($this->conn === false) {
+                die("<h3 style='color: red;'>ERROR: Could not connect. "
+                    . mysqli_connect_error() . "</h3>");
             }
         }
         return $this->conn;
