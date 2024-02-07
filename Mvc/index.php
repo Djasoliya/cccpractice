@@ -16,34 +16,34 @@
     {
         public static function init()
         {
-            $request = new Controller_Front();
-            echo $request->init();
+            $modelRequest = new Controller_Front();
+            echo $modelRequest->init();
         }
     }
     Ccc::init();
 
 
-    // $request = new Model_Request();
+    // $modelRequest = new Model_Request();
 
-    // if ($request->getQueryData('action') == null) {
-    //     if ($request->getPostData('group') == null) {
-    //         $product = new View_Product();
-    //         echo $product->toHtml();
+    // if ($modelRequest->getQueryData('action') == null) {
+    //     if ($modelRequest->getPostData('group') == null) {
+    //         $modelProduct = new View_Product();
+    //         echo $modelProduct->toHtml();
     //         echo "<a href='?action=list'>View List Data</a><br>";
     //     } else {
-    //         $product = new Model_Product();
-    //         $product->insertData($request->getParams('group'));
+    //         $modelProduct = new Model_Product();
+    //         $modelProduct->insertData($modelRequest->getParams('group'));
     //         echo '<script>alert("Data added successfully");</script>';
-    //         $view = new View_List();
-    //         $result = $product->selectData($where = null);
-    //         $data = $product->getQueryBuilder()->fetchAssoc($result);
-    //         $view->displayData($data);
+    //         $viewList = new View_List();
+    //         $result = $modelProduct->selectData($where = null);
+    //         $data = $modelProduct->getQueryBuilder()->fetchAssoc($result);
+    //         $viewList->displayData($data);
     //     }
-    // } elseif ($request->getQueryData('action') == 'edit' || $request->getQueryData('action') ==  'delete' || $request->getQueryData('action') ==  'list') {
-    //     $product = new Model_Product();
-    //     $action = $request->getQueryData('action');
-    //     $product_id = $request->getQueryData('id');
-    //     $product->updateDeleteList($action, $product_id);
+    // } elseif ($modelRequest->getQueryData('action') == 'edit' || $modelRequest->getQueryData('action') ==  'delete' || $modelRequest->getQueryData('action') ==  'list') {
+    //     $modelProduct = new Model_Product();
+    //     $action = $modelRequest->getQueryData('action');
+    //     $modelProduct_id = $modelRequest->getQueryData('id');
+    //     $modelProduct->updateDeleteList($action, $modelProduct_id);
     // }
 
 

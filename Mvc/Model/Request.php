@@ -23,7 +23,7 @@ class Model_Request
         }
         return false;
     }
-    public function gerRequestUri()
+    public function getRequestUri()
     {
         $uri = $_SERVER['REQUEST_URI'];
         $text  = str_replace("/practice/Mvc/", "",  $uri);

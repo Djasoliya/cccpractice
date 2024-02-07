@@ -6,10 +6,10 @@ class View_Product
     {
     }
     // public function dataUpdate($condition){
-    //     $product = new Model_Product();
-    //     $data = $product->selectData($condition);
+    //     $modelProduct = new Model_Product();
+    //     $data = $modelProduct->selectData($condition);
     //     global $row;
-    //     $row = $product->getQueryBuilder()->fetchAssoc($data);
+    //     $row = $modelProduct->getQueryBuilder()->fetchAssoc($data);
     //     print_r($row);
     // }
     public function createForm()
