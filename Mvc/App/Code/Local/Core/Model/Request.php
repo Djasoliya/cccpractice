@@ -2,15 +2,15 @@
 class Core_Model_Request
 {
     protected $_controllerName;
-    protected $_actionName;
     protected $_moduleName;
+    protected $_actionName;
     public function __construct()
     {
-        $url = $this->getRequestUri();
-        $url = explode("/", $url);
-        $this->_controllerName=$url[0];
-        $this->_actionName=$url[1];
-        $this->_moduleName=$url[2];
+        $uri = $this->getRequestUri();
+        $uri = array_filter(explode("/", $uri));
+        $this->_moduleName = isset($uri[0]) ? $uri[0] : 'page';
+        $this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
+        $this->_actionName = isset($uri[2]) ? $uri[2] : 'index';
     }
     public function getParams($key = '')
     {
@@ -34,25 +34,31 @@ class Core_Model_Request
     public function getRequestUri()
     {
         $uri = $_SERVER['REQUEST_URI'];
-        $text  = str_replace("/practice/Root/", "",  $uri);
+        $text = str_replace("/practice/Mvc/", "", $uri);
         return $text;
     }
 
 
-    public function controllerName(){
+    public function getControllerName()
+    {
         return $this->_controllerName;
     }
-    public function actionName(){
+    public function getActionName()
+    {
         return $this->_actionName;
-        
+
     }
-    public function moduleName(){
+    public function getModuleName()
+    {
         return $this->_moduleName;
-        
+
     }
-    public function getFullControllerClass(){
-        return implode("_",['Page','Controller',ucfirst($this->_controllerName)]);
-        // $fullControllerName = "Page_" . $this->_controllerName ."_".$this->_moduleName;
-        // return $fullControllerName;
+    public function getFullControllerClass()
+    {
+        // $controllerClass = ucfirst($this->_moduleName)."_Controller_".($this->_controllerName);
+        // return $controllerClass;
+        $controllerClassName = $this->_moduleName . "_Controller_" . $this->_controllerName;
+        $controllerClassName = ucwords($controllerClassName, "_");
+        return $controllerClassName;
     }
 }

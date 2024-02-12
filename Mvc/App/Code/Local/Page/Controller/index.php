@@ -1,7 +1,13 @@
 <?php
-class Page_Controller_Index{
-    public function ActionIndex(){
-        echo dirname(__FILE__);
+class Page_Controller_Index extends Core_Controller_Front_Action
+{
+    public function IndexAction()
+    {
+        echo "<pre>";
+        $layout = $this->getLayout()->toHtml();
+        print_r($layout);
+        die;
+        // echo dirname(__FILE__);
     }
 }
 ?>
