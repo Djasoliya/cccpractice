@@ -9,6 +9,7 @@ class Core_Controller_Front
         $actionName = $coreRequestModel->getActionName() . 'Action';
         $fullControllerClass = $coreRequestModel->getFullControllerClass();
         $fullControllerObj = new $fullControllerClass();
+        // print_r($fullControllerObj);
         $fullControllerObj->$actionName();
     }
 }

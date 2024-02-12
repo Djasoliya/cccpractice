@@ -3,7 +3,6 @@ class Page_Controller_Index extends Core_Controller_Front_Action
 {
     public function IndexAction()
     {
-        echo "<pre>";
         $layout = $this->getLayout()->toHtml();
         print_r($layout);
         die;

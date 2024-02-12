@@ -49,7 +49,7 @@ class Core_Model_Request
 
     }
     public function getModuleName()
-    {
+    {   
         return $this->_moduleName;
 
     }
