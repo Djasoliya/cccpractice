@@ -1,11 +1,23 @@
 <?php
 class Core_Model_DB_Adapter
 {
-    public $config = [];
+    public $config = [
+        "host" => "",
+        "password" => "",
+        "user" => "",
+        "database" => ""
+    ];
     public $connect = null;
     public function connect()
     {
-
+        if (is_null($this->connect)) {
+            $this->connect = mysqli_connect(
+                $this->config["host"],
+                $this->config["user"],
+                $this->config["password"],
+                $this->config["database"]
+            );
+        }
     }
     public function fetchAll($query)
     {
