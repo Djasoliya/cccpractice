@@ -91,7 +91,7 @@ class Core_Model_Abstract
     public function removeData($key = null)
     {
 
-    }   
+    }
     public function save()
     {
 
