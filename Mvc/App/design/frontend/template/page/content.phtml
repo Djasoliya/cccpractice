@@ -10,10 +10,18 @@
 <body>
     <h1>Content</h1>
     <?php
-    // echo $this->getRequest()->getParams('id');
-    $productModel = Mage::getModel('product/product');
     echo "<pre>";
-    print_r($productModel->load(123));
+    // echo $this->getRequest()->getParams('id');
+    $productModel = Mage::getModel('product/product')->load(1);
+    // print_r($productModel);
+    print_r($productModel->getId());
+    echo "<br>";
+    print_r($productModel->getProductName());
+    echo "<br>";
+    print_r($productModel->getSku());
+    echo "<br>";
+    print_r($productModel);
+
     ?>
 </body>
 

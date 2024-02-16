@@ -22,7 +22,7 @@ class Page_Block_Head extends Core_Block_Template
     }
     public function getCss()
     {
-        return $this->_js;
+        return $this->_css;
 
     }
 }

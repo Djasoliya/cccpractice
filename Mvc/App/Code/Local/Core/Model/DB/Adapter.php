@@ -2,10 +2,10 @@
 class Core_Model_DB_Adapter
 {
     public $config = [
-        "host" => "",
+        "host" => "localhost",
         "password" => "",
-        "user" => "",
-        "database" => ""
+        "user" => "root",
+        "database" => "ccc_practice"
     ];
     public $connect = null;
     public function connect()
@@ -21,7 +21,7 @@ class Core_Model_DB_Adapter
     }
     public function fetchAll($query)
     {
-
+        
     }
     public function fetchPairs($query)
     {
@@ -33,7 +33,14 @@ class Core_Model_DB_Adapter
     }
     public function fetchRow($query)
     {
-
+        $rows = [];
+        $this->connect();
+        $sql = mysqli_query($this->connect, $query);
+        
+        while($row = mysqli_fetch_assoc($sql)){
+            $rows = $row;
+        }
+        return $rows;
     }
     public function insert($query)
     {
