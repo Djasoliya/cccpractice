@@ -1,5 +1,5 @@
 <?php
-class Product_Controller_index
+class Catalog_Controller_index
 {
     public function indexAction()
     {
