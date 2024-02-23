@@ -101,10 +101,13 @@ class Core_Model_Abstract
         return $this;
 
     }
-    public function delete($id)
+    public function delete()
     {
-        $this->getResource()
-            ->delete($id);
+        if ($this->getId()) {
+
+            $this->getResource()
+                ->delete($this);
+        }
         return $this;
     }
 }

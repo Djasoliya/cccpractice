@@ -1,0 +1,22 @@
+<div class="form" style="border:6px solid black; width:40vw; padding: 15px; margin-left:auto; margin-right:auto;">
+    <h2 style="text-align:center">Add Category Form</h2>
+    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_category/save') ?>">
+        <?php $categoryModel = $this->getCategoryForm(); ?>
+        <div class="row">
+            <input type="hidden" name="catalog_category[category_id]" value="<?php echo $categoryModel->getCategoryId(); ?>">
+        </div>
+        <div class="row">
+            <label for="category">Category Name : </label>
+            <input type="text" name="catalog_category[category_name]" id="category"
+                value="<?php echo $categoryModel->getCategoryName(); ?>">
+        </div>
+        <div class="row">
+            <label for="status">Status : </label>
+            <input type="text" name="catalog_category[status]" id="status"
+                value="<?php echo $categoryModel->getStatus(); ?>">
+        </div>
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>

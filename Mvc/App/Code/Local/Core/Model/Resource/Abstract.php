@@ -22,11 +22,9 @@ class Core_Model_Resource_Abstract
     {
         return $this->_primaryKey;
     }
-    public function save(Catalog_Model_Product $product)
+    public function save(Core_Model_Abstract $product)
     {
         $data = $product->getData();
-        // print_r($data);
-
         if (isset($data[$this->_primaryKey]) && !empty($data[$this->_primaryKey])) {
             unset($data[$this->_primaryKey]);
             $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $product->getId()]);
@@ -58,9 +56,12 @@ class Core_Model_Resource_Abstract
         return "INSERT INTO {$tableName} ({$columns}) VALUES ({$values})";
     }
 
-    public function delete($id)
+    public function delete(Core_Model_Abstract $product)
     {
-        $sql = $this->deleteSql($this->getTableName(), [$this->getPrimaryKey() => $id]);
+        $sql = $this->deleteSql(
+            $this->getTableName(),
+            [$this->getPrimaryKey() => $product->getId()]
+        );
         return $this->getAdapter()->delete($sql);
     }
     public function deleteSql($tableName, $where)

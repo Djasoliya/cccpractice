@@ -47,7 +47,6 @@ class Core_Model_DB_Adapter
     {
         $this->connect();
         $sql = mysqli_query($this->connect(), $query);
-
         if ($sql) {
             return mysqli_insert_id($this->connect());
         } else {
