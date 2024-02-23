@@ -1,28 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>Content</h1>
-    <?php
-    // echo "<pre>";
-    // echo $this->getRequest()->getParams('id');
-    $productModel = Mage::getModel('catalog/product')->load(1);
-    // print_r($productModel);
-    // print_r($productModel->getId());
-    // echo "<br>";
-    // print_r($productModel->getProductName());
-    // echo "<br>";
-    // print_r($productModel->getSku());
-    // echo "<br>";
-    // print_r($productModel);
-    echo $this->getChildHtml('');
-    ?>
-</body>
-
-</html>
+<?php
+// echo "<pre>";
+// echo $this->getRequest()->getParams('id');
+$productModel = Mage::getModel('catalog/product')->load(1);
+// print_r($productModel);
+// print_r($productModel->getId());
+// echo "<br>";
+// print_r($productModel->getProductName());
+// echo "<br>";
+// print_r($productModel->getSku());
+// echo "<br>";
+// print_r($productModel);
+echo $this->getChildHtml('');
+?>

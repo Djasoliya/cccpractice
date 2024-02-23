@@ -12,17 +12,38 @@ class Core_Model_Request
         $this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
         $this->_actionName = isset($uri[2]) ? $uri[2] : 'index';
     }
+    // public function getParams($key = '', $arg = null)
+    // {
+    //     return ($key == '')
+    //         ? $_REQUEST
+    //         : (isset($_REQUEST[$key])
+    //             ? $_REQUEST[$key]
+    //             : ((!is_null($arg)) ? $arg : '')
+    //         );
+    // }
     public function getParams($key = '')
     {
-        return ($key == '') ? $_REQUEST : (isset($_REQUEST[$key]) ? $_REQUEST[$key] : '');
+        return ($key == '')
+            ? $_REQUEST
+            : (isset($_REQUEST[$key])
+                ? $_REQUEST[$key]
+                : '');
     }
     public function getPostData($key = '')
     {
-        return ($key == '') ? $_POST : (isset($_POST[$key]) ? $_POST[$key] : '');
+        return ($key == '')
+            ? $_POST
+            : (isset($_POST[$key])
+                ? $_POST[$key]
+                : '');
     }
     public function getQueryData($key = '')
     {
-        return ($key == '') ? $_GET : (isset($_GET[$key]) ? $_GET[$key] : '');
+        return ($key == '')
+            ? $_GET
+            : (isset($_GET[$key])
+                ? $_GET[$key]
+                : '');
     }
     public function isPost()
     {
@@ -33,11 +54,13 @@ class Core_Model_Request
     }
     public function getRequestUri()
     {
-        $uri = $_SERVER['REQUEST_URI'];
-        $text = str_replace("/practice/Mvc/", "", $uri);
-        return $text;
+        $request = $_SERVER["REQUEST_URI"];
+        $uri = str_replace("/practice/Mvc/", "", $request);
+        if (str_contains($uri, "?")) {
+            $uri = stristr($uri, '?', True);
+        }
+        return $uri;
     }
-
 
     public function getControllerName()
     {
@@ -49,7 +72,7 @@ class Core_Model_Request
 
     }
     public function getModuleName()
-    {   
+    {
         return $this->_moduleName;
 
     }

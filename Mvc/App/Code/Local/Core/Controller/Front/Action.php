@@ -2,6 +2,11 @@
 class Core_Controller_Front_Action
 {
     protected $_layout = null;
+    public function __construct(){
+        $layout = $this->getLayout();
+        $layout->getChild('head')->addCss('Header.css');
+        $layout->getChild('head')->addCss('Footer.css');
+    }
     public function getLayout()
     {
         if (is_null($this->_layout)) {

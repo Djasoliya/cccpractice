@@ -13,7 +13,7 @@ class Page_Block_Head extends Core_Block_Template
     }
     public function addCss($file)
     {
-        $this->_css[] = $file;
+        $this->_css[] = '/Skin/Css/' . $file;
 
     }
     public function getJs()

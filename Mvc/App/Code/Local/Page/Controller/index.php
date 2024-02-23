@@ -6,8 +6,8 @@ class Page_Controller_Index extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         $layout->getChild('head')->addJs('js/navigation.js');
         $layout->getChild('head')->addJs('js/page.js');
-        $layout->getChild('head')->addCss('css/navigation.js');
-        $layout->getChild('head')->addCss('css/page.js');
+        // $layout->getChild('head')->addCss('Header.css');
+        // $layout->getChild('head')->addCss('Footer.css');
 
         $banner = $layout->createBlock('core/template')
             ->setTemplate('banner/banner.phtml');
@@ -17,12 +17,7 @@ class Page_Controller_Index extends Core_Controller_Front_Action
             ->addChild('banner1', $banner);
         // print_r($layout->getChild('head'));
 
-
-
         $layout->toHtml();
-        // print_r($layout);
-        // die;
-        // echo dirname(__FILE__);
     }
 }
 ?>

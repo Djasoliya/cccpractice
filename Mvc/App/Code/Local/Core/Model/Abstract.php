@@ -34,17 +34,12 @@ class Core_Model_Abstract
     }
     public function getResource()
     {
-
-        // $modelClass = get_class($this);
-        // $class = substr($modelClass, 0, strpos($modelClass, '_Model_') + 6) . '_Resource_' . substr($modelClass, strpos($modelClass, '_Model_') + 7);
-        // return new $class;
         return new $this->_resourceClass();
     }
     public function getCollection()
     {
 
     }
-
     public function getTableName()
     {
 
@@ -106,9 +101,11 @@ class Core_Model_Abstract
         return $this;
 
     }
-    public function delete()
+    public function delete($id)
     {
-
+        $this->getResource()
+            ->delete($id);
+        return $this;
     }
 }
 

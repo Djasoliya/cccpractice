@@ -3,6 +3,7 @@ class Mage
 {
     private static $registry = [];
     private static $baseDir = 'C:/xampp/htdocs/practice/Mvc';
+    private static $baseUrl = 'http://localhost/practice/Mvc';
     public static function init()
     {
         $frontController = new Core_Controller_Front();
@@ -36,6 +37,13 @@ class Mage
             return self::$baseDir . '/' . $subDir;
         }
         return self::$baseDir;
+    }
+    public static function getBaseUrl($subDir = null)
+    {
+        if ($subDir) {
+            return self::$baseUrl . '/' . $subDir;
+        }
+        return self::$baseUrl;
     }
 
 }
