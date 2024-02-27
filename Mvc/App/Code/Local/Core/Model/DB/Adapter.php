@@ -22,11 +22,15 @@ class Core_Model_DB_Adapter
     }
     public function fetchAll($query)
     {
-
+        $rows = [];
+        $sql = mysqli_query($this->connect(), $query);
+        while ($row = mysqli_fetch_assoc($sql)) {
+            $rows[] = $row;
+        }
+        return $rows;
     }
     public function fetchPairs($query)
     {
-
     }
     public function fetchOne($query)
     {
@@ -35,9 +39,7 @@ class Core_Model_DB_Adapter
     public function fetchRow($query)
     {
         $rows = [];
-        $this->connect();
         $sql = mysqli_query($this->connect(), $query);
-
         while ($row = mysqli_fetch_assoc($sql)) {
             $rows = $row;
         }
@@ -45,7 +47,6 @@ class Core_Model_DB_Adapter
     }
     public function insert($query)
     {
-        $this->connect();
         $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
             return mysqli_insert_id($this->connect());
@@ -56,10 +57,9 @@ class Core_Model_DB_Adapter
     public function update($query)
     {
         $sql = mysqli_query($this->connect(), $query);
-        if($sql){
+        if ($sql) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -68,7 +68,7 @@ class Core_Model_DB_Adapter
         $sql = mysqli_query($this->connect(), $query);
 
         if ($sql) {
-            echo "data deleted";
+            return true;
         } else {
             return false;
         }

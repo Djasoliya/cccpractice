@@ -1,0 +1,43 @@
+<?php
+$URL = Mage::getBaseUrl('admin/catalog_category');
+
+$categoryCollection = $this->getCategoryList();
+// $productCollection->addFieldToFilter('name', 'abc');
+// $productCollection->addFieldToFilter('product_id', ['in' => [55]]);
+// $productCollection->addFieldToFilter('sku', ['like'=>'%abc']);
+// $productCollection->getData();
+?>
+<div class="cattlb">
+    <table border=" 4px solid black">
+        <tr>
+            <th>Category Id</th>
+            <th>Category Name</th>
+            <th>Category Status</th>
+            <th colspan=2>Action</th>
+
+        </tr>
+        <?php
+        foreach ($categoryCollection->getData() as $category) { ?>
+            <tr>
+                <td>
+                    <?php print_r($category->getCategoryId()); ?>
+                </td>
+                <td>
+                    <?php print_r($category->getCategoryName()); ?>
+                </td>
+                <td>
+                    <?php print_r($category->getStetus()); ?>
+                </td>
+                <td>
+                    <a href="<?php echo $URL; ?>/form?id=<?php print_r($category->getCategoryId()); ?>" type="button"
+                        id="update"> Update </a>
+                </td>
+                <td>
+                    <a href="<?php echo $URL; ?>/delete?id=<?php print_r($category->getCategoryId()); ?>" type="button"
+                        id="Delete"> Delete </a>
+                </td>
+            </tr>
+
+        <?php } ?>
+    </table>
+</div>

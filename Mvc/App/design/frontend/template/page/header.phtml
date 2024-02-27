@@ -11,7 +11,7 @@
 <header>
     <div class="page-header">
         <div class="logo">
-            <img id="logo" src=<?php echo Mage::getBaseUrl() . "/Skin/Images/icon.jpg" ?> alt="Your Logo">
+            <img id="headlogo" src=<?php echo Mage::getBaseUrl() . "/skin/images/icon.png" ?> alt="Your Logo">
             <!-- <a href="#">Logo.</a> -->
         </div>
         <ul>
@@ -19,11 +19,13 @@
             <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Product/form'); ?>" style="--navAni:2">Product
                     Form</a>
             </li>
-            <li><a href="#" style="--navAni:3">Product List</a></li>
+            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Product/list'); ?>" style="--navAni:3">Product
+                    List</a></li>
             <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Category/form'); ?>" style="--navAni:4">Category
                     Form</a>
             </li>
-            <li><a href="#" style="--navAni:5">Category List</a></li>
+            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Category/list'); ?>" style="--navAni:5">Category
+                    List</a></li>
         </ul>
     </div>
 </header>

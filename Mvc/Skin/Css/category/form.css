@@ -1,8 +1,7 @@
 body {
   color: black;
   font-family: "Outfit", sans-serif;
-  background: linear-gradient(148.5deg, #33383c 50%, #fff 50%);
-  background-size: 1400px;
+  background: linear-gradient(160.5deg, #33383c 50%, #fff 50%);
   height: 100vh;
 }
 .form {
@@ -12,23 +11,21 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
-  width: 500px;
+  width: 450px;
 }
-h2 {
-  text-align: center;
-  padding: 4px;
-}
+
 .row {
   margin-bottom: 10px;
 }
-
 label {
   display: inline-block;
-  width: 150px;
+  width: 120px;
   font-weight: bold;
-  margin-left: 30px;
 }
 
+h2 {
+  text-align: center;
+}
 select {
   width: 265px;
   padding: 5px;
@@ -47,5 +44,4 @@ input[type="submit"] {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 30px;
 }

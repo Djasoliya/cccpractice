@@ -25,24 +25,15 @@ class Core_Model_Resource_Abstract
     public function save(Core_Model_Abstract $product)
     {
         $data = $product->getData();
-        if (isset($data[$this->_primaryKey]) && !empty($data[$this->_primaryKey])) {
-            unset($data[$this->_primaryKey]);
+        if (isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()])) {
+            unset($data[$this->getPrimaryKey()]);
             $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $product->getId()]);
             $this->getAdapter()->update($sql);
-            echo '<script>alert("Data updated succsefully")</script>';
         } else {
             $sql = $this->insertSql($this->getTableName(), $data);
             $id = $this->getAdapter()->insert($sql);
             $product->setId($id);
-            echo '<script>alert("Data inserted succsefully")</script>';
         }
-        // $data = $product->getData();
-        // if (isset($data[$this->getPrimaryKey()])) {
-        //     unset($data[$this->getPrimaryKey()]);
-        // }
-        // $sql = $this->insertSql($this->getTableName(), $data);
-        // $id = $this->getAdapter()->insert($sql);
-        // $product->setId($id);
     }
     public function insertSql($tableName, $data)
     {

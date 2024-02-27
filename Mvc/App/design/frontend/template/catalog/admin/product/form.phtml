@@ -1,9 +1,11 @@
-<div class="form" style=" width:40vw; padding: 15px; ">
-    <h2 style="text-align:center">Product Form</h2>
+<div class="form">
+    <h2>Product Form</h2>
     <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>">
         <?php $productModel = $this->getProductForm(); ?>
+        <?php $cat = $this->getCategoryList(); ?>
         <div class="row">
-            <input type="hidden" name="catalog_product[product_id]" value="<?php echo $productModel->getProductId(); ?>">
+            <input type="hidden" name="catalog_product[product_id]"
+                value="<?php echo $productModel->getProductId(); ?>">
         </div>
         <div class="row">
             <label for="sku">SKU : </label>
@@ -29,7 +31,7 @@
             <label for="description">Description :
             </label>
             <textarea name="catalog_product[description]" id="description" cols="30"
-                rows="8"><?php echo $productModel->getDescription(); ?></textarea>
+                rows="5"><?php echo $productModel->getDescription(); ?></textarea>
         </div>
 
         <div class="row">
@@ -42,7 +44,16 @@
             <label for="link">Link : </label>
             <input type="text" name="catalog_product[link]" id="link" value="<?php echo $productModel->getLink(); ?>">
         </div>
-
+        <div class="row">
+            <label for="category_id">Category:</label>
+            <select name="product[category_id]">
+                <?php foreach ($cat->getData() as $category): ?>
+                    <option value="<?php echo $category->getCategoryId() ?>" <?php echo $category->getCategoryId() == $productModel->getCategoryId() ? 'selected' : ''; ?>>
+                        <?php echo $category->getCategoryName(); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
         <div class="row">
             <label for="price">Price : </label>
             <input type="number" name="catalog_product[price]" id="price"
@@ -81,8 +92,12 @@
 
         <div class="row">
             <label for="status">Status : </label>
-            <input type="text" name="catalog_product[status]" id="status"
-                value="<?php echo $productModel->getStatus(); ?>">
+            <!-- <input type="text" name="catalog_product[status]" id="status"
+                value=<?php //echo $productModel->getStatus();             ?>"> -->
+            <select id="status" name="catalog_product[status]">
+                <option value="1" <?php echo $productModel->getStatus() == 1 ? 'selected' : '' ?>>Enabled</option>
+                <option value="0" <?php echo $productModel->getStatus() == 0 ? 'selected' : '' ?>>Disabled</option>
+            </select>
         </div>
 
         <div class="row">

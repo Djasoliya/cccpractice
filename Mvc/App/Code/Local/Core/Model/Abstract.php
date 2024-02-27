@@ -38,7 +38,10 @@ class Core_Model_Abstract
     }
     public function getCollection()
     {
-
+        $collection = new $this->_collectionClass;
+        $collection->setResource($this->getResource());
+        $collection->select();
+        return $collection;
     }
     public function getTableName()
     {
@@ -76,6 +79,7 @@ class Core_Model_Abstract
     {
         return $this->_data;
     }
+    
     public function setData($data)
     {
         $this->_data = $data;
@@ -104,7 +108,6 @@ class Core_Model_Abstract
     public function delete()
     {
         if ($this->getId()) {
-
             $this->getResource()
                 ->delete($this);
         }

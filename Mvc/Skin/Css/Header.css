@@ -43,10 +43,10 @@ body {
   /* background: linear-gradient(149.5deg, #33383c 50%, #fff 50%);
   height: 150vh; */
 }
-#logo {
+#headlogo {
   margin-left: 20px;
   margin-top: 5px;
-  width: 40px;
+  width: 100px;
   height: 40px;
 }
 /* Genral */
@@ -70,9 +70,9 @@ header {
 
 .page-header {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.3rem 0;
 }
 
 .logo {
@@ -88,19 +88,19 @@ header {
 
 ul {
   display: flex;
-  gap: 0.6rem;
+  gap: 0rem;
   list-style-type: none;
   background-color: transparent;
   overflow: hidden;
-  margin-right: 20px;
+  margin-left: 40px;
 }
 
 li a {
   display: inline-block;
   padding: 0.3rem 1rem;
-  color: #fff;
+  color: lightseagreen;
   text-decoration: none;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.7px;
   border-radius: 36px;

@@ -1,0 +1,43 @@
+/* Style for the table */
+.cattlb {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+}
+
+/* Style for table header   */
+th {
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  padding: 8px;
+}
+
+/* Style for table cells  */
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+td a {
+  text-decoration: none;
+}
+
+/* Style for update and delete buttons */
+.button {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 4px 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #f2f2f2;
+  color: #333;
+  font-size: 14px;
+}
+
+.button:hover {
+  background-color: #ddd;
+}

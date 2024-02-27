@@ -1,0 +1,75 @@
+<div class="form">
+    <h2>Product Form</h2>
+    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>">
+        <div class="row">
+            <input type="hidden" name="customer[customer_id ]">
+        </div>
+        <div class="row">
+            <label for="customer_email">Customer Email : </label>
+            <input type="email" name="customer[customer_email]" id="customer_email">
+        </div>
+        <div class="row">
+            <label for="first_name">First Name : </label>
+            <input type="text" name="customer[first_name]" id="first_name">
+        </div>
+
+        <div class=" row">
+            <label for="last_name">Last name : </label>
+            <input type="text" name="customer[last_name]" id="last_name">
+        </div>
+
+        <div class="row">
+            <label for="billing_address">Billing Address : </label>
+            <textarea name="customer[billing_address]" id="billing_address" cols="30" rows="5"></textarea>
+        </div>
+
+        <div class="row">
+            <label for="billing_city">Billing City : </label>
+            <input type="text" name="customer[billing_city]" id="billing_citybilling_phone">
+        </div>
+
+        <div class="row">
+            <label for="billing_region">Billing Region : </label>
+            <input type="text" name="customercustomer[billing_region]" id="billing_region">
+        </div>
+
+        <div class="row">
+            <label for="billing_country">Billing Country : </label>
+            <input type="text" name="customercustomer[billing_country]" id="billing_country">
+        </div>
+
+        <div class="row">
+            <label for="billing_phone">Billing Phone : </label>
+            <input type="number" name="customercustomer[billing_phone]" id="billing_phone">
+        </div>
+
+        <div class="row">
+            <label for="shipping_address">Shipping Address</label>
+            <input type="number" name="customer[shipping_address]" id="shipping_address">
+        </div>
+
+        <div class="row">
+            <label for="shipping_city">Shipping City</label>
+            <input type="number" name="customer[shipping_city]" id="shipping_city">
+        </div>
+
+        <div class="row">
+            <label for="shipping_region">Shipping Region</label>
+            <input type="number" name="customer[shipping_region]" id="shipping_region">
+        </div>
+
+        <div class="row">
+            <label for="shipping_country">Shipping Country : </label>
+            <input type="number" name="customer[shipping_country]" id="shipping_country">
+        </div>
+
+        <div class="row">
+            <label for="shipping_phone">Shipping Phone : </label>
+            <input type="number" name="customer[shipping_phone]" id="shipping_phone">
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
