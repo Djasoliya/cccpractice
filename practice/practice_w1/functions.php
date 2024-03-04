@@ -6,7 +6,7 @@ $str1 = "";                 // returns 0 because there is nothing in string
 $str1 = " ";                // returns 1 because there is one space character in the string
 $str1 = "$%1";              // returns 3 because there is 3 symbole
 echo strlen($str1); 
-*/ 
+*/
 
 /*
 #<-------------Replaces all occurrences of a substring with another substring in a given string------------------>
