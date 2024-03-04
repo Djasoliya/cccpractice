@@ -11,21 +11,21 @@
 <header>
     <div class="page-header">
         <div class="logo">
-            <img id="headlogo" src=<?php echo Mage::getBaseUrl() . "/skin/images/icon.png" ?> alt="Your Logo">
-            <!-- <a href="#">Logo.</a> -->
+            <a href="<?php echo Mage::getBaseUrl(''); ?>"><img id="headlogo" src=<?php echo Mage::getBaseUrl() . "skin/images/icon.png" ?> alt="Your Logo"></a>
         </div>
-        <ul>
-            <!-- <li><a href="#" class="active" style="--navAni:1">Home</a></li> -->
-            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Product/form'); ?>" style="--navAni:2">Product
-                    Form</a>
-            </li>
-            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Product/list'); ?>" style="--navAni:3">Product
-                    List</a></li>
-            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Category/form'); ?>" style="--navAni:4">Category
-                    Form</a>
-            </li>
-            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Category/list'); ?>" style="--navAni:5">Category
-                    List</a></li>
-        </ul>
-    </div>
+        <div class="buttondiv">
+            <div class="btn row">
+                <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><button
+                        type="button">User</button></a>
+            </div>
+
+            <div class="btn row">
+                <a href="<?php echo Mage::getBaseUrl('Admin/user/login'); ?>" style="--navAni:5"><button
+                        type="button">Admin</button></a>
+            </div>
+            <div class="btn row">
+                <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><button
+                        type="button">Logout</button></a>
+            </div>
+        </div>
 </header>

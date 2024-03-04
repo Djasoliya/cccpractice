@@ -10,7 +10,6 @@ class Core_Model_Resource_Abstract
     public function load($id, $column = null)
     {
         $sql = "SELECT * FROM {$this->_tableName} WHERE {$this->_primaryKey} = {$id} LIMIT 1";
-
         return $this->getAdapter()->fetchRow($sql);
     }
     public function getAdapter()
@@ -22,17 +21,17 @@ class Core_Model_Resource_Abstract
     {
         return $this->_primaryKey;
     }
-    public function save(Core_Model_Abstract $product)
+    public function save(Core_Model_Abstract $model)
     {
-        $data = $product->getData();
+        $data = $model->getData();
         if (isset($data[$this->getPrimaryKey()]) && !empty($data[$this->getPrimaryKey()])) {
             unset($data[$this->getPrimaryKey()]);
-            $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $product->getId()]);
+            $sql = $this->updateSql($this->getTableName(), $data, [$this->getPrimaryKey() => $model->getId()]);
             $this->getAdapter()->update($sql);
         } else {
             $sql = $this->insertSql($this->getTableName(), $data);
             $id = $this->getAdapter()->insert($sql);
-            $product->setId($id);
+            $model->setId($id);
         }
     }
     public function insertSql($tableName, $data)
@@ -47,11 +46,11 @@ class Core_Model_Resource_Abstract
         return "INSERT INTO {$tableName} ({$columns}) VALUES ({$values})";
     }
 
-    public function delete(Core_Model_Abstract $product)
+    public function delete(Core_Model_Abstract $model)
     {
         $sql = $this->deleteSql(
             $this->getTableName(),
-            [$this->getPrimaryKey() => $product->getId()]
+            [$this->getPrimaryKey() => $model->getId()]
         );
         return $this->getAdapter()->delete($sql);
     }

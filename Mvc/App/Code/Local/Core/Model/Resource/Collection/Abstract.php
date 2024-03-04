@@ -2,12 +2,18 @@
 class Core_Model_Resource_Collection_Abstract
 {
     protected $_resource = null;
+    protected $_modelClass = null;
     protected $_select = [];
+    // protected $_idLodded = false;
     protected $_data = [];
     public function setResource($resource)
     {
         $this->_resource = $resource;
         return $this;
+    }
+    public function setModelClass($modelClass)
+    {
+        $this->_modelClass = $modelClass;
     }
     public function select()
     {
@@ -46,6 +52,21 @@ class Core_Model_Resource_Collection_Abstract
                             case 'like':
                                 $whereCondition[] = "{$column} LIKE '{$_v}'";
                                 break;
+                            case 'gt':
+                                $whereCondition[] = "{$column} > {$_v}";
+                                break;
+                            case 'lt':
+                                $whereCondition[] = "{$column} < {$_v}";
+                                break;
+                            case 'lte':
+                                $whereCondition[] = "{$column} <= {$_v}";
+                                break;
+                            case 'gte':
+                                $whereCondition[] = "{$column} >= {$_v}";
+                                break;
+                            case 'neq':
+                                $whereCondition[] = "{$column} <> {$_v}";
+                                break;
                         }
                     }
                 }
@@ -56,8 +77,10 @@ class Core_Model_Resource_Collection_Abstract
         // echo $sql . "<br>";
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
-            $this->_data[] = Mage::getModel('catalog/product')->setData($row);
+            $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
         }
+        // $this->_isLoaded = true;
+        return $this;
         // print_r($this->_data);
     }
     public function getData()

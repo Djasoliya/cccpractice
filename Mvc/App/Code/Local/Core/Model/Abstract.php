@@ -5,6 +5,7 @@ class Core_Model_Abstract
     protected $_data = [];
     protected $_resourceClass = '';
     protected $_collectionClass = '';
+    protected $_modelClass = '';
     protected $_resource = null;
     protected $_collection = null;
     public function __construct()
@@ -23,6 +24,10 @@ class Core_Model_Abstract
     {
 
     }
+    // public function getModelClass()
+    // {
+    //     return new $this->_modelClass();
+    // }
     public function setId($id)
     {
         $this->_data[$this->getResource()->getPrimaryKey()] = $id;
@@ -38,8 +43,9 @@ class Core_Model_Abstract
     }
     public function getCollection()
     {
-        $collection = new $this->_collectionClass;
+        $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
+        $collection->setModelClass($this->_modelClass);
         $collection->select();
         return $collection;
     }
@@ -79,7 +85,7 @@ class Core_Model_Abstract
     {
         return $this->_data;
     }
-    
+
     public function setData($data)
     {
         $this->_data = $data;
@@ -103,7 +109,6 @@ class Core_Model_Abstract
     {
         $this->_data = $this->getResource()->load($id, $column);
         return $this;
-
     }
     public function delete()
     {

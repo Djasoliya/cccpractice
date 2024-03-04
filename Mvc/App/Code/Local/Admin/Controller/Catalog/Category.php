@@ -1,11 +1,11 @@
 <?php
-class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
 {
     public function formAction()
     {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $layout->getChild('head')->addCss('category/form.css');
+        $layout->getChild('head')->addCss('catalog/admin/category/form.css');
 
         $productForm = $layout->createBlock('catalog/admin_category_form');
         $child->addChild('form', $productForm);
@@ -17,28 +17,23 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
         $data = $this->getRequest()->getParams('catalog_category');
         $product = Mage::getModel('catalog/category')->setData($data);
         $product->save();
-        $location = Mage::getBaseUrl('Admin/Catalog_Category/list');
-        header("location: $location");
-        // print_r($product);
+        $this->setRedirect('admin/catalog_category/list');
     }
     public function deleteAction()
     {
-        // echo "<pre>";
         $id = $this->getRequest()->getParams('id');
-        // print_r($id);
         $product = Mage::getModel('catalog/category')
             ->load($id);
         $product->delete();
-        $location = Mage::getBaseUrl('Admin/Catalog_Category/list');
-        header("location: $location");
+        $this->setRedirect('admin/catalog_category/list');
     }
     public function listAction()
     {
         $layout = $this->getLayout();
-        $layout->getChild('head')->addCss('category/list.css');
+        $layout->getChild('head')->addCss('catalog/admin/category/list.css');
         $child = $layout->getChild('content');
-        $productList = $layout->createBlock('catalog/admin_category_list');
-        $child->addChild('list', $productList);
+        $categoryList = $layout->createBlock('catalog/admin_category_list');
+        $child->addChild('list', $categoryList);
         $layout->toHtml();
     }
 }

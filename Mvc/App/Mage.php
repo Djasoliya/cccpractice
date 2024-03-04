@@ -2,6 +2,7 @@
 class Mage
 {
     private static $registry = [];
+    private static $_singleton = [];
     private static $baseDir = 'C:/xampp/htdocs/practice/Mvc';
     private static $baseUrl = 'http://localhost/practice/Mvc';
     public static function init()
@@ -21,7 +22,11 @@ class Mage
     }
     public static function getSingleton($className)
     {
-
+        if (isset(self::$_singleton[$className])) {
+            return self::$_singleton[$className];
+        } else {
+            return self::$_singleton[$className] = self::getModel($className);
+        }
     }
     public static function register($key, $value)
     {
@@ -43,7 +48,7 @@ class Mage
         if ($subDir) {
             return self::$baseUrl . '/' . $subDir;
         }
-        return self::$baseUrl;
+        return self::$baseUrl . "/";
     }
 
 }

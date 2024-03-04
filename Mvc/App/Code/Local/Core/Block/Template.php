@@ -14,7 +14,10 @@ class Core_Block_Template extends Core_Block_Abstract
     }
     public function removeChild($key)
     {
-
+        if(isset($this->_child[$key])){
+            unset($this->_child[$key]);
+        }
+        return $this;
     }
     public function getChild($key)
     {
@@ -28,7 +31,8 @@ class Core_Block_Template extends Core_Block_Abstract
                 $html .= $_child->toHtml();
             }
         } else {
-            $html = $this->getChild($key)->toHtml();
+
+            $html = (isset($this->_child[$key])) ? $this->_child[$key]->toHtml() : null ;
         }
         return $html;
     }
@@ -36,7 +40,5 @@ class Core_Block_Template extends Core_Block_Abstract
     {
         return Mage::getModel('core/request');
     }
-
-
 }
 ?>

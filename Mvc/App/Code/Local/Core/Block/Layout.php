@@ -16,6 +16,7 @@ class Core_Block_Layout extends Core_Block_Template
         $this->addChild('footer', $footer);
         $head = $this->createBlock('page/head');
         $this->addChild('head', $head);
+
         $messages = $this->createBlock('core/template');
         $messages->setTemplate('core/messages.phtml');
         $this->addChild('messages', $messages);

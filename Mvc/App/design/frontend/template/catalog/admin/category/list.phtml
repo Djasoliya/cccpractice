@@ -8,7 +8,7 @@ $categoryCollection = $this->getCategoryList();
 // $productCollection->getData();
 ?>
 <div class="cattlb">
-    <table border=" 4px solid black">
+    <table border=" 1px solid black">
         <tr>
             <th>Category Id</th>
             <th>Category Name</th>
@@ -20,20 +20,20 @@ $categoryCollection = $this->getCategoryList();
         foreach ($categoryCollection->getData() as $category) { ?>
             <tr>
                 <td>
-                    <?php print_r($category->getCategoryId()); ?>
+                    <?php echo $category->getCategoryId(); ?>
                 </td>
                 <td>
-                    <?php print_r($category->getCategoryName()); ?>
+                    <?php echo $category->getCategoryName(); ?>
                 </td>
                 <td>
-                    <?php print_r($category->getStetus()); ?>
+                    <?php echo $category->getStetus(); ?>
                 </td>
                 <td>
-                    <a href="<?php echo $URL; ?>/form?id=<?php print_r($category->getCategoryId()); ?>" type="button"
+                    <a href="<?php echo $URL; ?>/form?id=<?php echo $category->getCategoryId(); ?>" type="button"
                         id="update"> Update </a>
                 </td>
                 <td>
-                    <a href="<?php echo $URL; ?>/delete?id=<?php print_r($category->getCategoryId()); ?>" type="button"
+                    <a href="<?php echo $URL; ?>/delete?id=<?php echo $category->getCategoryId(); ?>" type="button"
                         id="Delete"> Delete </a>
                 </td>
             </tr>
