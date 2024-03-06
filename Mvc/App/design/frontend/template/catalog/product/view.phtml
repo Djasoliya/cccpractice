@@ -1,6 +1,7 @@
 <?php
-$productaData = $this->getProductData();
+$productData = $this->getProductData();
 ?>
+<!--
 <table border="1px">
     <tr>
         <th>Product Id</th>
@@ -10,35 +11,35 @@ $productaData = $this->getProductData();
         <th>Description</th>
         <th colspan=2>AddTocart</th>
     </tr>
-    <?php foreach ($productaData->getData() as $product) { ?>
+    <?php //foreach ($productData->getData() as $product) {   ?>
         <td>
-            <?php echo $product->getProductId(); ?>
+            <?php //echo $product->getProductId();   ?>
         </td>
         <td>
-            <img src="<?php echo Mage::getBaseUrl('media/product/'). $product->getImageLink(); ?>" style="width:200px" alt=""> 
+            <img src="<?php //echo Mage::getBaseUrl('media/product/') . $product->getImageLink();   ?>" style="width:200px" alt=""> 
         </td>
         <td>
-            <?php echo $product->getName(); ?>
+            <?php //echo $product->getName();   ?>
         </td>
         <td>
-            <?php echo $product->getColor(); ?>
+            <?php //echo $product->getColor();   ?>
         </td>
         <td>
-            <?php echo $product->getDescription(); ?>
+            <?php //echo $product->getDescription();   ?>
         </td>
 
 
-        <form method="POST" action="<?php echo $this->getUrl('sales/quote/add') ?>">
+        <form method="POST" action="<?php //echo $this->getUrl('sales/quote/add')   ?>">
             <td>
                 <div class="form">
-                    <?php //$categoryModel = $this->getCategoryForm();                         ?>
+                    <?php //$categoryModel = $this->getCategoryForm();                            ?>
                     <div class="row">
-                        <input type="hidden" name="sales[product_id]" value="<?php echo $product->getProductId(); ?>">
+                        <input type="hidden" name="cart[product_id]" value="<?php //echo $product->getProductId();   ?>">
                     </div>
                     <div class="row">
                         <label for="quentity">Quentity : </label>
-                        <input type="text" name="sales[quentity]" id="quentity"
-                            value="<?php //echo $product->getQuentity();                         ?>">
+                        <input type="text" name="cart[qty]" id="quentity"
+                            value="<?php //echo $product->getQuentity();                            ?>">
                     </div>
                 </div>
             </td>
@@ -48,6 +49,47 @@ $productaData = $this->getProductData();
                 </div>
             </td>
         </form>
+        
+        <?php //}   ?>
+    </table> -->
+<div class="product-cards">
+    <?php foreach ($productData->getData() as $product): ?>
+        <form method="POST" action="<?php echo $this->getUrl('sales/quote/add') ?>">
+            <div class="card">
+                <img src="<?php echo Mage::getBaseUrl('media/product/') . $product->getImageLink(); ?>" style="width:200px"
+                    alt="">
 
-    <?php } ?>
-</table>
+                <div class="row">
+                    <input type="hidden" name="cart[product_id]" value="<?php echo $product->getProductId();   ?>">
+                </div>
+                <!-- <img src="<?php //echo $imagePath . $product->getImageLink();   ?>" alt="Product Image"> -->
+                <div class="product-info">
+                    <h2 class="product-title">
+                        <?php echo $product->getProductId(); ?>
+                    </h2>
+                    <hr><br>
+                    <p class="product-description">
+                        <?php echo $product->getDescription(); ?>
+                    </p>
+                    <hr><br>
+                    <p class="product-price">
+                        <?php echo $product->getPrice() ?>
+                    </p>
+                    <hr><br>
+
+                    <div class="quantity-box">
+                        <span class="quantity-label">Quantity:</span>
+                        <div class="quantity-controls">
+                            <button class="quantity-button quantity-minus">-</button>
+                            <input type="number" name="cart[qty]" class="quantity-input" value="1" min="1">
+                            <button class="quantity-button quantity-plus">+</button>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="add-to-cart" value="Add to Cart">
+                </div>
+
+            </div>
+        </form>
+    <?php endforeach; ?>
+</div>

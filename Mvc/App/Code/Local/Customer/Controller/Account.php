@@ -1,7 +1,7 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    protected $_allowedActions = ['login', 'register','forgotPassword'];
+    protected $_allowedActions = ['login', 'register', 'forgotPassword'];
     public function init()
     {
         if (

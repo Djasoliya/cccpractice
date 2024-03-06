@@ -9,7 +9,11 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
-.prodcard div {
+.prodcard a {
+  text-decoration: none;
+  color: #000000;
+}
+.prodcard a div {
   margin: 25px 36px 25px 70px;
 }
 .card {

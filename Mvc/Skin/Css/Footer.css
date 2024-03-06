@@ -129,15 +129,15 @@ section {
 }
 
 .footer-distributed .footer-center i {
-  background-color: #33383b;
+  /* background-color: #248265; */
   color: #ffffff;
-  font-size: 25px;
+  /* font-size: 25px; */
   width: 38px;
   height: 38px;
   border-radius: 50%;
   text-align: center;
   line-height: 42px;
-  /* margin: 10px 15px; */
+  /* margin: 10px 10px; */
   vertical-align: middle;
 }
 
@@ -225,6 +225,12 @@ section {
 
   margin-right: 3px;
   margin-bottom: 5px;
+}
+.fab,
+.far {
+  font-weight: 400;
+  /* color: #3e7965; */
+  color: lightseagreen;
 }
 .wrapper {
   min-height: 54vh;
