@@ -13,7 +13,7 @@ class LoanCalculator_Controller_LoanCalculator extends Core_Controller_Front_Act
     {
         $data = $this->getRequest()->getParams('loan');
         print_r($data);
-        // $result = (loan_amount*rate*monthly_amount(1+rate)**term)/((1+rate)**term-1);
+        // $result = ('loan_amount'*'rate'*'monthly_amount'(1+'rate')**'term')/((1+'rate')**'term'-1);
         $loanData = Mage::getModel('loancalculator/loancalculator')->setData($data);
         $loanData->save();
     }
