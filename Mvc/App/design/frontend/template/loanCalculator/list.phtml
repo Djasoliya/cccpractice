@@ -27,10 +27,12 @@ $productCollection = $this->getList();
                 <td>
                     <?php echo $product->getMonthlyAmount(); ?>
                 </td>
-
                 <td>
-                    <?php echo $this->getTerm(); ?>
+                    <?php echo $product->getTerm(); ?>
                 </td>
-        <?php } ?>
+                <td>
+                    <?php echo $product->getResult(); ?>
+                </td>
+            <?php } ?>
     </table>
 </div>

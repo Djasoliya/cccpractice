@@ -4,29 +4,24 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
     public function addAction()
     {
         $request = $this->getRequest()->getParams('cart');
-        // print_r($request);
-
         $quote = Mage::getSingleton('sales/quote')
             ->addProduct($request);
+        $this->setRedirect('cart');
     }
     public function deleteAction()
     {
-        // $request = $this->getRequest()->getParams('cart');
-        // print_r($request);
-        $request = ['item_id' => 7, 'quote_id' => 1];
+        $itemId = $this->getRequest()->getParams('id');
+        $request = ['item_id' => $itemId];
         $quote = Mage::getSingleton('sales/quote')
             ->removeProduct($request);
+        $this->setRedirect('cart');
     }
     public function updateAction()
     {
-        // $request = $this->getRequest()->getParams('cart');
-        // print_r($request);
-        // $a = Mage::getModel('core/session')->get('quote_id');
-        // print_r($a);
-        // die;
-        $request = ['item_id' => 3, 'quote_id' => 1, 'product_id' => 3, 'qty' => 10];
+        $request = $this->getRequest()->getParams('cart');
         $quote = Mage::getSingleton('sales/quote')
             ->updateProduct($request);
+        $this->setRedirect('cart');
     }
 }
 ?>

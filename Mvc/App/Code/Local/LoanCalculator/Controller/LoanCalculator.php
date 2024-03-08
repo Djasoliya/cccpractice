@@ -12,16 +12,17 @@ class LoanCalculator_Controller_LoanCalculator extends Core_Controller_Front_Act
     public function saveAction()
     {
         $data = $this->getRequest()->getParams('loan');
-        print_r($data);
-        // $result = ('loan_amount'*'rate'*'monthly_amount'(1+'rate')**'term')/((1+'rate')**'term'-1);
+
+        $loanData = Mage::getSingleton('loancalculator/loancalculator')->set('load_id', $data['id']);
         $loanData = Mage::getModel('loancalculator/loancalculator')->setData($data);
         $loanData->save();
+        $this->setRedirect('loancalculator/loancalculator/list');
     }
     public function listAction()
     {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $productList = $layout->createBlock('loancalculator/loancalculator');
+        $productList = $layout->createBlock('loancalculator/list');
         $child->addChild('list', $productList);
         $layout->toHtml();
     }

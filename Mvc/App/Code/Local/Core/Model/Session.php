@@ -5,7 +5,10 @@ class Core_Model_Session
     {
         // if(is_null($_SESSION)){
         // if (is_null($_SESSION) || !isset($_SESSION)) {
-        session_start();
+            if(session_status() == PHP_SESSION_NONE){
+
+                session_start();
+            }
         // }
     }
     public function getId()

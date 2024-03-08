@@ -3,8 +3,8 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
 {
     public function init()
     {
-        $this->_resourceClass = 'Sales_Model_Quote_Resource_Item';
-        $this->_collectionClass = 'Sales_Model_Quote_Resource_Collection_Item';
+        $this->_resourceClass = 'Sales_Model_Resource_Quote_Item';
+        $this->_collectionClass = 'Sales_Model_Resource_Collection_Quote_Item';
         $this->_modelClass = 'sales/quote_item';
     }
     public function getProduct()
@@ -45,29 +45,29 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
         $this->save();
         return $this;
     }
-    public function removeItem($itemId, $quoteId)
+    public function removeItem(Sales_Model_Quote $quote, $itemId)
     {
         $item = $this->getCollection()
             ->addFieldToFilter('item_id', $itemId)
-            ->addFieldToFilter('quote_id', $quoteId)
+            ->addFieldToFilter('quote_id', $quote->getId())
             ->getFirstItem();
         // if ($item) {
         //     $qty = $qty - $item->getQty();
         // }
         $this->setData(
             [
-                'quote_id' => $quoteId,
+                'quote_id' => $quote->getId(),
                 'item_id' => $itemId
             ]
         );
         $this->delete();
         return $this;
     }
-    public function updateItem(Sales_Model_Quote $quote, $itemId, $quoteId, $productId, $qty)
+    public function updateItem(Sales_Model_Quote $quote, $itemId, $productId, $qty)
     {
         $item = $this->getCollection()
             ->addFieldToFilter('item_id', $itemId)
-            ->addFieldToFilter('quote_id', $quoteId)
+            ->addFieldToFilter('quote_id', $quote->getId())
             ->addFieldToFilter('product_id', $productId)
             ->getFirstItem();
         // if ($item) {
@@ -75,7 +75,7 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
         // }
         $this->setData(
             [
-                'quote_id' => $quoteId,
+                'quote_id' => $quote->getId(),
                 'item_id' => $itemId,
                 'product_id' => $productId,
                 'qty' => $qty
@@ -88,3 +88,4 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
         return $this;
     }
 }
+

@@ -7,9 +7,5 @@ class LoanCalculator_Model_Resource_Rate extends Core_Model_Resource_Abstract
     {
         $this->init('ccc_bank_rate', 'id');
     }
-    public function init($tableName, $primaryKey)
-    {
-        $this->_tableName = $tableName;
-        $this->_primaryKey = $primaryKey;
-    }
+    
 }

@@ -15,17 +15,32 @@
         </div>
         <div class="buttondiv">
             <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><button
-                        type="button">User</button></a>
+                <a href="<?php echo Mage::getBaseUrl(''); ?>" style="--navAni:5"><button type="button">Home</button></a>
             </div>
+            <div class="btn row">
+                <a href="<?php echo Mage::getBaseUrl('cart'); ?>" style="--navAni:5"><button
+                        type="button">Cart</button></a>
+            </div>
+            <div class="btn row">
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view'); ?>" style="--navAni:5"><button
+                        type="button">Product</button></a>
+            </div>
+            <?php if ($this->userLogin()): ?>
 
-            <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl('Admin/user/login'); ?>" style="--navAni:5"><button
+                <div class="btn row">
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><button
+                            type="button">Logout</button></a>
+                </div>
+            <?php else: ?>
+                <div class="btn row">
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><button
+                            type="button">User</button></a>
+                </div>
+            <?php endif; ?>
+
+            <!-- <div class="btn row">
+                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');    ?>" style="--navAni:5"><button
                         type="button">Admin</button></a>
-            </div>
-            <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><button
-                        type="button">Logout</button></a>
-            </div>
+            </div> -->
         </div>
 </header>

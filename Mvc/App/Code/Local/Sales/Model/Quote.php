@@ -55,7 +55,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     {
         $this->initQuote();
         if ($this->getId()) {
-            Mage::getModel("sales/quote_item")->removeItem($request['item_id'], $request['quote_id']);
+            Mage::getModel("sales/quote_item")->removeItem($this, $request['item_id']);
         }
 
         $this->save();
@@ -65,7 +65,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     {
         $this->initQuote();
         if ($this->getId()) {
-            Mage::getModel("sales/quote_item")->updateItem($this, $request['item_id'], $request['quote_id'], $request['product_id'], $request['qty']);
+            Mage::getModel("sales/quote_item")->updateItem($this, $request['item_id'], $request['product_id'], $request['qty']);
         }
 
         $this->save();

@@ -1,8 +1,13 @@
 <?php
 class Core_Model_Resource_Abstract
 {
-    protected $_tableName;
-    protected $_primaryKey;
+    protected $_tableName = '';
+    protected $_primaryKey = '';
+     public function init($tableName, $primaryKey)
+    {
+        $this->_tableName = $tableName;
+        $this->_primaryKey = $primaryKey;
+    }
     public function getTableName()
     {
         return $this->_tableName;
