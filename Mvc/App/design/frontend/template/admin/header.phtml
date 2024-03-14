@@ -20,19 +20,18 @@
                     List</a></li>
             <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Category/form'); ?>" style="--navAni:4">Category
                     Form</a></li>
-            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Category/list'); ?>"
-                    style="--navAni:5">Category
+            <li><a href="<?php echo Mage::getBaseUrl('Admin/Catalog_Category/list'); ?>" style="--navAni:5">Category
                     List</a></li>
             <li><a href="<?php echo Mage::getBaseUrl('Admin/banner/form'); ?>" style="--navAni:5">Banner Form</a></li>
             <li><a href="<?php echo Mage::getBaseUrl('Admin/banner/list'); ?>" style="--navAni:5">Banner List</a></li>
         </ul>
         <div class="buttondiv">
             <!-- <div class="btn row">
-                <a href="<?php //echo Mage::getBaseUrl('customer/Account/login');     ?>" style="--navAni:5"><button
+                <a href="<?php //echo Mage::getBaseUrl('customer/Account/login');      ?>" style="--navAni:5"><button
                         type="button">User</button></a>
             </div> -->
             <!-- <div class="btn row">
-                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');   ?>" style="--navAni:5"><button
+                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');    ?>" style="--navAni:5"><button
                         type="button">Admin</button></a>
             </div> -->
             <div class="btn row">
@@ -41,3 +40,15 @@
             </div>
         </div>
 </header>
+<script>
+    window.addEventListener('scroll', function () {
+        var header = document.querySelector('header');
+
+        // Add a class to the header when scrolling down
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>

@@ -1,10 +1,6 @@
 <?php
-$itemList = $this->getList();
-$grand = 0;
-$count = 0;
-// print_r($itemList);
-// $prouctList = $this->getProductList();
-// print_r($prouctList);
+$itemList = $this->getItemList();
+$productTotals = [];
 ?>
 <div class="card">
     <div class="row cartcard">
@@ -14,66 +10,57 @@ $count = 0;
                     <div class="col">
                         <h4><b>Shopping Cart</b></h4>
                     </div>
-                    <!-- <div class="col align-self-center text-right text-muted">
-                        <?php //echo $count;   ?> ITEMS
-                    </div> -->
                 </div>
             </div>
             <hr>
             <div class="row border-top border-bottom">
                 <?php
-                foreach ($itemList->getData() as $item):
-                    // echo "<pre>";
-                    // print_r($item);
-                    $dataprod = $this->getProductList($item->getProductId());
-                    // print_r($item->getRowTotal());
-                    // $productlist->getProductlist();
-                    $count++;
-                    // $product = $productlist->addFieldToFilter('product_id', $item->getProductId());
-                    foreach ($dataprod->getData() as $_product):
-                        // print_r($_product);
-                        ?>
+                foreach ($itemList as $item):
+                    $productId = $item->getProductId();
+                    $product = $this->getProductList($productId);
+                    if (!isset($productTotals[$productId])) {
+                        $productTotals[$productId] = [
+                            'name' => $product[0]->getName(),
+                            'price' => $product[0]->getPrice(),
+                            'qty' => $item->getQty(),
+                            'total' => $item->getRowTotal()
+                        ];
+                    }
+                    ?>
 
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid"
-                                    src="<?php echo Mage::getBaseUrl('media/product/') . $_product->getImageLink(); ?>">
+                    <div class="row main align-items-center">
+                        <div class="col-2"><img class="img-fluid" src="<?php echo $this->getImageUrl($item); ?>">
+                        </div>
+                        <div class="colname">
+                            <div class="row text-muted">
+                                <?php echo $item->getProduct()->getSku(); ?>
                             </div>
-                            <div class="colname">
-                                <div class="row text-muted">
-                                    <?php echo $_product->getSku(); ?>
-                                </div>
-                                <div class="row">
-                                    <?php echo $_product->getName(); ?>
-                                </div>
-                            </div>
-                            <div class="formdiv">
-                                <form class="formid" action="<?php echo Mage::getBaseUrl('sales/quote/update'); ?>"
-                                    method="POST">
-                                    <input type="hidden" name="cart[product_id]" value="<?php echo $item->getProductId(); ?>">
-                                    <input type="hidden" name="cart[item_id]" value="<?php echo $item->getItemId(); ?>">
-                                    <label for="quentity">Quentity : </label>
-                                    <input class="qtyinput" type="number" name="cart[qty]"
-                                        value="<?php echo $item->getQty(); ?>">
-                                    <div class="col datal price">&euro;
-                                        <?php echo $item->getRowTotal(); ?>
-                                    </div>
-                                    <div class="col datal delete"><span class="close"><a
-                                                href="<?php echo Mage::getBaseUrl('sales/quote/delete?id=') . $item->getItemId(); ?>">&#10005;</a></span>
-                                    </div>
-
-                                    <div class="col datal update">
-                                        <!-- <a href="<?php //echo Mage::getBaseUrl('sales/quote/update?id=' . $item->getItemId() . '&pid=' . $item->getProductId());                        ?>"></span> -->
-                                        <input class="subinput" type="submit" name="submit" value="&#9998;">
-                                    </div>
-                                </form>
+                            <div class="row">
+                                <?php echo $item->getProduct()->getName(); ?>
                             </div>
                         </div>
+                        <div class="formdiv">
+                            <form class="formid" action="<?php echo Mage::getBaseUrl('sales/quote/update'); ?>"
+                                method="POST">
+                                <input type="hidden" name="cart[product_id]" value="<?php echo $item->getProductId(); ?>">
+                                <input type="hidden" name="cart[item_id]" value="<?php echo $item->getItemId(); ?>">
+                                <label for="quentity">Quentity : </label>
+                                <input class="qtyinput" type="number" name="cart[qty]"
+                                    value="<?php echo $item->getQty(); ?>">
+                                <div class="col datal price">&euro;
+                                    <?php echo $item->getRowTotal(); ?>
+                                </div>
+                                <div class="col datal delete"><span class="close"><a
+                                            href="<?php echo Mage::getBaseUrl('sales/quote/delete?id=') . $item->getItemId(); ?>">&#10005;</a></span>
+                                </div>
 
-                    <?php endforeach; ?>
-                    <?php $quote = $this->grandTotal($item->getQuoteId());
-                    foreach ($quote->getData() as $total):
-                        $grand = $total->getGrandTotal(); ?>
-                    <?php endforeach; ?>
+                                <div class="col datal update">
+                                    <!-- <a href="<?php //echo Mage::getBaseUrl('sales/quote/update?id=' . $item->getItemId() . '&pid=' . $item->getProductId());                                     ?>"></span> -->
+                                    <input class="subinput" type="submit" name="submit" value="&#9998;">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <hr>
                 <?php endforeach; ?>
             </div>
@@ -88,27 +75,42 @@ $count = 0;
             <hr>
             <div class="row item">
                 <div class="col" style="padding-left:0;">
-                    <?php echo $count; ?> ITEMS
+                    <?php echo count($itemList); ?> ITEMS
                 </div>
-                <div class="col text-right">&euro;
-                    <?php echo $grand; ?>
-                </div>
+                <table>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Total Price</th>
+                    </tr>
+                    <?php
+                    foreach ($productTotals as $productId => $productTotal): ?>
+                        <tr>
+                            <td>
+                                <?php echo $productTotal['name']; ?>
+                            </td>
+                            <td>
+                                <?php echo $productTotal['price']; ?>
+                            </td>
+                            <td>
+                                <?php echo $productTotal['qty']; ?>
+                            </td>
+                            <td>
+                                <?php echo $productTotal['total']; ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
             </div>
-            <form class="detailsform">
-                <p>SHIPPING</p>
-                <select>
-                    <option class="text-muted">Standard-Delivery- &euro;5.00</option>
-                </select>
-                <p class="givencode">GIVE CODE</p>
-                <input id="code" placeholder="Enter your code">
-            </form>
             <div class="row grandtotal">
                 <div class="col">TOTAL PRICE</div>
                 <div class="col text-right">&euro;
-                    <?php echo $grand; ?>
+                    <?php echo ($this->qouteId()) ? $this->cartGrandTotal()->getGrandTotal() : ''; ?>
                 </div>
             </div>
-            <button class="checkoutbtn">CHECKOUT</button>
+            <a href="<?php echo Mage::getBaseUrl('cart/checkout/index') ?>"> <button
+                    class="checkoutbtn">CHECKOUT</button></a>
         </div>
     </div>
 

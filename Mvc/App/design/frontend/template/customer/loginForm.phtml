@@ -1,8 +1,8 @@
-<div class="form">
+<!-- <div class="form">
     <h2>Login</h2>
-    <form method="POST" action="<?php echo $this->getUrl('customer/account/login') ?>">
-    <!-- <form method="POST" action="<?php //echo $this->getUrl('admin/user/login') ?>"> -->
-
+    <form method="POST" action="<?php //echo $this->getUrl('customer/account/login')         ?>"> -->
+<!-- <form method="POST" action="<?php //echo $this->getUrl('admin/user/login')         ?>"> -->
+<!-- 
         <div class="row">
             <label for="loginemail">Username : </label>
             <input type="email" name="login[customer_email]" id="loginemail">
@@ -14,8 +14,89 @@
 
         <div class="row">
             <input type="submit" value="Submit">
-            <a href="<?php echo $this->getUrl('customer/account/register') ?>" class="register-link">Register</a>
-            <a href="<?php echo Mage::getBaseUrl('customer/account/forgotPassword'); ?>">forgot password</a>
+            <a href="<?php //echo $this->getUrl('customer/account/register')         ?>" class="register-link">Register</a>
+            <a href="<?php //echo Mage::getBaseUrl('customer/account/forgotPassword');         ?>">forgot password</a>
         </div>
     </form>
-</div>
+</div> -->
+
+<form method="POST" action="<?php echo $this->getUrl('customer/account/login') ?>">
+
+
+    <section><!-- 
+         <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+        <span></span> <span></span> <span></span> <span></span> <span></span> -->
+
+        <div class="signin">
+
+            <div class="content">
+
+                <h2>Sign In</h2>
+
+                <div class="form">
+
+                    <div class="inputBox">
+                        <input type="email" name="login[customer_email]" id="loginemail" autocomplete="off"
+                            required><i>Username</i>
+                        <!-- <input type="text" required> <i>Username</i> -->
+
+                    </div>
+
+                    <div class="inputBox">
+                        <input type="password" name="login[password]" id="loginpass" required><i>Password</i>
+
+                        <!-- <input type="password" required> <i>Password</i> -->
+
+                    </div>
+
+                    <div class="links"> <a
+                            href="<?php echo Mage::getBaseUrl('customer/account/forgotPassword'); ?>">Forgot
+                            Password</a> <a href="<?php echo $this->getUrl('customer/account/register') ?>"
+                            class="register-link">Signup</a>
+                    </div>
+
+                    <div class="inputBox">
+
+                        <input type="submit" value="Login">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+</form>

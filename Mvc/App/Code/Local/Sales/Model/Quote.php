@@ -28,6 +28,11 @@ class Sales_Model_Quote extends Core_Model_Abstract
         return Mage::getModel('sales/quote_item')->getCollection()
             ->addFieldToFilter('quote_id', $this->getId());
     }
+    public function getQuoteCustomer()
+    {
+        return Mage::getModel('sales/quote_customer')->getCollection()
+            ->addFieldToFilter('quote_id', $this->getId());
+    }
 
     protected function _beforeSave()
     {
@@ -47,7 +52,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             Mage::getModel("sales/quote_item")->addItem($this, $request['product_id'], $request['qty']);
         }
-
         $this->save();
     }
 
@@ -57,9 +61,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             Mage::getModel("sales/quote_item")->removeItem($this, $request['item_id']);
         }
-
         $this->save();
-
     }
     public function updateProduct($request)
     {
@@ -67,8 +69,73 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             Mage::getModel("sales/quote_item")->updateItem($this, $request['item_id'], $request['product_id'], $request['qty']);
         }
-
         $this->save();
+    }
+    public function addAddress($request)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            Mage::getModel("sales/quote_customer")->addCustomerAddress($this, $request);
+        }
+        $this->save();
+    }
+    public function addPayment($request)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            $paymentId = Mage::getModel("sales/quote_payment")->addPaymentMethod($this, $request)->getId();
+            $this->addData('payment_id', $paymentId);
+        }
+        // print_r($this);
+        $this->save();
+        // return $this;
+    }
+    public function addShipping($request)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            $shippingId = Mage::getModel("sales/quote_shipping")->addShippingMethod($this, $request)->getId();
+            $this->addData('shipping_id', $shippingId);
+        }
+        $this->save();
+    }
 
+    public function convert()
+    {
+        echo "<pre>";
+        $this->initQuote();
+        if ($this->getId()) {
+            $order = Mage::getModel('sales/order')
+                ->setData($this->getData())
+                ->removeData('quote_id')
+                ->removeData('payment_id')
+                ->removeData('shipping_id')
+                ->save();
+            foreach ($this->getItemCollection()->getData() as $_item) {
+                $data = Mage::getModel('catalog/product')->load($_item->getProductId());
+                Mage::getModel('sales/order_item')
+                    ->setData($_item->getData())
+                    ->removeData('quote_id')
+                    ->removeData('item_id')
+                    ->addData('product_name', $data->getName())
+                    ->addData('product_color', $data->getColor())
+                    ->addData('order_id', $order->getId())
+                    ->save();
+            }
+            $id = $order->getId();
+            $this->addData('order_id', $id);
+            $this->save();
+
+            foreach ($this->getQuoteCustomer()->getData() as $value) {
+                $id = $order->getId();
+                // die;    
+                $abc = Mage::getModel('sales/order_customer')
+                    ->setData($value->getData())
+                    ->removeData('quote_customer_id')
+                ->removeData('quote_id')
+                ->addData('order_id', $id)
+                ->save();
+            }
+        }
     }
 }

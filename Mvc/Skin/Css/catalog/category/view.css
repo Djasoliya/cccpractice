@@ -2,19 +2,20 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: #f8f8f8;
+  background: #b3e5eea6;
   margin: 0;
 }
 .prodcard {
   display: flex;
   flex-wrap: wrap;
+  margin: 0px 130px 0px 130px;
 }
 .prodcard a {
   text-decoration: none;
   color: #000000;
 }
 .prodcard a div {
-  margin: 25px 36px 25px 70px;
+  margin: 25px 1px 25px 15px;
 }
 .card {
   border: 1px solid #ddd;
@@ -22,7 +23,7 @@ body {
   margin: 10px;
   padding: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: 210px;
   background-color: #fff;
   transition: transform 0.2s;
 }
@@ -34,7 +35,7 @@ body {
 
 .card img {
   width: 100%;
-  max-height: 200px;
+  max-height: 135px;
   height: auto;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -53,14 +54,12 @@ body {
 
 .card th,
 .card td {
-  border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
   font-size: 14px;
 }
 
 .card th {
-  background-color: #f5f5f5;
   color: #333;
   font-weight: bold;
 }

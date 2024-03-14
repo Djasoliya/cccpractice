@@ -60,14 +60,23 @@ body {
 }
 /* Nav */
 header {
-  background: var(--primary-color);
-  position: relative;
-  box-shadow: 0 4px 17px rgb(255 255 255 / 10%);
-  position: sticky;
+  background: transparent; /* Initial transparent background color */
+  position: fixed; /* Use fixed instead of sticky for a fixed header */
   top: 0;
-  z-index: 1;
+  width: 100%;
+  z-index: 1000;
+  transition: background 0.3s ease-in-out;
 }
 
+header.scrolled {
+  background: black; /* Background color when scrolled */
+}
+
+body {
+  margin-top: 80px; /* Adjust this value based on your header height */
+  padding-top: 20px; /* Add padding to the top of the content */
+  box-sizing: border-box;
+}
 .page-header {
   display: flex;
   /* justify-content: space-between; */
@@ -137,4 +146,27 @@ button {
 }
 button:hover {
   background-color: #a7c8ce;
+}
+.btn {
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding-top: 9px;
+  letter-spacing: 0.7px;
+}
+.btn a {
+  margin-left: 22px;
+  text-decoration: none;
+  color: #4bb19b;
+}
+#logout {
+  margin-left: 3px;
+  margin-top: -3px;
+  width: 36px;
+  height: 30px;
+}
+#login {
+  margin-left: 3px;
+  margin-top: -3px;
+  width: 36px;
+  height: 30px;
 }

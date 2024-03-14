@@ -15,32 +15,43 @@
         </div>
         <div class="buttondiv">
             <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl(''); ?>" style="--navAni:5"><button type="button">Home</button></a>
+                <a href="<?php echo Mage::getBaseUrl(''); ?>" style="--navAni:5">Home</a>
             </div>
             <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl('cart'); ?>" style="--navAni:5"><button
-                        type="button">Cart</button></a>
+                <a href="<?php echo Mage::getBaseUrl('cart'); ?>" style="--navAni:5">Cart</a>
             </div>
             <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl('catalog/category/view'); ?>" style="--navAni:5"><button
-                        type="button">Product</button></a>
+                <a href="<?php echo Mage::getBaseUrl('catalog/category/view'); ?>" style="--navAni:5">Product</a>
             </div>
             <?php if ($this->userLogin()): ?>
-
                 <div class="btn row">
-                    <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><button
-                            type="button">Logout</button></a>
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><img
+                            id="logout" src=<?php echo Mage::getBaseUrl() . "skin/images/arrow.png" ?>
+                            alt="Your Logo"></a>
                 </div>
             <?php else: ?>
                 <div class="btn row">
-                    <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><button
-                            type="button">User</button></a>
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><img
+                            id="login" src=<?php echo Mage::getBaseUrl() . "skin/images/user.png" ?>
+                            alt="Your Logo"></a>
                 </div>
             <?php endif; ?>
 
             <!-- <div class="btn row">
-                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');    ?>" style="--navAni:5"><button
+                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');       ?>" style="--navAni:5"><button
                         type="button">Admin</button></a>
             </div> -->
         </div>
 </header>
+<script>
+    window.addEventListener('scroll', function () {
+        var header = document.querySelector('header');
+
+        // Add a class to the header when scrolling down
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>

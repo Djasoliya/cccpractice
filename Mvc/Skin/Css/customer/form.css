@@ -65,9 +65,17 @@ body {
   color: rgb(223, 223, 223);
   font-family: "Outfit", sans-serif;
   align-items: center;
-  /* padding: 10px; */
-  background-color: #b3e5eea6;
+  background-color: #cdeef3;
+  /* background: linear-gradient(
+    rgb(32, 178, 144),
+    lightseagreen,
+    rgb(32, 144, 178)
+  ); */
 }
+.wrapper {
+  padding-top: 0px;
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -83,20 +91,12 @@ body {
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .container .title {
-  font-size: 25px;
+  font-size: 35px;
   font-weight: 500;
-  position: relative;
+  text-align: center;
+  color: #cdeef3;
 }
-.container .title::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-}
+
 .content form .user-details {
   display: flex;
   flex-wrap: wrap;
@@ -123,7 +123,7 @@ textarea {
   transition: all 0.3s ease;
 }
 .user-details .input-box input {
-  height: 45px;
+  height: 37px;
   width: 100%;
   outline: none;
   font-size: 16px;
@@ -171,27 +171,33 @@ form .button input {
   width: 640px;
   border-radius: 5px;
   border: none;
-  color: #fff;
+  color: #000000;
   font-size: 18px;
   font-weight: 500;
   letter-spacing: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: rgb(55, 138, 134);
+  background-color: #cdeef3;
 }
 form .buttonlog a {
   padding-top: 0px;
   text-align: center;
   margin-left: 200px;
-  color: #8bb7d4;
+  color: #cdeef3;
 }
 form .button input:hover {
+  background-color: #8fe2ee;
   /* transform: scale(0.99); */
-  background: linear-gradient(-135deg, #64a2b1, #6d6470);
+  /* background: linear-gradient(
+    -135deg,
+    rgb(32, 178, 144),
+    lightseagreen,
+    rgb(32, 144, 178)
+  ); */
 }
 form .buttonlog a:hover {
   /* transform: scale(0.99); */
-  color: #3eaab3;
+  color: #8fe2ee;
 }
 .register-link {
   display: inline-block;
