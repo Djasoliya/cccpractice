@@ -1,5 +1,5 @@
 <?php
-class Admin_Controller_Index extends Core_Controller_Admin_Action
+class Customer_Controller_Order extends Core_Controller_Front_Action
 {
     public function indexAction()
     {
@@ -11,5 +11,3 @@ class Admin_Controller_Index extends Core_Controller_Admin_Action
         $layout->toHtml();
     }
 }
-
-?>

@@ -51,9 +51,6 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             ->addFieldToFilter('item_id', $itemId)
             ->addFieldToFilter('quote_id', $quote->getId())
             ->getFirstItem();
-        // if ($item) {
-        //     $qty = $qty - $item->getQty();
-        // }
         $this->setData(
             [
                 'quote_id' => $quote->getId(),
@@ -70,9 +67,6 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             ->addFieldToFilter('quote_id', $quote->getId())
             ->addFieldToFilter('product_id', $productId)
             ->getFirstItem();
-        // if ($item) {
-        //     $qty = $qty - $item->getQty();
-        // }
         $this->setData(
             [
                 'quote_id' => $quote->getId(),

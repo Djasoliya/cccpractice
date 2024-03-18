@@ -18,10 +18,10 @@ $productTotals = [];
                 foreach ($itemList as $item):
                     $productId = $item->getProductId();
                     $product = $this->getProductList($productId);
-                    if (!isset($productTotals[$productId])) {
+                    if (!isset ($productTotals[$productId])) {
                         $productTotals[$productId] = [
-                            'name' => $product[0]->getName(),
-                            'price' => $product[0]->getPrice(),
+                            'name' => $item->getProduct()->getName(),
+                            'price' => $item->getProduct()->getPrice(),
                             'qty' => $item->getQty(),
                             'total' => $item->getRowTotal()
                         ];
@@ -45,7 +45,7 @@ $productTotals = [];
                                 <input type="hidden" name="cart[product_id]" value="<?php echo $item->getProductId(); ?>">
                                 <input type="hidden" name="cart[item_id]" value="<?php echo $item->getItemId(); ?>">
                                 <label for="quentity">Quentity : </label>
-                                <input class="qtyinput" type="number" name="cart[qty]"
+                                <input class="qtyinput" type="number" name="cart[qty]" min="1"
                                     value="<?php echo $item->getQty(); ?>">
                                 <div class="col datal price">&euro;
                                     <?php echo $item->getRowTotal(); ?>
@@ -55,7 +55,7 @@ $productTotals = [];
                                 </div>
 
                                 <div class="col datal update">
-                                    <!-- <a href="<?php //echo Mage::getBaseUrl('sales/quote/update?id=' . $item->getItemId() . '&pid=' . $item->getProductId());                                     ?>"></span> -->
+                                    <!-- <a href="<?php //echo Mage::getBaseUrl('sales/quote/update?id=' . $item->getItemId() . '&pid=' . $item->getProductId());                                        ?>"></span> -->
                                     <input class="subinput" type="submit" name="submit" value="&#9998;">
                                 </div>
                             </form>

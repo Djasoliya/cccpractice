@@ -47,18 +47,34 @@ body {
 }
 form .email-box {
   margin: 20px 0 12px 0;
-  width: 100%;
+  /* width: 100%; */
 }
 .email-box input {
-  height: 37px;
-  width: 99%;
-  outline: none;
-  font-size: 16px;
-  border-radius: 5px;
+  /* height: 22px; */
+  /* font-size: 21px; */
+  /* margin: 4px 2px 0px 2px; */
+  width: 5%;
+  font-size: 0px;
+  border-radius: 15px;
   padding-left: 15px;
   border: 1px solid #ccc;
   border-bottom-width: 2px;
   transition: all 0.3s ease;
+  size: 23px;
+}
+input#card_number {
+  width: 183px;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin: 0px 10px 0px 28px;
+  padding: 0px 10px 0px 10px;
+}
+input#upi_id {
+  margin: 0px 10px 0px 95px;
+  padding: 0px 0px 0px 6px;
+  width: 180px;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
 form .user-details .input-box {
@@ -148,14 +164,15 @@ form .button input:hover {
   padding: 30px;
   border-radius: 20px;
 }
-.first {
-  width: 30%;
-  height: 200px;
+.addressBoxes {
   color: #000000;
   border-radius: 20px;
   margin: 32px 0px 10px 0px;
   padding: 13px 10px 10px 15px;
   background-color: #aabfdd;
+}
+.first {
+  width: 30%;
 }
 
 .second {
@@ -206,4 +223,11 @@ form .button input:hover {
 .address-cards span {
   display: flex;
   flex-direction: column;
+}
+.billingAddress {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: -18px;
+  font-size: 18px;
+  color: #2b2e38;
 }

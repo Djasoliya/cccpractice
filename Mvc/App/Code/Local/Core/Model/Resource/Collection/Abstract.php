@@ -1,10 +1,10 @@
 <?php
+
 class Core_Model_Resource_Collection_Abstract
 {
     protected $_resource = null;
     protected $_modelClass = null;
     protected $_select = [];
-    // protected $_idLodded = false;
     protected $_data = [];
     public function setResource($resource)
     {
@@ -14,6 +14,7 @@ class Core_Model_Resource_Collection_Abstract
     public function setModelClass($modelClass)
     {
         $this->_modelClass = $modelClass;
+        return $this;
     }
     public function select()
     {
@@ -25,63 +26,110 @@ class Core_Model_Resource_Collection_Abstract
         $this->_select['WHERE'][$field][] = $value;
         return $this;
     }
+    public function addLimit($limit)
+    {
+        //addLimit($value);
+        $this->_select['LIMIT'][] = $limit;
+        return $this;
+    }
+    public function addCondition($condition)
+    {
+        $this->_select['CONDITION'][] = $condition;
+        return $this;
+    }
+    //->addGroupBy('columns')->addCondition(desc);
+    public function addGroupBy($GROUP)
+    {
+        //addGroupBy($column);
+        $this->_select['GROUP BY'][] = $GROUP;
+        return $this;
+    }
+    public function addOrderBy($GROUP)
+    {
+        //addGroupBy($column);
+        $this->_select['ORDER BY'][] = $GROUP;
+        return $this;
+    }
+    public function addOffset($OFFSET)
+    {
+        //addOffset($value);
+        $this->_select['OFFSET'][] = $OFFSET;
+        return $this;
+    }
+    public function addHaving($HAVING)
+    {
+        //addHaving($value);
+        $this->_select['HAVING'][] = $HAVING;
+        return $this;
+    }
+
     public function load()
     {
         $sql = "SELECT * FROM {$this->_select['FROM']}";
-        if (isset($this->_select["WHERE"])) {
+        if (isset ($this->_select["WHERE"])) {
             $whereCondition = [];
-            foreach ($this->_select['WHERE'] as $column => $value) {
+            foreach ($this->_select["WHERE"] as $column => $value) {
                 foreach ($value as $_value) {
                     if (!is_array($_value)) {
                         $_value = array('eq' => $_value);
                     }
                     foreach ($_value as $_condition => $_v) {
-                        if (is_array($_v)) {
-                            $_v = array_map(function ($v) {
-                                return "'{$v}'";
-                            }, $_v);
-                            $_v = implode(', ', $_v);
-                        }
                         switch ($_condition) {
                             case 'eq':
                                 $whereCondition[] = "{$column} = '{$_v}'";
                                 break;
                             case 'in':
+                                if (is_array($_v)) {
+                                    $_v = array_map(function ($v) {
+                                        return "'{$v}'";
+                                    }, $_v);
+                                    $_v = implode(',', $_v);
+                                }
+                                // addFieldToFilter('$column',['in' => [$value1,$value2]])
                                 $whereCondition[] = "{$column} IN ({$_v})";
                                 break;
                             case 'like':
+                                // addFieldToFilter('$column',['like' => 'a%'])
                                 $whereCondition[] = "{$column} LIKE '{$_v}'";
                                 break;
-                            case 'gt':
-                                $whereCondition[] = "{$column} > {$_v}";
-                                break;
-                            case 'lt':
-                                $whereCondition[] = "{$column} < {$_v}";
-                                break;
-                            case 'lte':
-                                $whereCondition[] = "{$column} <= {$_v}";
-                                break;
-                            case 'gte':
-                                $whereCondition[] = "{$column} >= {$_v}";
-                                break;
-                            case 'neq':
-                                $whereCondition[] = "{$column} <> {$_v}";
+                            case 'between':
+                                // addFieldToFilter('$column',['between' => [$value1,$value2]])
+                                $whereCondition[] = "{$column} BETWEEN {$_v[0]} AND {$_v[1]}";
                                 break;
                         }
                     }
                 }
             }
             $sql .= " WHERE " . implode(" AND ", $whereCondition);
-            // print_r($whereCondition);
         }
-        // echo $sql . "<br>";
+        if (isset ($this->_select["LIMIT"])) {
+            $limit = implode(",", array_values($this->_select["LIMIT"]));
+            $sql .= " LIMIT $limit";
+        }
+        if (isset ($this->_select["GROUP BY"])) {
+            $GROUP = implode(",", array_values($this->_select["GROUP BY"]));
+            $sql .= " GROUP BY $GROUP";
+        }
+        if (isset ($this->_select["ORDER BY"])) {
+            $GROUP = implode(",", array_values($this->_select["ORDER BY"]));
+            $sql .= " ORDER BY $GROUP";
+        }
+        if (isset ($this->_select["OFFSET"])) {
+            $OFFSET = implode(",", array_values($this->_select["OFFSET"]));
+            $sql .= " OFFSET $OFFSET";
+        }
+        if (isset ($this->_select["HAVING"])) {
+            $HAVING = implode(",", array_values($this->_select["HAVING"]));
+            $sql .= " HAVING $HAVING";
+        }
+        if (isset ($this->_select['CONDITION'])) {
+            $sql .= " " . implode($this->_select['CONDITION']);
+        }
+        // echo $sql;die;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
             $this->_data[] = Mage::getModel($this->_modelClass)->setData($row);
         }
-        // $this->_isLoaded = true;
-        return $this;
-        // print_r($this->_data);
     }
     public function getData()
     {
@@ -91,7 +139,6 @@ class Core_Model_Resource_Collection_Abstract
     public function getFirstItem()
     {
         $this->load();
-        return(isset($this->_data[0]) ? $this->_data[0] : null);
+        return (isset ($this->_data[0])) ? $this->_data[0] : null;
     }
 }
-?>

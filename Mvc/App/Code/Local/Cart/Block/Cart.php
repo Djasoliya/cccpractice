@@ -15,6 +15,7 @@ class Cart_Block_Cart extends Core_Block_Template
     }
     public function getItemList()
     {
+        // return Mage::getSingleton('sales/quote')->getItemCollection();
         $quoteId = Mage::getModel('core/session')->get('quote_id');
         $data = Mage::getModel('sales/quote_item')->getCollection()->addFieldToFilter('quote_id', $quoteId)->getData();
         return $data;
@@ -23,7 +24,6 @@ class Cart_Block_Cart extends Core_Block_Template
     {
         $quoteId = Mage::getModel('catalog/product')->getCollection()->addFieldToFilter('product_id', $id)->getData();
         return $quoteId;
-
     }
     public function cartGrandTotal()
     {

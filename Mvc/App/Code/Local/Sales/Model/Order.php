@@ -7,7 +7,7 @@ class Sales_Model_Order extends Core_Model_Abstract
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Order';
         $this->_modelClass = 'sales/order';
     }
-
+    
     public function _beforeSave()
     {
         $orderNumber = rand(1000000, 9999999);

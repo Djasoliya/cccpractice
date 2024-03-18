@@ -12,23 +12,12 @@ class Sales_Model_Quote_Customer extends Core_Model_Abstract
 
     public function addCustomerAddress(Sales_Model_Quote $quote, $request)
     {
-        $item = $this->getCollection()
-            ->addFieldToFilter('quote_id', $quote->getId())
-            ->getFirstItem();
-        // $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-        // $customerData = Mage::getModel('customer/customer')->load($customerId);
-        // $customerData->removeData('first_name')
-        //     ->removeData('last_name')
-        //     ->removeData('default')
-        //     ->removeData('password');
-        $this->setData(
-            // array_filter($customerData->getData())
-            $request
-        );
-        if ($item) {
-            $this->setId($item->getId());
-        }
+        // print_r($request);
+        // die;
+        $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+        $this->setData($request);
         $this->addData('quote_id', $quote->getId());
+        $this->addData('customer_id', $customerId);
         $this->save();
 
         return $this;

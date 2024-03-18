@@ -12,6 +12,7 @@ class Admin_Controller_Banner extends Core_Controller_Admin_Action
 
         $layout->toHtml();
     }
+    
     public function saveAction()
     {
         $banner = $this->getRequest()->getParams('banner');

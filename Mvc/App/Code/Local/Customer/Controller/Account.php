@@ -57,13 +57,13 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
             if ($count == 1) {
                 Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
-                $this->setRedirect('customer/account/dashboard');
-                // echo "login Succes";
-                // $location = Mage::getBaseUrl('Customer/Account/dashboard');
-                // header("location: $location");
+                if (Mage::getSingleton('core/session')->get('set_back_url')) {
+                    $this->setRedirect(Mage::getSingleton('core/session')->get('set_back_url'));
+                } else {
+                    $this->setRedirect('customer/account/dashboard');
+                }
             } else {
                 $this->setRedirect('customer/account/login');
-                // echo "login Failed";
             }
         }
     }

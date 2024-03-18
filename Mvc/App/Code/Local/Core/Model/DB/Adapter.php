@@ -38,6 +38,8 @@ class Core_Model_DB_Adapter
     }
     public function fetchRow($query)
     {
+        // print_r($query);
+        // die;
         $rows = [];
         $sql = mysqli_query($this->connect(), $query);
         while ($row = mysqli_fetch_assoc($sql)) {
@@ -47,7 +49,8 @@ class Core_Model_DB_Adapter
     }
     public function insert($query)
     {
-        // print_r($query);die;
+        // print_r($query);
+        // die;
         $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
             return mysqli_insert_id($this->connect());

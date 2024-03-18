@@ -8,6 +8,7 @@ class Cart_Controller_Checkout extends Core_Controller_Front_Action
             !in_array($this->getRequest()->getActionName(), $this->_allowedActions) &&
             !Mage::getSingleton('core/session')->get('logged_in_customer_id')
         ) {
+            Mage::getSingleton('core/session')->set('set_back_url', "cart/checkout/index");
             $this->setRedirect('customer/account/login');
         }
     }
