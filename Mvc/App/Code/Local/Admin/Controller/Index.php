@@ -5,9 +5,8 @@ class Admin_Controller_Index extends Core_Controller_Admin_Action
     {
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
-        $orderPlace = $layout->createBlock('customer/order');
-        $layout->getChild('head')->addCss('customer/order.css');
-        $child->addChild('orderPlace', $orderPlace);
+        $dashboard = $layout->createBlock('admin/dashboard');
+        $child->addChild('dashboard', $dashboard);
         $layout->toHtml();
     }
 }

@@ -57,6 +57,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
             if ($count == 1) {
                 Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
+                Mage::getSingleton('sales/quote')->initQuote();
                 if (Mage::getSingleton('core/session')->get('set_back_url')) {
                     $this->setRedirect(Mage::getSingleton('core/session')->get('set_back_url'));
                 } else {

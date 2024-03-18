@@ -7,22 +7,56 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Quote';
         $this->_modelClass = 'sales/quote';
     }
+    // public function initQuote()
+    // {
+    //     $quoteId = Mage::getSingleton("core/session")->get("quote_id");
+    //     if ($quoteId) {
+    //         $this->load($quoteId);
+    //     }
+    //     if (!$this->getId()) {
+    //         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+    //         $quote = Mage::getModel("sales/quote")
+    //             ->setData(["tax_percent" => 8, "grand_total" => 0])
+    //             ->addData('customer_id', $customerId)
+    //             ->save();
+    //         Mage::getSingleton("core/session")->set("quote_id", $quote->getId());
+    //         $quoteId = $quote->getId();
+    //         $this->load($quoteId);
+    //     }
+    //     return $this;
+    // }
     public function initQuote()
     {
         $quoteId = Mage::getSingleton("core/session")->get("quote_id");
-        if ($quoteId) {
-            $this->load($quoteId);
-        }
-        if (!$this->getId()) {
-            $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+        $customerId = Mage::getSingleton("core/session")->get("logged_in_customer_id");
+        if (!$quoteId) {
             $quote = Mage::getModel("sales/quote")
-                ->setData(["tax_percent" => 8, "grand_total" => 0])
-                ->addData('customer_id', $customerId)
-                ->save();
+                ->setData(["tax_percent" => 8, "grand_total" => 0]);
+            // ->addData('customer_id', $customerId)
+            // ->save();
+            if ($customerId) {
+                $cartExist = Mage::getModel('sales/quote')->getCollection()
+                    ->addFieldToFilter('order_id', 0)
+                    ->addFieldToFilter('customer_id', $customerId)
+                    ->addOrderBy('quote_id')
+                    ->addCondition('DESC')
+                    ->getFirstItem();
+                if ($cartExist) {
+                    $quote->addData('quote_id', $cartExist->getId());
+                }
+                $quote->addData('customer_id', $customerId);
+            }
+            $quoteId = $quote->save()->getId();
             Mage::getSingleton("core/session")->set("quote_id", $quote->getId());
-            $quoteId = $quote->getId();
-            $this->load($quoteId);
+        } else {
+            if ($customerId) {
+                $quoteId = Mage::getModel("sales/quote")->load($quoteId)
+                    ->addData('customer_id', $customerId)
+                    ->save()
+                    ->getId();
+            }
         }
+        $this->load($quoteId);
         return $this;
     }
     protected function _beforeSave()
@@ -51,7 +85,11 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             // return Mage::getModel('sales/quote_customer')->getCollection()
             //     ->addFieldToFilter('quote_id', $this->getId());
-            return Mage::getModel('sales/quote_customer')->load($this->getId());
+            // return Mage::getModel('sales/quote_customer')->load($this->getId());
+            return Mage::getModel('sales/quote_customer')
+                ->getCollection()
+                ->addFieldToFilter('quote_id', $this->getId())
+                ->getFirstItem();
         }
     }
     public function getPaymentData()
@@ -60,18 +98,24 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             // return Mage::getModel('sales/quote_payment')->getCollection()
             //     ->addFieldToFilter('quote_id', $this->getId());
-            return Mage::getModel('sales/quote_payment')->load($this->getId());
+            // return Mage::getModel('sales/quote_payment')->load($this->getId());
+            return Mage::getModel('sales/quote_payment')
+                ->getCollection()
+                ->addFieldToFilter('quote_id', $this->getId())
+                ->getFirstItem();
         }
     }
     public function getShippingData()
     {
         $this->initQuote();
         if ($this->getId()) {
-            // print_r($this->getId());
-
             // return Mage::getModel('sales/quote_shipping')->getCollection()
             //     ->addFieldToFilter('quote_id', $this->getId());
-            return Mage::getModel('sales/quote_shipping')->load($this->getId());
+            // return Mage::getModel('sales/quote_shipping')->load($this->getId());
+            return Mage::getModel('sales/quote_shipping')
+                ->getCollection()
+                ->addFieldToFilter('quote_id', $this->getId())
+                ->getFirstItem();
         }
     }
     public function addProduct($request)
@@ -166,7 +210,8 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             foreach ($this->getItemCollection()->getData() as $_item) {
                 $salesOrderItemData = Mage::getModel('catalog/product')->load($_item->getProductId());
-                return Mage::getModel('sales/order_item')
+                // print_r($_item);
+                Mage::getModel('sales/order_item')
                     ->setData($_item->getData())
                     ->removeData('quote_id')
                     ->removeData('item_id')
@@ -174,7 +219,10 @@ class Sales_Model_Quote extends Core_Model_Abstract
                     ->addData('product_color', $salesOrderItemData->getColor())
                     ->addData('order_id', $orderId)
                     ->save();
+                $inventory = (int) $salesOrderItemData->getInventory() - (int) $_item->getQty();
+                $salesOrderItemData->addData('inventory', $inventory)->save();
             }
+            return $this;
         }
     }
     public function quoteCustomerToOrderCustomer($orderId)
@@ -196,8 +244,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             $salesOrderPaymentData = $this->getPaymentData()->getData();
             if (!empty ($salesOrderPaymentData)) {
-                // print_r($salesOrderPaymentData);
-                // die;
                 Mage::getModel('sales/order_payment')
                     ->setData($salesOrderPaymentData)
                     ->removeData('payment_id')
@@ -213,9 +259,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             $salesOrderShippingData = $this->getShippingData()->getData();
             if (!empty ($salesOrderShippingData)) {
-                // print_r($salesOrderShippingData);
-                // die;
-
                 Mage::getModel('sales/order_shipping')
                     ->setData($salesOrderShippingData)
                     ->removeData('shipping_id')

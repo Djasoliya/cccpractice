@@ -15,6 +15,7 @@ $URL = Mage::getBaseUrl('admin/catalog_product');
             <th>Name</th>
             <!-- <th>Color</th> -->
             <th>Size</th>
+            <th>Quantity Left</th>
             <th>Description</th>
             <th>Image Link</th>
             <!-- <th>Link</th> -->
@@ -28,8 +29,15 @@ $URL = Mage::getBaseUrl('admin/catalog_product');
             <th>Status</th>
             <th colspan=2>Action</th>
         </tr>
-        <?php
-        foreach ($productCollection->getData() as $product) { ?>
+        <?php $qty = 0;
+        foreach ($productCollection->getData() as $product) {
+            foreach ($this->getSalesItemData($product->getProductId()) as $item) {
+                $qty = $item->getSumQty();
+            }
+            $Inventory = $product->getInventory();
+            $leftProduct = $Inventory - $qty;
+            $qty = 0;
+            ?>
             <tr>
                 <td>
                     <?php echo $product->getProductId(); ?>
@@ -41,19 +49,22 @@ $URL = Mage::getBaseUrl('admin/catalog_product');
                     <?php echo $product->getName(); ?>
                 </td>
                 <!-- <td>
-                    <?php //echo $product->getColor();       ?>
+                    <?php //echo $product->getColor();         ?>
                 </td> -->
                 <td>
                     <?php echo $product->getSize(); ?>
                 </td>
                 <td>
+                    <?php echo $product->getInventory(); ?>
+                </td>
+                <td>
                     <?php echo $product->getDescription(); ?>
                 </td>
                 <td>
-                    <?php echo $product->getImageLink();       ?>
+                    <?php echo $product->getImageLink(); ?>
                 </td>
                 <!-- <td>
-                    <?php //echo $product->getLink(); ?>
+                    <?php //echo $product->getLink();   ?>
                 </td> -->
                 <td>
                     <?php echo $this->getCategoryNameById($product->getCategoryId()) ?>
@@ -62,19 +73,19 @@ $URL = Mage::getBaseUrl('admin/catalog_product');
                     <?php echo $product->getPrice(); ?>
                 </td>
                 <!-- <td>
-                    <?php //echo $product->getMfrCost();       ?>
+                    <?php //echo $product->getMfrCost();         ?>
                 </td> -->
                 <!-- <td>
-                    <?php //echo $product->getShippingCost();       ?>
+                    <?php //echo $product->getShippingCost();         ?>
                 </td> -->
                 <td>
                     <?php echo $product->getTotalCost(); ?>
                 </td>
                 <!-- <td>
-                    <?php //echo $product->getMarginPercentage();       ?>
+                    <?php //echo $product->getMarginPercentage();         ?>
                 </td> -->
                 <!-- <td>
-                    <?php //echo $product->getMinPrice();        ?>
+                    <?php //echo $product->getMinPrice();          ?>
                 </td> -->
                 <td>
                     <?php echo $product->getStetus(); ?>

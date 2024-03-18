@@ -17,6 +17,7 @@ class Core_Controller_Admin_Action extends Core_Controller_Front_Action
     public function addHeader(){
         $layout = $this->getLayout();
         $header = $layout->createBlock('admin/header');
+        $layout->getChild('head')->addCss('admin/header.css');
         $layout->addChild('header', $header);
     }
 }

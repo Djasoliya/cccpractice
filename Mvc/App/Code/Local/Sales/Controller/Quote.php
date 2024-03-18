@@ -37,7 +37,7 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action
 
         Mage::getSingleton('sales/quote')->convert();
         Mage::getSingleton('core/session')->remove('quote_id');
-        // $this->setRedirect('customer/order');
+        $this->setRedirect('customer/order');
     }
 }
 ?>

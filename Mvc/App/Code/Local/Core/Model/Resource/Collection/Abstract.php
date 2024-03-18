@@ -34,10 +34,10 @@ class Core_Model_Resource_Collection_Abstract
     }
     public function addCondition($condition)
     {
+        // addCondition($condition)
         $this->_select['CONDITION'][] = $condition;
         return $this;
     }
-    //->addGroupBy('columns')->addCondition(desc);
     public function addGroupBy($GROUP)
     {
         //addGroupBy($column);
@@ -62,10 +62,21 @@ class Core_Model_Resource_Collection_Abstract
         $this->_select['HAVING'][] = $HAVING;
         return $this;
     }
+    public function addSum($column, $newName)
+    {
+        // ->addSum($column);
+        $this->_select["SUM"] = "SUM($column) AS " . $newName;
+        return $this;
+    }
 
     public function load()
     {
-        $sql = "SELECT * FROM {$this->_select['FROM']}";
+        $sql = "SELECT *";
+
+        if (isset ($this->_select["SUM"])) {
+            $sql .= ",{$this->_select['SUM']}";
+        }
+        $sql .= " FROM {$this->_select['FROM']}";
         if (isset ($this->_select["WHERE"])) {
             $whereCondition = [];
             foreach ($this->_select["WHERE"] as $column => $value) {

@@ -26,58 +26,58 @@ $imagePath = Mage::getBaseUrl("media/product/");
             <th colspan=2>Action</th>
     </tr> -->
 <!-- <?php
-//foreach ($productData->getData() as $product) {                                          ?>
+//foreach ($productData->getData() as $product) {                                           ?>
             <tr>
                 <td>
-                    <?php //echo $product->getProductId();                                          ?>
+                    <?php //echo $product->getProductId();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getSku();                                          ?>
+                    <?php //echo $product->getSku();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getName();                                          ?>
+                    <?php //echo $product->getName();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getColor();                                          ?>
+                    <?php //echo $product->getColor();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getSize();                                          ?>
+                    <?php //echo $product->getSize();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getDescription();                                          ?>
+                    <?php //echo $product->getDescription();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getImageLink();                                          ?>
+                    <?php //echo $product->getImageLink();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getLink();                                          ?>
+                    <?php //echo $product->getLink();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $this->getCategoryNameById($product->getCategoryId())                                          ?>
+                    <?php //echo $this->getCategoryNameById($product->getCategoryId())                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getPrice();                                          ?>
+                    <?php //echo $product->getPrice();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getMfrCost();                                          ?>
+                    <?php //echo $product->getMfrCost();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getShippingCost();                                          ?>
+                    <?php //echo $product->getShippingCost();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getTotalCost();                                          ?>
+                    <?php //echo $product->getTotalCost();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getMarginPercentage();                                          ?>
+                    <?php //echo $product->getMarginPercentage();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getMinPrice();                                          ?>
+                    <?php //echo $product->getMinPrice();                                           ?>
                 </td>
                 <td>
-                    <?php //echo $product->getStetus();                                          ?>
+                    <?php //echo $product->getStetus();                                           ?>
                 </td>
             </tr>
-        <?php // }                                          ?> -->
+        <?php // }                                           ?> -->
 
 
 <div class="prodcard">
@@ -98,6 +98,12 @@ $imagePath = Mage::getBaseUrl("media/product/");
                         <th>Sku</th>
                         <td>
                             <?php echo $product->getSku(); ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>
+                            <?php echo $product->getPrice(); ?>
                         </td>
                     </tr>
 
