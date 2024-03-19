@@ -103,6 +103,12 @@ class Core_Model_Abstract
         }
         return $this;
     }
+    protected function _beforeSave(){
+        
+    }
+    protected function _afterSave(){
+
+    }
     public function save()
     {
         $this->_beforeSave();

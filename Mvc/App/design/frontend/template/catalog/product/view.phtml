@@ -11,35 +11,35 @@ $productData = $this->getProductData();
         <th>Description</th>
         <th colspan=2>AddTocart</th>
     </tr>
-    <?php //foreach ($productData->getData() as $product) {                ?>
+    <?php //foreach ($productData->getData() as $product) {                 ?>
         <td>
-            <?php //echo $product->getProductId();                ?>
+            <?php //echo $product->getProductId();                 ?>
         </td>
         <td>
-            <img src="<?php //echo Mage::getBaseUrl('media/product/') . $product->getImageLink();                ?>" style="width:200px" alt=""> 
+            <img src="<?php //echo Mage::getBaseUrl('media/product/') . $product->getImageLink();                 ?>" style="width:200px" alt=""> 
         </td>
         <td>
-            <?php //echo $product->getName();                ?>
+            <?php //echo $product->getName();                 ?>
         </td>
         <td>
-            <?php //echo $product->getColor();                ?>
+            <?php //echo $product->getColor();                 ?>
         </td>
         <td>
-            <?php //echo $product->getDescription();                ?>
+            <?php //echo $product->getDescription();                 ?>
         </td>
 
 
-        <form method="POST" action="<?php //echo $this->getUrl('sales/quote/add')                ?>">
+        <form method="POST" action="<?php //echo $this->getUrl('sales/quote/add')                 ?>">
             <td>
                 <div class="form">
-                    <?php //$categoryModel = $this->getCategoryForm();                                         ?>
+                    <?php //$categoryModel = $this->getCategoryForm();                                          ?>
                     <div class="row">
-                        <input type="hidden" name="cart[product_id]" value="<?php //echo $product->getProductId();                ?>">
+                        <input type="hidden" name="cart[product_id]" value="<?php //echo $product->getProductId();                 ?>">
                     </div>
                     <div class="row">
                         <label for="quentity">Quentity : </label>
                         <input type="text" name="cart[qty]" id="quentity"
-                            value="<?php //echo $product->getQuentity();                                         ?>">
+                            value="<?php //echo $product->getQuentity();                                          ?>">
                     </div>
                 </div>
             </td>
@@ -50,30 +50,30 @@ $productData = $this->getProductData();
             </td>
         </form>
         
-        <?php //}                ?>
+        <?php //}                 ?>
     </table> -->
 <!-- <div class="product-cards">
-    <?php //foreach ($productData->getData() as $product):              ?>
-        <form method="POST" action="<?php //echo $this->getUrl('sales/quote/add')             ?>">
+    <?php //foreach ($productData->getData() as $product):               ?>
+        <form method="POST" action="<?php //echo $this->getUrl('sales/quote/add')              ?>">
             <div class="card">
-                <img src="<?php //echo Mage::getBaseUrl('media/product/') . $product->getImageLink();              ?>" style="width:200px"
+                <img src="<?php //echo Mage::getBaseUrl('media/product/') . $product->getImageLink();               ?>" style="width:200px"
                     alt="">
 
                 <div class="row">
-                    <input type="hidden" name="cart[product_id]" value="<?php //echo $product->getProductId();                ?>">
+                    <input type="hidden" name="cart[product_id]" value="<?php //echo $product->getProductId();                 ?>">
                 </div> -->
-<!-- <img src="<?php //echo $imagePath . $product->getImageLink();                ?>" alt="Product Image"> -->
+<!-- <img src="<?php //echo $imagePath . $product->getImageLink();                 ?>" alt="Product Image"> -->
 <!-- <div class="product-info">
                     <h2 class="product-title">
-                        <?php //echo $product->getProductId();              ?>
+                        <?php //echo $product->getProductId();               ?>
                     </h2>
                     <hr><br>
                     <p class="product-description">
-                        <?php //echo $product->getDescription();              ?>
+                        <?php //echo $product->getDescription();               ?>
                     </p>
                     <hr><br>
                     <p class="product-price">
-                        <?php //echo $product->getPrice()              ?>
+                        <?php //echo $product->getPrice()               ?>
                     </p>
                     <hr><br>
 
@@ -91,7 +91,7 @@ $productData = $this->getProductData();
 
             </div>
         </form>
-        <?php // endforeach;              ?>
+        <?php // endforeach;               ?>
     </div> -->
 
 <div class="wrapper">
@@ -115,7 +115,8 @@ $productData = $this->getProductData();
                 </div>
                 <div class="quantity-box">
                     <span class="quantity-label">Quantity : </span>
-                    <input class="qty" type="number" name="cart[qty]" class="quantity-input" value="1" min="1">
+                    <input class="qty" type="number" name="cart[qty]" class="quantity-input" value="1" min="1"
+                        max="<?php echo $product->getInventory() ?>">
                 </div>
                 <div class="product-price-btn">
                     <p><span>Price :

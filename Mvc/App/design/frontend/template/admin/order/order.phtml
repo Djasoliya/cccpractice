@@ -1,0 +1,126 @@
+<?php
+// echo "<pre>";
+$dataa = $this->getOrderData();
+?>
+
+<div class="container-new">
+    <table class="table-new">
+        <thead>
+            <tr>
+                <th>Item Number</th>
+                <th>Customer Id</th>
+                <th>Order Number</th>
+                <th>Product Image</th>
+                <th>Product Name</th>
+                <th>Product Color</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Row Total</th>
+                <th>Tax Percent</th>
+                <th>Grand Total</th>
+                <th>Status</th>
+                <th>Update Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $a = 1;
+            foreach ($dataa->getData() as $data) {
+                foreach ($this->getOrderItemData($data->getOrderId())->getData() as $orderData) {
+                    foreach ($this->getProductData($orderData->getProductId())->getData() as $productData) {
+                        foreach ($this->getAddressData($data->getOrderId())->getData() as $addressData) { ?>
+                            <tr>
+                                <td>
+                                    <?php echo $a++; ?>
+                                </td>
+                                <td>
+                                    <?php echo $data->getCustomerId(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $data->getOrderNumber(); ?>
+                                </td>
+                                <td><img src="<?php echo Mage::getBaseUrl("media/product/") . $productData->getImageLink(); ?>"
+                                        alt="Product Image" class="product-image-new"></td>
+                                <td>
+                                    <?php echo $orderData->getProductName(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $orderData->getProductColor(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $orderData->getPrice(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $orderData->getQty(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $orderData->getRowTotal(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $data->getTaxPercent(); ?>
+                                </td>
+                                <td>
+                                    <?php echo $data->getGrandTotal(); ?>
+                                </td>
+                                <td class="orderStatus">
+                                    <?php echo $data->getStatus(); ?>
+                                </td>
+                                <td>
+                                    <form method="post" action="<?php echo Mage::getBaseUrl('admin/order/save'); ?>" class="statusForm">
+                                        <input type="hidden" name="status[order_id]" value="<?php echo $data->getId() ?>">
+                                        <div><select name="status[status]" class="statuses">
+                                                <option value="pending">Pending</option>
+                                                <option value="shipped">Shipped</option>
+                                                <option value="canceled">Canceled</option>
+                                                <option value="declined">Declined</option>
+                                                <option value="funded">Funded</option>
+                                                <option value="completed">Completed</option>
+                                            </select></div>
+                                        <div>
+                                            <input id="statusSubmit" type="submit" value="Update">
+                                        </div>
+                                    </form>
+                                </td>
+                                <!-- <td id="statusDisplay_<?php //echo $data->getOrderId();    ?>">
+                                <?php //echo $data->getStatus();    ?>
+                                </td>
+                                <td>
+                                    <form id="orderForm_<?php //echo $data->getOrderId();    ?>" method="post" action="">
+                                        <input type="hidden" name="order[order_id]" value="<?php //echo $data->getId()    ?>">
+                                        <select class="statusSelect" name="order[status]" onchange="submitForm(this)">
+                                            <option value="pending">Pending</option>
+                                            <option value="shipped">Shipped</option>
+                                            <option value="canceled">Canceled</option>
+                                            <option value="declined">Declined</option>
+                                            <option value="funded">Funded</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                    </form>
+                                </td> -->
+                            </tr>
+                        <?php }
+                    }
+                }
+            } ?>
+        </tbody>
+    </table>
+</div>
+<script>
+    function submitForm(selectElement) {
+        // Get the selected value
+        var selectedValue = selectElement.value;
+
+        // Get the parent form
+        var form = selectElement.parentNode;
+
+        // Get the corresponding statusDisplay td
+        var statusDisplayId = form.id.replace("orderForm", "statusDisplay");
+        var statusDisplay = document.getElementById(statusDisplayId);
+
+        // Update the content of statusDisplay td
+        statusDisplay.innerHTML = selectedValue;
+
+        // Submit the form
+        form.action = "<?php echo Mage::getBaseUrl('admin/order/save') ?>";
+        form.submit();
+    }
+</script>

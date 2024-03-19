@@ -3,7 +3,7 @@ class Admin_Block_Order extends Core_Block_Template
 {
     public function __construct()
     {
-        $this->setTemplate('admin/order.phtml');
+        $this->setTemplate('admin/order/order.phtml');
     }
     public function getOrderData()
     {

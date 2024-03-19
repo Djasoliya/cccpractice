@@ -188,39 +188,43 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $salesOrderShipping = $this->quoteShippingToOrderShipping($salesOrder->getId());
             $this->addPaymentShippingId($salesOrderPayment, $salesOrderShipping);
             $this->addData('order_id', $salesOrder->getId())->save();
+            $this->addHistory($salesOrder->getId());
         }
     }
     public function quoteToOrder()
     {
         if ($this->getId()) {
             $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-            return Mage::getSingleton('sales/order')
-                ->setData($this->getData())
-                ->removeData('quote_id')
-                ->removeData('order_id')
-                ->removeData('payment_id')
-                ->removeData('shipping_id')
-                ->removeData('customer_id')
-                ->addData('customer_id', $customerId)
-                ->save();
+            return Mage::getSingleton('sales/order')->addOrder($this, $customerId);
+            // return Mage::getSingleton('sales/order')
+            //     ->setData($this->getData())
+            //     ->removeData('quote_id')
+            //     ->removeData('order_id')
+            //     ->removeData('payment_id')
+            //     ->removeData('shipping_id')
+            //     ->removeData('customer_id')
+            //     ->addData('customer_id', $customerId)
+            //     ->save();
         }
     }
     public function quoteItemToOrderItem($orderId)
     {
         if ($this->getId()) {
             foreach ($this->getItemCollection()->getData() as $_item) {
-                $salesOrderItemData = Mage::getModel('catalog/product')->load($_item->getProductId());
-                // print_r($_item);
-                Mage::getModel('sales/order_item')
-                    ->setData($_item->getData())
-                    ->removeData('quote_id')
-                    ->removeData('item_id')
-                    ->addData('product_name', $salesOrderItemData->getName())
-                    ->addData('product_color', $salesOrderItemData->getColor())
-                    ->addData('order_id', $orderId)
-                    ->save();
-                $inventory = (int) $salesOrderItemData->getInventory() - (int) $_item->getQty();
-                $salesOrderItemData->addData('inventory', $inventory)->save();
+                Mage::getSingleton('sales/order_item')->addOrderItem($_item, $orderId);
+
+
+                // $salesOrderItemData = Mage::getModel('catalog/product')->load($orderData->getProductId());
+                // Mage::getModel('sales/order_item')
+                //     ->setData($_item->getData())
+                //     ->removeData('quote_id')
+                //     ->removeData('item_id')
+                //     ->addData('product_name', $salesOrderItemData->getName())
+                //     ->addData('product_color', $salesOrderItemData->getColor())
+                //     ->addData('order_id', $orderId)
+                //     ->save();
+                // $inventory = (int) $salesOrderItemData->getInventory() - (int) $_item->getQty();
+                // $salesOrderItemData->addData('inventory', $inventory)->save();
             }
             return $this;
         }
@@ -230,12 +234,13 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             $data = $this->getQuoteCustomer()->getData();
             if (!empty ($data)) {
-                return Mage::getModel('sales/order_customer')
-                    ->setData($data)
-                    ->removeData('quote_customer_id')
-                    ->removeData('quote_id')
-                    ->addData('order_id', $orderId)
-                    ->save();
+                return Mage::getModel('sales/order_customer')->addOrderCustomer($data, $orderId);
+                // return Mage::getModel('sales/order_customer')
+                //     ->setData($data)
+                //     ->removeData('quote_customer_id')
+                //     ->removeData('quote_id')
+                //     ->addData('order_id', $orderId)
+                //     ->save();
             }
         }
     }
@@ -244,13 +249,14 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             $salesOrderPaymentData = $this->getPaymentData()->getData();
             if (!empty ($salesOrderPaymentData)) {
-                Mage::getModel('sales/order_payment')
-                    ->setData($salesOrderPaymentData)
-                    ->removeData('payment_id')
-                    ->removeData('quote_id')
-                    ->addData('order_id', $orderId)
-                    ->save();
-                return $this->getId();
+                return Mage::getModel('sales/order_payment')->addOrderPaymentData($salesOrderPaymentData, $orderId);
+                // Mage::getModel('sales/order_payment')
+                //     ->setData($salesOrderPaymentData)
+                //     ->removeData('payment_id')
+                //     ->removeData('quote_id')
+                //     ->addData('order_id', $orderId)
+                //     ->save();
+                // return $this;
             }
         }
     }
@@ -259,14 +265,22 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             $salesOrderShippingData = $this->getShippingData()->getData();
             if (!empty ($salesOrderShippingData)) {
-                Mage::getModel('sales/order_shipping')
-                    ->setData($salesOrderShippingData)
-                    ->removeData('shipping_id')
-                    ->removeData('quote_id')
-                    ->addData('order_id', $orderId)
-                    ->save();
-                return $this->getId();
+                return Mage::getModel('sales/order_shipping')->addOrderShippingData($salesOrderShippingData, $orderId);
+                // Mage::getModel('sales/order_shipping')
+                //     ->setData($salesOrderShippingData)
+                //     ->removeData('shipping_id')
+                //     ->removeData('quote_id')
+                //     ->addData('order_id', $orderId)
+                //     ->save();
+                // return $this->getId();
             }
         }
     }
+    public function addHistory($orderId)
+    {
+        if ($this->getId()) {
+            $historyItem = Mage::getModel('sales/order_history')->addHistoryData($orderId);
+        }
+    }
+
 }

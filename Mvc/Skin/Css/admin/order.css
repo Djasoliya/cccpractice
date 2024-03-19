@@ -37,3 +37,22 @@ body {
   text-align: center;
   background-color: rgb(150, 152, 152);
 }
+.orderStatus {
+  font-size: 17px;
+}
+.statusForm {
+  display: flex;
+}
+.statuses {
+  width: 89px;
+  font-size: 16px;
+  margin-right: 6px;
+  padding: 2px 4px 2px 4px;
+  border-radius: 8px;
+}
+#statusSubmit {
+  font-size: 16px;
+  padding: 2px 4px 2px 4px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
