@@ -18,4 +18,13 @@ class Sales_Model_Order_Payment extends Core_Model_Abstract
             ->save();
         return $this->getId();
     }
+    public function getPaymentOtions()
+    {
+        $paymentOptions = [
+            'cod' => 'Cash on Delivery (COD)',
+            'creditcard' => 'Credit Card',
+            'upi' => 'UPI'
+        ];
+        return $paymentOptions;
+    }
 }

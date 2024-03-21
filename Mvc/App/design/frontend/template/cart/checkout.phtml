@@ -44,15 +44,21 @@ $addressData = $this->getCustomerAddress();
                 <div class="container">
                     <div class="title">Address</div>
                     <div class="content">
-                        <div class="email-box">
+                        <div class="check-box">
                             <input type="checkbox" id="copyAddress">
                             <label for="copyAddress">Shipping Address Same As Billing</label>
                         </div>
+                        <!-- <div class="email-box">
+                            <label for="email">Email : </label>
+                            <input type="text" name="address[email]" id="email">
+                        </div> -->
+                        <div class="email-box">
+                            <label for="email">Email : </label>
+                            <input type="text" name="address[email]" id="email">
+                        </div>
+
                         <div class="user-details">
                             <div class="billing">
-                                <!-- <input type="hidden" name="address[quote_customer_id]">
-                                <input type="hidden" name="address[customer_id]" value="<?php //echo $customerId;                  ?>"> -->
-
                                 <div class="input-box">
                                     <label class="details" for="billing_city">Billing City : </label>
                                     <input type="text" name="address[billing_city]" id="billing_city">
@@ -108,12 +114,25 @@ $addressData = $this->getCustomerAddress();
                 </div>
             </div>
             <script type="text/javascript">
+                // Get the div element with the class 'address-cards'
+                var addressCardsDiv = document.getElementById('asdasdasdasd');
+
+                // Get the value of the data-json attribute
+                var jsonData = addressCardsDiv.getAttribute('data-json');
+
+                // Parse the JSON data
+                var jsonDataObj = JSON.parse(jsonData);
+
+                // Log the parsed JSON data to the console
+                console.log(jsonDataObj);
+
                 $('.address-cards').each((i, e) => {
                     console.log($(e).attr('data-json'))
                     $(e).click(() => {
                         var _data = JSON.parse($(e).attr('data-json'))
                         for (var key in _data) {
                             if (_data.hasOwnProperty(key)) {
+                                console.log($('#' + key).val(_data[key]));
                                 $('#' + key).val(_data[key]);
                             }
                         }
@@ -165,9 +184,12 @@ $addressData = $this->getCustomerAddress();
                             <label for="payment_options" class="label-payment-options">Payment Options:</label>
                             <select id="payment_options" name="sales_quote_payment_method[payment_method]" required
                                 class="select-payment-options">
-                                <option value="cod">Cash on Delivery (COD)</option>
-                                <option value="creditcard">Credit Card</option>
-                                <option value="upi">UPI</option>
+                                <?php $paymentOptions = $this->getPaymentOption(); ?>
+                                <?php foreach ($paymentOptions as $key => $value) { ?>
+                                    <option value="<?php echo $key ?>">
+                                        <?php echo $value ?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -244,9 +266,12 @@ $addressData = $this->getCustomerAddress();
                             <label for="shipping_options" class="label-shipping-options">Shipping Options:</label>
                             <select id="shipping_options" name="sales_quote_shipping_method[shipping_method]" required
                                 class="select-shipping-options">
-                                <option value="expedited ">Expedited </option>
-                                <option value="overnight">Overnight</option>
-                                <option value="international">International</option>
+                                <?php $shippingOptions = $this->getShippingOption(); ?>
+                                <?php foreach ($shippingOptions as $key => $value) { ?>
+                                    <option value="<?php echo $key ?>">
+                                        <?php echo $value ?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>

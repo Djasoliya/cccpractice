@@ -7,7 +7,7 @@ class Sales_Model_Order_Item extends Core_Model_Abstract
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Order_Item';
         $this->_modelClass = 'sales/order_item';
     }
-    public function addOrderItem($orderData, $orderId)
+    public function addOrderItem(Sales_Model_Quote_item $orderData, $orderId)
     {
         $productData = Mage::getModel('catalog/product')->load($orderData->getProductId());
         $this->setData($orderData->getData())

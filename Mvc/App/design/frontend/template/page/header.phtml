@@ -21,24 +21,36 @@
                 <a href="<?php echo Mage::getBaseUrl('cart'); ?>" style="--navAni:5">Cart</a>
             </div>
             <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl('catalog/category/view'); ?>" style="--navAni:5">Product</a>
+                <div class="pill-nav" id="myDIV">
+                    <ul>
+                        <div class="dropdown">
+                            <a class="btn"> Product </a>
+                            <div class="dropdown-content">
+                                <a href="<?php echo Mage::getBaseUrl("catalog/category/view?id=1"); ?>">Sofa</a>
+                                <a href=" <?php echo Mage::getBaseUrl("catalog/category/view?id=2"); ?>">Jeans</a>
+                                <a href=" <?php echo Mage::getBaseUrl("catalog/category/view?id=3"); ?>">T-Shirts</a>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
             </div>
             <?php if ($this->userLogin()): ?>
                 <div class="btn row">
-                    <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><img
-                            id="logout" src=<?php echo Mage::getBaseUrl() . "skin/images/arrow.png" ?>
-                            alt="Your Logo"></a>
+                    <!-- <h5>Welcome
+                        <?php //echo $this->getCustomerName();      ?>
+                    </h5> -->
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><img id="logout"
+                            src=<?php echo Mage::getBaseUrl() . "skin/images/arrow.png" ?> alt="Your Logo"></a>
                 </div>
             <?php else: ?>
                 <div class="btn row">
-                    <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><img
-                            id="login" src=<?php echo Mage::getBaseUrl() . "skin/images/user.png" ?>
-                            alt="Your Logo"></a>
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><img id="login"
+                            src=<?php echo Mage::getBaseUrl() . "skin/images/user.png" ?> alt="Your Logo"></a>
                 </div>
             <?php endif; ?>
 
             <!-- <div class="btn row">
-                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');       ?>" style="--navAni:5"><button
+                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');             ?>" style="--navAni:5"><button
                         type="button">Admin</button></a>
             </div> -->
         </div>

@@ -18,8 +18,12 @@ class Sales_Model_Quote_Customer extends Core_Model_Abstract
         $this->setData($request);
         $this->addData('quote_id', $quote->getId());
         $this->addData('customer_id', $customerId);
+        $this->addData('email', $this->getCustomerEmail($customerId));
         $this->save();
 
         return $this;
+    }
+    public function getCustomerEmail($customerId){
+        return Mage::getModel('customer/customer')->load($customerId)->getCustomerEmail();
     }
 }

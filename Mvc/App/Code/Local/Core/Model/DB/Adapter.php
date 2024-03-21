@@ -50,6 +50,7 @@ class Core_Model_DB_Adapter
     public function insert($query)
     {
         // print_r($query);
+        // echo "<br>";
         // die;
         $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
@@ -60,6 +61,9 @@ class Core_Model_DB_Adapter
     }
     public function update($query)
     {
+        // print_r($query);
+        // die;
+        // echo "<br>";
         $sql = mysqli_query($this->connect(), $query);
         if ($sql) {
             return true;

@@ -18,4 +18,13 @@ class Sales_Model_Order_Shipping extends Core_Model_Abstract
             ->save();
         return $this->getId();
     }
+    public function getShippingOtions()
+    {
+        $shippingOptions = [
+            'expedited' => 'Expedited',
+            'overnight' => 'Overnight',
+            'international' => 'International'
+        ];
+        return $shippingOptions;
+    }
 }

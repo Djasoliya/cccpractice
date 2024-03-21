@@ -78,6 +78,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         // if ($this->getId())
         return Mage::getModel('sales/quote_item')->getCollection()
             ->addFieldToFilter('quote_id', $this->getId());
+            
     }
     public function getQuoteCustomer()
     {
@@ -212,7 +213,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
         if ($this->getId()) {
             foreach ($this->getItemCollection()->getData() as $_item) {
                 Mage::getSingleton('sales/order_item')->addOrderItem($_item, $orderId);
-
 
                 // $salesOrderItemData = Mage::getModel('catalog/product')->load($orderData->getProductId());
                 // Mage::getModel('sales/order_item')

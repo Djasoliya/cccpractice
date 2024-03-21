@@ -45,11 +45,11 @@ body {
   display: flex;
   margin: 20px 0 12px 0;
 }
-form .email-box {
+form .check-box {
   margin: 20px 0 12px 0;
   /* width: 100%; */
 }
-.email-box input {
+.check-box input {
   /* height: 22px; */
   /* font-size: 21px; */
   /* margin: 4px 2px 0px 2px; */
@@ -61,6 +61,15 @@ form .email-box {
   border-bottom-width: 2px;
   transition: all 0.3s ease;
   size: 23px;
+}
+.email-box input {
+  width: 99%;
+  height: 37px;
+  font-size: 0px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
 }
 input#card_number {
   width: 183px;

@@ -5,12 +5,14 @@ $dataa = $this->getOrderData();
 // print_r($this->getProductData($orderData->getProductId()->getData()));
 // die;
 
-// print_r($addressData);
+// print_r($dataa->getData());
+// die;
 foreach ($dataa->getData() as $data):
-    // print_r($data->getOrderId());
+    // print_r($data);
     // die;
     foreach ($this->getOrderItemData($data->getOrderId())->getData() as $orderData):
-
+        // print_r($orderData);
+        // die;
         foreach ($this->getProductData($orderData->getProductId())->getData() as $productData):
             // foreach ($this->getAddressData($productData)->getData() as $addressData):
             $addressData = $this->getAddressData($productData)->getData();
@@ -45,8 +47,13 @@ foreach ($dataa->getData() as $data):
                                 </p>
                                 <h4 class="mt-3 mb-4 bold"> <span class="mt-5">&#x20B9;</span>
                                     <?php echo $orderData->getPrice(); ?>
-                                    <span class="small text-muted">
-                                        via (COD) </span>
+                                    <!-- <span class="small text-muted">
+                                        via (COD) </span> -->
+                                </h4>
+                                <h4 class="total mt-3 mb-4 bold">Total : <span class="mt-5">&#x20B9;</span>
+                                    <?php echo $data->getgrandTotal(); ?>
+                                    <!-- <span class="small text-muted">
+                                        via (COD) </span> -->
                                 </h4>
                             </div>
                             <div class="orderAddress">
@@ -56,7 +63,7 @@ foreach ($dataa->getData() as $data):
                                 </h2>
                             </div>
                             <img class="align-self-center img-fluid"
-                                src="<?php echo Mage::getBaseUrl('media/product/') . $productData->getImageLink(); ?>">
+                                src="<?php echo $this->imageLink($productData->getImageLink()); ?>">
                         </div>
                     </div>
                     <div class="card-footer  bg-white px-sm-3 pt-sm-4 px-0">
@@ -64,10 +71,20 @@ foreach ($dataa->getData() as $data):
                             <div class="col my-auto  border-line ">
                                 <h5>Track</h5>
                             </div>
+                            <!-- <div class="col  my-auto  border-line ">
+                                <h5><a href="<?php //echo Mage::getBaseUrl('customer/view/cancel?id='.$data->getOrderId());           ?>"> Cancle </a></h5>
+                            </div> -->
+
                             <div class="col  my-auto  border-line ">
-                                <h5><a href="<?php ;?>"> Cancle </a></h5>
+                                <?php echo $data->getStatus(); ?>
+                                <?php
+                                if ($data->getStatus() != 'cancellation_request' && $data->getStatus() != 'completed' && $data->getStatus() != 'canceled') {
+                                    echo '<p><a href="' . Mage::getBaseUrl('customer/view/cancel?id=' . $data->getId()) . '"><strong>Cancel Order</strong></a></p>';
+                                }
+                                ?>
                             </div>
-                            <div class="col my-auto   border-line ">
+
+                            <div class="col my-auto border-line ">
                                 <h5>Pre-pay</h5>
                             </div>
                             <div class="col  my-auto mx-0 px-0 "><img class="img-fluid cursor-pointer"
@@ -79,4 +96,4 @@ foreach ($dataa->getData() as $data):
         <?php endforeach; ?>
     <?php endforeach; ?>
 <?php endforeach; ?>
-<!-- <?php //endforeach;      ?> -->
+<!-- <?php //endforeach;                      ?> -->
