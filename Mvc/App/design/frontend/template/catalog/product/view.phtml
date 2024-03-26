@@ -2,10 +2,11 @@
 $productData = $this->getProductData();
 ?>
 <div class="wrapper">
+
     <?php foreach ($productData->getData() as $product): ?>
         <form method="POST" action="<?php echo $this->getUrl('sales/quote/add') ?>">
             <div class="product-img">
-                <img class="imgproduct" src="<?php echo Mage::getBaseUrl('media/product/') . $product->getImageLink(); ?>"
+                <img class="imgproduct" src="<?php echo $this->getUrl('media/product/') . $product->getImageLink(); ?>"
                     alt="">
             </div>
             <div class="row">
@@ -21,9 +22,13 @@ $productData = $this->getProductData();
                     </p>
                 </div>
                 <div class="quantity-box">
-                    <span class="quantity-label">Quantity : </span>
-                    <input class="qty" type="number" name="cart[qty]" class="quantity-input" value="1" min="1"
-                        max="<?php echo $product->getInventory() ?>">
+                    <?php if ($product->getInventory()): ?>
+                        <span class="quantity-label">Quantity : </span>
+                        <input class="qty" type="number" name="cart[qty]" class="quantity-input" value="1" min="1"
+                            max="<?php echo $product->getInventory() ?>">
+                    <?php else: ?>
+                        <span style="color:red;">Out of Stock</span>
+                    <?php endif; ?>
                 </div>
                 <div class="product-price-btn">
                     <p><span>Price :

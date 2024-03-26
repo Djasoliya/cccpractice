@@ -3,7 +3,7 @@
 
     <!-- Form for uploading CSV file -->
     <?php //$csvFile = Mage::getBaseUrl('import/')?>
-    <form action="<?php echo Mage::getBaseUrl('admin/import/upload'); ?>" method="post" enctype="multipart/form-data">
+    <form action="<?php echo $this->getUrl('admin/import/upload'); ?>" method="post" enctype="multipart/form-data">
         <label for="file">Upload CSV File:</label>
         <label class="custom-file-upload">
             <input type="file" name="csv_file" id="file">Upload CSV File

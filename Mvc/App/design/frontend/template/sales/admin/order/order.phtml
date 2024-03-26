@@ -36,7 +36,7 @@ $orderData = $this->getOrderData();
                         <?php echo $data->getStatus(); ?>
                     </td>
                     <td>
-                        <form method="post" action="<?php echo Mage::getBaseUrl('admin/sales/save'); ?>" class="statusForm">
+                        <form method="post" action="<?php echo $this->getUrl('admin/sales/save'); ?>" class="statusForm">
                             <input type="hidden" name="status[order_id]" value="<?php echo $data->getId() ?>">
                             <div><select name="status[status]" class="statuses">
                                     <?php $statusOptions = $this->getStatusOption(); ?>
@@ -53,14 +53,14 @@ $orderData = $this->getOrderData();
                     </td>
                     <td>
                         <?php if ($data->getStatus() == 'cancel_request') { ?>
-                            <a href="<?php echo Mage::getBaseUrl('admin/sales/accept?id=' . $data->getOrderId()); ?>"><button><i
+                            <a href="<?php echo $this->getUrl('admin/sales/accept?id=' . $data->getOrderId()); ?>"><button><i
                                         class="fa fa-check"></i></button></a>
-                            <a href="<?php echo Mage::getBaseUrl('admin/sales/reject?id=' . $data->getOrderId()); ?>"><button><i
+                            <a href="<?php echo $this->getUrl('admin/sales/reject?id=' . $data->getOrderId()); ?>"><button><i
                                         class="fa fa-times"></i></button></a>
                         <?php } ?>
                     </td>
                     <td>
-                        <a href="<?php echo Mage::getBaseUrl('admin/sales/view?id='.$data->getOrderId()); ?>"> View </a>
+                        <a href="<?php echo $this->getUrl('admin/sales/view?id='.$data->getOrderId()); ?>"> View </a>
                     </td>
                     <!-- <td id="statusDisplay_<?php //echo $data->getOrderId();         ?>">
                                 <?php //echo $data->getStatus();         ?>
@@ -83,7 +83,7 @@ $orderData = $this->getOrderData();
         </tbody>
     </table>
 </div>
-<script>
+<!-- <script>
     function submitForm(selectElement) {
         // Get the selected value
         var selectedValue = selectElement.value;
@@ -102,4 +102,4 @@ $orderData = $this->getOrderData();
         form.action = "<?php echo Mage::getBaseUrl('admin/order/save') ?>";
         form.submit();
     }
-</script>
+</script> -->

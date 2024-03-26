@@ -82,6 +82,9 @@ class Core_Model_Resource_Collection_Abstract
         if (isset ($this->_select["SUM"])) {
             $sql .= ",{$this->_select['SUM']}";
         }
+        if (isset ($this->_select["COUNT"])) {
+            $sql .= ",{$this->_select['COUNT']}";
+        }
         $sql .= " FROM {$this->_select['FROM']}";
         if (isset ($this->_select["WHERE"])) {
             $whereCondition = [];
@@ -108,6 +111,21 @@ class Core_Model_Resource_Collection_Abstract
                             case 'like':
                                 // addFieldToFilter('$column',['like' => 'a%'])
                                 $whereCondition[] = "{$column} LIKE '{$_v}'";
+                                break;
+                            case 'gt':
+                                $whereCondition[] = "{$column} > {$_v}";
+                                break;
+                            case 'lt':
+                                $whereCondition[] = "{$column} < {$_v}";
+                                break;
+                            case 'lte':
+                                $whereCondition[] = "{$column} <= {$_v}";
+                                break;
+                            case 'gte':
+                                $whereCondition[] = "{$column} >= {$_v}";
+                                break;
+                            case 'neq':
+                                $whereCondition[] = "{$column} <> {$_v}";
                                 break;
                             case 'between':
                                 // addFieldToFilter('$column',['between' => [$value1,$value2]])

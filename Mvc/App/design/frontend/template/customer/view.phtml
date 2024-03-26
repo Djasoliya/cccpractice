@@ -82,7 +82,7 @@ foreach ($orderData->getData() as $data):
                                     <h5>Order Completed</h5>
                                 <?php } else { ?>
                                     <h5>
-                                    <a href="<?php echo Mage::getBaseUrl('customer/view/cancel?id=' . $data->getOrderId()); ?>">
+                                    <a href="<?php echo $this->getUrl('customer/view/cancel?id=' . $data->getOrderId()); ?>">
                                             Cancle </a>
                                     </h5>
                                 <?php } ?>

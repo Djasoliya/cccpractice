@@ -4,7 +4,7 @@ $imagePath = Mage::getBaseUrl("media/banner/") . $banner->getBannerImage();
 ?>
 <div class="form">
     <h2>Banner Upload Form</h2>
-    <form action="<?php echo Mage::getBaseUrl('admin/banner/save') ?>" method="post" enctype="multipart/form-data">
+    <form action="<?php echo $this->getUrl('admin/banner/save') ?>" method="post" enctype="multipart/form-data">
 
 
         <div class="row">

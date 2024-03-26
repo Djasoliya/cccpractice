@@ -13,7 +13,7 @@ class Import_Block_Readedlist extends Core_Block_Template
             ->getCollection()
             ->addFieldToFilter('status', 0)
             ->addGroupBy('type')
-            ->addCount('data', 'pending_import')
+            ->addCount('json_data', 'pending_import')
             ->getData();
     }
 }

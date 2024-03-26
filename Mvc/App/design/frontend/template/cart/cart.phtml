@@ -40,12 +40,12 @@ $productTotals = [];
                             </div>
                         </div>
                         <div class="formdiv">
-                            <form class="formid" action="<?php echo Mage::getBaseUrl('sales/quote/update'); ?>"
+                            <form class="formid" action="<?php echo $this->getUrl('sales/quote/update'); ?>"
                                 method="POST">
                                 <input type="hidden" name="cart[product_id]" value="<?php echo $item->getProductId(); ?>">
                                 <input type="hidden" name="cart[item_id]" value="<?php echo $item->getItemId(); ?>">
                                 <label for="quentity">Quentity : </label>
-                                <input class="qtyinput" type="number" name="cart[qty]" min="1"
+                                <input class="qtyinput" type="number" name="cart[qty]" min="1" 
                                     value="<?php echo $item->getQty(); ?>">
                                 <div class="col datal price">&euro;
                                     <?php echo $item->getRowTotal(); ?>

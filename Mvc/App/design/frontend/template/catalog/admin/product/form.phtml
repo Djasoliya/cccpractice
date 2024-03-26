@@ -59,6 +59,11 @@
             <input type="number" name="catalog_product[price]" id="price"
                 value="<?php echo $productModel->getPrice(); ?>">
         </div>
+        <div class="row">
+            <label for="inventory">Inventory : </label>
+            <input type="number" name="catalog_product[inventory]" id="inventory"
+                value="<?php echo $productModel->getInventory(); ?>">
+        </div>
 
         <div class="row">
             <label for="mfr_cost">MFR Cost</label>

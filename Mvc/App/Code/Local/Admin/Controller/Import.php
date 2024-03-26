@@ -10,15 +10,15 @@ class Admin_Controller_Import extends Core_Controller_Admin_Action
             ->addChild('form', $banner);
         $layout->toHtml();
     }
-    public function indexAction()
-    {
-        $layout = $this->getLayout();
-        $child = $layout->getChild('content');
-        $layout->getChild('head')->addCss('import/import.css');
-        $import = $layout->createBlock('import/import');
-        $child->addChild('import', $import);
-        $layout->toHtml();
-    }
+    // public function indexAction()
+    // {
+    //     $layout = $this->getLayout();
+    //     $child = $layout->getChild('content');
+    //     $layout->getChild('head')->addCss('import/import.css');
+    //     $import = $layout->createBlock('import/import');
+    //     $child->addChild('import', $import);
+    //     $layout->toHtml();
+    // }
     public function saveAction()
     {
         if (isset ($_POST['submit'])) {
@@ -40,8 +40,8 @@ class Admin_Controller_Import extends Core_Controller_Admin_Action
     }
     public function readAction()
     {
-        $file = $this->getRequest()->getParams('file');
-        $file = Mage::getBaseDir('media/import/') . $file;
+        $files = $this->getRequest()->getParams('file');
+        $file = Mage::getBaseDir('media/import/') . $files;
 
         $file = fopen($file, 'r');
         $column = fgetcsv($file);
@@ -49,7 +49,8 @@ class Admin_Controller_Import extends Core_Controller_Admin_Action
             $data = array_combine($column, $data);
             $data = json_encode($data);
             Mage::getModel('import/import')
-                ->addData('data', $data)
+                ->addData('json_data', $data)
+                ->addData('csv_name', $files)
                 ->addData('type', 'product')
                 ->save();
         }
@@ -78,7 +79,7 @@ class Admin_Controller_Import extends Core_Controller_Admin_Action
             ->addFieldToFilter('status', 0)
             ->getFirstItem();
         $product = Mage::getModel('catalog/product')
-            ->setData(json_decode($importItem->getJson(), true))
+            ->setData(json_decode($importItem->getJsonData(), true))
             ->save()
             ->getId();
         if ($product) {

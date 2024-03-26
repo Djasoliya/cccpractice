@@ -14,5 +14,9 @@ class Page_Block_Header extends Core_Block_Template
         $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
         return Mage::getModel('customer/customer')->load($customerId)->getFirstName();
     }
+    public function getCatalogCategory()
+    {
+        return Mage::getModel('catalog/category')->getCollection()->getData();
+    }
 }
 ?>

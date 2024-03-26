@@ -95,7 +95,7 @@ $historyData = $this->getHistoryData($orderData->getOrderId());
             <div class="product">
                 <div class="prodImage">
                     <p>
-                        <img src="<?php echo Mage::getBaseUrl('media/product/') . $productData->getImageLink(); ?>" alt="">
+                        <img src="<?php echo $this->getUrl('media/product/') . $productData->getImageLink(); ?>" alt="">
                     </p>
                 </div>
                 <div class="prodData">

@@ -78,7 +78,7 @@ $customer = $this->getCustomer();
     <!-- <h5>Welcome
                 <?php //echo $this->getCustomerName();       ?>
             </h5> -->
-    <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"> Log Out</a>
+    <a href="<?php echo $this->getUrl('customer/Account/logout'); ?>" style="--navAni:5"> Log Out</a>
 </div>
 <div class="btn row">
     <div class="pill-nav" id="myDIV">

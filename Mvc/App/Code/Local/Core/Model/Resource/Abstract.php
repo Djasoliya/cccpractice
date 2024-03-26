@@ -72,6 +72,7 @@ class Core_Model_Resource_Abstract
     {
         $columns = $wherecond = [];
         foreach ($cols as $col => $val) {
+            $val = addslashes($val); 
             $columns[] = "`$col` = '$val'";
         }
         foreach ($where as $col => $val) {
