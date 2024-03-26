@@ -1,13 +1,13 @@
 <?php
 // echo "<pre>";
-$dataa = $this->getOrderData();
+$orderData = $this->getOrderData();
 //  $orderData = $this->getOrderItemData($dataa->getData()->getOrderId());
 // print_r($this->getProductData($orderData->getProductId()->getData()));
 // die;
 
 // print_r($dataa->getData());
 // die;
-foreach ($dataa->getData() as $data):
+foreach ($orderData->getData() as $data):
     // print_r($data);
     // die;
     foreach ($this->getOrderItemData($data->getOrderId())->getData() as $orderData):
@@ -69,19 +69,23 @@ foreach ($dataa->getData() as $data):
                     <div class="card-footer  bg-white px-sm-3 pt-sm-4 px-0">
                         <div class="row text-center  ">
                             <div class="col my-auto  border-line ">
-                                <h5>Track</h5>
+                                <h5>
+                                    <?php echo $data->getStatus() ?>
+                                </h5>
                             </div>
                             <!-- <div class="col  my-auto  border-line ">
-                                <h5><a href="<?php //echo Mage::getBaseUrl('customer/view/cancel?id='.$data->getOrderId());           ?>"> Cancle </a></h5>
+                                <h5><a href="<?php //echo Mage::getBaseUrl('customer/view/cancel?id='.$data->getOrderId());             ?>"> Cancle </a></h5>
                             </div> -->
 
-                            <div class="col  my-auto  border-line ">
-                                <?php echo $data->getStatus(); ?>
-                                <?php
-                                if ($data->getStatus() != 'cancellation_request' && $data->getStatus() != 'completed' && $data->getStatus() != 'canceled') {
-                                    echo '<p><a href="' . Mage::getBaseUrl('customer/view/cancel?id=' . $data->getId()) . '"><strong>Cancel Order</strong></a></p>';
-                                }
-                                ?>
+                            <div class="col  my-auto  border-line cancel">
+                                <?php if ($data->getStatus() == 'completed') { ?>
+                                    <h5>Order Completed</h5>
+                                <?php } else { ?>
+                                    <h5>
+                                    <a href="<?php echo Mage::getBaseUrl('customer/view/cancel?id=' . $data->getOrderId()); ?>">
+                                            Cancle </a>
+                                    </h5>
+                                <?php } ?>
                             </div>
 
                             <div class="col my-auto border-line ">
@@ -96,4 +100,4 @@ foreach ($dataa->getData() as $data):
         <?php endforeach; ?>
     <?php endforeach; ?>
 <?php endforeach; ?>
-<!-- <?php //endforeach;                      ?> -->
+<!-- <?php //endforeach;                        ?> -->

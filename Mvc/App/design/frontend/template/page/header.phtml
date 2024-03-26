@@ -1,13 +1,3 @@
-<!-- <header>
-
-    <ul>
-        
-        <li><a class="floatleft" href="#about">About</a></li>
-        <li><a class="floatleft" href="#contact">Contact</a></li>
-        <li><a class="floatleft" href="#news">News</a></li>
-        <li><a class="floatleft" class="active" href="#home">Home</a></li>
-    </ul>
-</header> -->
 <header>
     <div class="page-header">
         <div class="logo">
@@ -18,14 +8,14 @@
                 <a href="<?php echo Mage::getBaseUrl(''); ?>" style="--navAni:5">Home</a>
             </div>
             <div class="btn row">
-                <a href="<?php echo Mage::getBaseUrl('cart'); ?>" style="--navAni:5">Cart</a>
+                <a href="<?php echo Mage::getBaseUrl(''); ?>" style="--navAni:5">About</a>
             </div>
             <div class="btn row">
                 <div class="pill-nav" id="myDIV">
                     <ul>
                         <div class="dropdown">
-                            <a class="btn"> Product </a>
-                            <div class="dropdown-content">
+                            <a class="btn"> Shop </a>
+                            <div class="dropdown-content dropdownDiv">
                                 <a href="<?php echo Mage::getBaseUrl("catalog/category/view?id=1"); ?>">Sofa</a>
                                 <a href=" <?php echo Mage::getBaseUrl("catalog/category/view?id=2"); ?>">Jeans</a>
                                 <a href=" <?php echo Mage::getBaseUrl("catalog/category/view?id=3"); ?>">T-Shirts</a>
@@ -34,17 +24,23 @@
                     </ul>
                 </div>
             </div>
+            <div class="btn row">
+                <a href="<?php echo Mage::getBaseUrl(''); ?>" style="--navAni:5">Contact</a>
+            </div>
+              <!--<div class="btn row">
+                <a href="<?php //echo Mage::getBaseUrl('cart'); ?>" style="--navAni:5">Cart</a>
+            </div>-->
             <?php if ($this->userLogin()): ?>
-                <div class="btn row">
+                <div class="btn row sign">
                     <!-- <h5>Welcome
                         <?php //echo $this->getCustomerName();      ?>
                     </h5> -->
-                    <a href="<?php echo Mage::getBaseUrl('customer/Account/logout'); ?>" style="--navAni:5"><img id="logout"
-                            src=<?php echo Mage::getBaseUrl() . "skin/images/arrow.png" ?> alt="Your Logo"></a>
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/dashboard'); ?>" style="--navAni:5"><img id="logout"
+                            src=<?php echo Mage::getBaseUrl() . "skin/images/user.png" ?> alt="Your Logo"></a>
                 </div>
             <?php else: ?>
-                <div class="btn row">
-                    <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><img id="login"
+                <div class="btn row sign">
+                    <a href="<?php echo Mage::getBaseUrl('customer/Account/login'); ?>" style="--navAni:5"><span> Sign in</span><img id="login"
                             src=<?php echo Mage::getBaseUrl() . "skin/images/user.png" ?> alt="Your Logo"></a>
                 </div>
             <?php endif; ?>

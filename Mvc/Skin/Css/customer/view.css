@@ -210,3 +210,6 @@ small {
 .total {
   font-size: 21px;
 }
+.cancel a {
+  text-decoration: none;
+}

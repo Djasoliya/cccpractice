@@ -68,6 +68,12 @@ class Core_Model_Resource_Collection_Abstract
         $this->_select["SUM"] = "SUM($column) AS " . $newName;
         return $this;
     }
+    public function addCount($column, $newName)
+    {
+        // ->addCount($column);
+        $this->_select["COUNT"] = "Count($column) AS " . $newName;
+        return $this;
+    }
 
     public function load()
     {

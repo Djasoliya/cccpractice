@@ -20,10 +20,22 @@ class Sales_Block_Admin_Order_View extends Core_Block_Template
     }
     public function getOrderItemData($orderId)
     {
-        return Mage::getModel('sales/order_item')->getCollection()->addFieldToFilter('order_id', $orderId);
+        return Mage::getModel('sales/order_item')->getCollection()->addFieldToFilter('order_id', $orderId)->getData();
     }
     public function getProductData($productId)
     {
-        return Mage::getModel('catalog/product')->getCollection()->addFieldToFilter('product_id', $productId);
+        return Mage::getModel('catalog/product')->load($productId);
+    }
+    public function getShippingData($shippingId)
+    {
+        return Mage::getModel('sales/order_shipping')->load($shippingId);
+    }
+    public function getPaymentData($paymentId)
+    {
+        return Mage::getModel('sales/order_payment')->load($paymentId);
+    }
+    public function getHistoryData($orderId)
+    {
+        return Mage::getModel('sales/order_history')->getCollection()->addFieldToFilter('order_id', $orderId);
     }
 }

@@ -14,7 +14,7 @@ class Catalog_Model_Product extends Core_Model_Abstract
         $catData = $category->getData();
         // print_r($catData);
         // die;
-        if (isset($this->_data)) {
+        if (isset ($this->_data)) {
             foreach ($category->getData() as $catData) {
                 $this->_data[$catData->getCategoryId()] = $catData->getCategoryName();
             }
@@ -28,7 +28,7 @@ class Catalog_Model_Product extends Core_Model_Abstract
             1 => "Enabled",
             0 => "Disabled"
         ];
-        if (isset($this->_data['status'])) {
+        if (isset ($this->_data['status'])) {
             return $mapping[$this->_data['status']];
         }
     }

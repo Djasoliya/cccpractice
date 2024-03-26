@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background: #cdeef3;
 }
 .container-new {
   max-width: 8000px;
@@ -55,4 +55,26 @@ body {
   padding: 2px 4px 2px 4px;
   border-radius: 8px;
   border: 1px solid black;
+}
+button {
+  background-color: #ffffff;
+  margin-left: 18px;
+  padding: 0.3rem 1rem;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  border-radius: 9px;
+  /* line-height: 2; */
+  border: 0px;
+  transition: 0.3s;
+}
+button:hover {
+  background-color: #ddd;
+}
+.fa-check:hover {
+  color: rgb(5, 202, 38);
+}
+.fa-times:hover {
+  color: red;
 }

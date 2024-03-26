@@ -27,9 +27,10 @@ class Customer_Controller_View extends Core_Controller_Front_Action
     public function cancelAction()
     {
         $orderId = $this->getRequest()->getParams('id');
+        $defaulyCancelRequest = Sales_Model_Status::DEFAULT_CANCEL_REQUEST;
         $data = [
             'order_id' => $orderId,
-            'status' => 'cancel_request'
+            'status' => $defaulyCancelRequest
         ];
         Mage::getModel('sales/order_history')->updateHistory($data, 0);
         Mage::getModel('sales/order')->setData($data)->save();

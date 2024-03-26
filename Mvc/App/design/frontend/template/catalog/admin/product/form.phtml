@@ -1,6 +1,7 @@
 <div class="form">
     <h2>Product Form</h2>
-    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" enctype="multipart/form-data">
+    <form method="POST" action="<?php echo $this->getUrl('admin/catalog_product/save') ?>"
+        enctype="multipart/form-data">
         <?php $productModel = $this->getProductForm(); ?>
         <?php $cat = $this->getCategoryList(); ?>
         <div class="row">
@@ -36,8 +37,7 @@
 
         <div class="row">
             <label for="image_link">Image Link : </label>
-            <input type="file" name="image_link" id="image_link"
-                value="<?php echo $productModel->getImageLink(); ?>">
+            <input type="file" name="image_link" id="image_link" value="<?php echo $productModel->getImageLink(); ?>">
         </div>
 
         <div class="row">
@@ -93,7 +93,7 @@
         <div class="row">
             <label for="status">Status : </label>
             <!-- <input type="text" name="catalog_product[status]" id="status"
-                value=<?php //echo $productModel->getStatus();                  ?>"> -->
+                value=<?php //echo $productModel->getStatus();                   ?>"> -->
             <select id="status" name="catalog_product[status]">
                 <option value="1" <?php echo $productModel->getStatus() == 1 ? 'selected' : '' ?>>Enabled</option>
                 <option value="0" <?php echo $productModel->getStatus() == 0 ? 'selected' : '' ?>>Disabled</option>

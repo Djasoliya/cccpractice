@@ -10,6 +10,6 @@ class Sales_Block_Admin_Order_Order extends Core_Block_Template{
     }
     public function getStatusOption()
     {
-        return Mage::getModel('sales/order_history')->getStatusOtions();
+        return Mage::getModel('sales/status')->getStatusOtions();
     }
 }

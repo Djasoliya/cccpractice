@@ -11,7 +11,7 @@ class LoanCalculator_Model_LoanCalculator extends Core_Model_Abstract
     public function _beforeSave()
     {
         $bankCode = $this->getBankCode();
-        $r = Mage::getBlock('loancalculator/form')->getBankRate($bankCode) / 12;
+        $r = Mage::getModel('loancalculator/rate')->getBankRate($bankCode) / 12;
         $p = $this->getLoanAmount();
         $n = $this->getTerm();
 

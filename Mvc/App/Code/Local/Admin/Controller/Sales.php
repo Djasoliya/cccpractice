@@ -12,6 +12,7 @@ class Admin_Controller_Sales extends Core_Controller_Admin_Action
     }
     public function saveAction()
     {
+        $defaultUserStatus = Sales_Model_Status::DEFAULT_ORDER_USER_STATUS;
         $status = $this->getRequest()->getParams('status');
         $orderId = $status['order_id'];
         $fromStatus = Mage::getModel('sales/order')->load($orderId)->getStatus();
@@ -21,7 +22,7 @@ class Admin_Controller_Sales extends Core_Controller_Admin_Action
                 'order_id' => $orderId,
                 'from_status' => $fromStatus,
                 'to_status' => $status['status'],
-                'action_by' => 0
+                'action_by' => $defaultUserStatus
             ]
         )->save();
         $this->setRedirect('admin/sales');
@@ -53,7 +54,7 @@ class Admin_Controller_Sales extends Core_Controller_Admin_Action
         $layout = $this->getLayout();
         $child = $layout->getChild('content');
         $orderView = $layout->createBlock('sales/admin_order_view');
-        // $layout->getChild('head')->addCss('admin/order.css');
+        $layout->getChild('head')->addCss('admin/view.css');
         $child->addChild('orderView', $orderView);
         $layout->toHtml();
         // $orderId = $this->getRequest()->getParams('id');

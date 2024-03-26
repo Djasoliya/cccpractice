@@ -7,15 +7,23 @@
             <ul>
                 <div class="dropdown">
                     <a class="btn" href="<?php echo Mage::getBaseUrl("admin"); ?>"> Dashboard </a>
-                    <a class="btn" href="<?php echo Mage::getBaseUrl("admin/sales"); ?>"> All Order </a>
-                    <!-- <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/cancel");  ?>"> Cancel Request </a> -->
+                    <a class="btn" href="<?php echo Mage::getBaseUrl("admin/sales"); ?>"> Order </a>
                 </div>
                 <div class="dropdown">
                     <a class="btn"> Product </a>
                     <div class="dropdown-content">
+                        <a href="<?php echo Mage::getBaseUrl("admin/import"); ?>">Import CSV </a>
                         <a href="<?php echo Mage::getBaseUrl("admin/catalog_product/form"); ?>">Product Form</a>
                         <a href=" <?php echo Mage::getBaseUrl("admin/catalog_product/list"); ?>">Product
                             List</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="btn"> Import </a>
+                    <div class="dropdown-content">
+                        <a href="<?php echo Mage::getBaseUrl("admin/import/form"); ?>">Upload CSV </a>
+                        <a href="<?php echo Mage::getBaseUrl("admin/import/list"); ?>">Read Csv</a>
+                        <a href=" <?php echo Mage::getBaseUrl("admin/import/readedlist"); ?>">Import Csv</a>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -41,15 +49,15 @@
     </div>
     <!-- <div class="buttondiv"> -->
     <!-- <div class="btn row">
-                <a href="<?php //echo Mage::getBaseUrl('customer/Account/login');                 ?>" style="--navAni:5"><button
+                <a href="<?php //echo Mage::getBaseUrl('customer/Account/login');                   ?>" style="--navAni:5"><button
                         type="button">User</button></a>
             </div> -->
     <!-- <div class="btn row">
-                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');               ?>" style="--navAni:5"><button
+                <a href="<?php //echo Mage::getBaseUrl('Admin/user/login');                 ?>" style="--navAni:5"><button
                         type="button">Admin</button></a>
             </div> -->
     <!-- <div class="btn row">
-                <a href="<?php //echo Mage::getBaseUrl('admin/user/logout');     ?>" style="--navAni:5"><button
+                <a href="<?php //echo Mage::getBaseUrl('admin/user/logout');       ?>" style="--navAni:5"><button
                         type="button">Logout</button></a>
             </div> -->
     <!-- </div> -->
@@ -58,41 +66,41 @@
     <div class="header">
         <div class="page-header">
             <div class="logo">
-                <a href="<?php //echo Mage::getBaseUrl('');    ?>"><img id="headlogo" src=<?php //echo Mage::getBaseUrl() . "skin/images/icon.png"    ?> alt="Your Logo"></a>
+                <a href="<?php //echo Mage::getBaseUrl('');      ?>"><img id="headlogo" src=<?php //echo Mage::getBaseUrl() . "skin/images/icon.png"      ?> alt="Your Logo"></a>
             </div>
             <div class="header-right">
                 <div class="pill-nav" id="myDIV">
                     <ul>
                         <div class="dropdown">
-                            <a class="btn" href="<?php //echo Mage::getBaseUrl("");    ?>"> Home </a>
-                            <a class="btn" href="<?php //echo Mage::getBaseUrl("admin");    ?>"> Admin Dashbord </a>
-                            <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/order");    ?>"> All Order </a>
+                            <a class="btn" href="<?php //echo Mage::getBaseUrl("");      ?>"> Home </a>
+                            <a class="btn" href="<?php //echo Mage::getBaseUrl("admin");      ?>"> Admin Dashbord </a>
+                            <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/order");      ?>"> All Order </a>
                         </div>
                         <div class="dropdown">
                             <a class="btn"> Product </a>
                             <div class="dropdown-content">
-                                <a href="<?php //echo Mage::getBaseUrl("admin/catalog_product/form");    ?>">Product Form</a>
-                                <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_product/list");    ?>">Product
+                                <a href="<?php //echo Mage::getBaseUrl("admin/catalog_product/form");      ?>">Product Form</a>
+                                <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_product/list");      ?>">Product
                                     List</a>
                             </div>
                         </div>
                         <div class="dropdown">
                             <a class="btn"> Category </a>
                             <div class="dropdown-content">
-                                <a href="<?php //echo Mage::getBaseUrl("admin/catalog_category/form");    ?>">Category
+                                <a href="<?php //echo Mage::getBaseUrl("admin/catalog_category/form");      ?>">Category
                                     Form</a>
-                                <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_category/list");    ?>">Category
+                                <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_category/list");      ?>">Category
                                     List</a>
                             </div>
                         </div>
                         <div class="dropdown">
                             <a class="btn"> Banner </a>
                             <div class="dropdown-content">
-                                <a href="<?php //echo Mage::getBaseUrl("admin/banner/form");    ?>">Banner Form</a>
-                                <a href=" <?php //echo Mage::getBaseUrl("admin/banner/list");    ?>">Category List</a>
+                                <a href="<?php //echo Mage::getBaseUrl("admin/banner/form");      ?>">Banner Form</a>
+                                <a href=" <?php //echo Mage::getBaseUrl("admin/banner/list");      ?>">Category List</a>
                             </div>
                         </div>
-                        <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/user/logout");    ?>">Log Out</a>
+                        <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/user/logout");      ?>">Log Out</a>
                     </ul>
                     
                 </div>
@@ -100,37 +108,37 @@
         </div>
 </header> -->
 <!-- <div class="header">
-    <a href="#"><img id="logo" src=<?php //echo Mage::getBaseUrl() . "\skin\image\ccc.jpg"    ?> alt="Your Logo"></a>
+    <a href="#"><img id="logo" src=<?php //echo Mage::getBaseUrl() . "\skin\image\ccc.jpg"      ?> alt="Your Logo"></a>
     <div class="header-right">
         <div class="pill-nav" id="myDIV">
             <ul>
                 <div class="dropdown">
-                    <a class="btn" href="<?php //echo Mage::getBaseUrl("");    ?>"> Home </a>
-                    <a class="btn" href="<?php //echo Mage::getBaseUrl("admin");    ?>"> Admin Dashbord </a>
-                    <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/order");    ?>"> All Order </a>
+                    <a class="btn" href="<?php //echo Mage::getBaseUrl("");      ?>"> Home </a>
+                    <a class="btn" href="<?php //echo Mage::getBaseUrl("admin");      ?>"> Admin Dashbord </a>
+                    <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/order");      ?>"> All Order </a>
                 </div>
                 <div class="dropdown">
                     <a class="btn"> Product </a>
                     <div class="dropdown-content">
-                        <a href="<?php //echo Mage::getBaseUrl("admin/catalog_product/form");    ?>">Product Form</a>
-                        <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_product/list");    ?>">Product List</a>
+                        <a href="<?php //echo Mage::getBaseUrl("admin/catalog_product/form");      ?>">Product Form</a>
+                        <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_product/list");      ?>">Product List</a>
                     </div>
                 </div>
                 <div class="dropdown">
                     <a class="btn"> Category </a>
                     <div class="dropdown-content">
-                        <a href="<?php //echo Mage::getBaseUrl("admin/catalog_category/form");    ?>">Category Form</a>
-                        <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_category/list");    ?>">Category List</a>
+                        <a href="<?php //echo Mage::getBaseUrl("admin/catalog_category/form");      ?>">Category Form</a>
+                        <a href=" <?php //echo Mage::getBaseUrl("admin/catalog_category/list");      ?>">Category List</a>
                     </div>
                 </div>
                 <div class="dropdown">
                     <a class="btn"> Banner </a>
                     <div class="dropdown-content">
-                        <a href="<?php //echo Mage::getBaseUrl("admin/banner/form");    ?>">Banner Form</a>
-                        <a href=" <?php //echo Mage::getBaseUrl("admin/banner/list");    ?>">Category List</a>
+                        <a href="<?php //echo Mage::getBaseUrl("admin/banner/form");      ?>">Banner Form</a>
+                        <a href=" <?php //echo Mage::getBaseUrl("admin/banner/list");      ?>">Category List</a>
                     </div>
                 </div>
-                <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/user/logout");    ?>">Log Out</a>
+                <a class="btn" href="<?php //echo Mage::getBaseUrl("admin/user/logout");      ?>">Log Out</a>
             </ul>
         </div>
     </div>

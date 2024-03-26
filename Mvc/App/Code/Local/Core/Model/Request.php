@@ -1,3 +1,4 @@
+
 <?php
 class Core_Model_Request
 {
@@ -8,9 +9,9 @@ class Core_Model_Request
     {
         $uri = $this->getRequestUri();
         $uri = array_filter(explode("/", $uri));
-        $this->_moduleName = isset($uri[0]) ? $uri[0] : 'page';
-        $this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
-        $this->_actionName = isset($uri[2]) ? $uri[2] : 'index';
+        $this->_moduleName = isset ($uri[0]) ? $uri[0] : 'page';
+        $this->_controllerName = isset ($uri[1]) ? $uri[1] : 'index';
+        $this->_actionName = isset ($uri[2]) ? $uri[2] : 'index';
     }
     // public function getParams($key = '', $arg = null)
     // {
@@ -25,7 +26,7 @@ class Core_Model_Request
     {
         return ($key == '')
             ? $_REQUEST
-            : (isset($_REQUEST[$key])
+            : (isset ($_REQUEST[$key])
                 ? $_REQUEST[$key]
                 : '');
     }
@@ -33,7 +34,7 @@ class Core_Model_Request
     {
         return ($key == '')
             ? $_POST
-            : (isset($_POST[$key])
+            : (isset ($_POST[$key])
                 ? $_POST[$key]
                 : '');
     }
@@ -41,7 +42,7 @@ class Core_Model_Request
     {
         return ($key == '')
             ? $_GET
-            : (isset($_GET[$key])
+            : (isset ($_GET[$key])
                 ? $_GET[$key]
                 : '');
     }

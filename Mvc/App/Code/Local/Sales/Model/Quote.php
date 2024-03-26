@@ -239,7 +239,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
                 //     ->setData($data)
                 //     ->removeData('quote_customer_id')
                 //     ->removeData('quote_id')
-                //     ->addData('order_id', $orderId)
+                //     ->addData('order_id', $orderId) 
                 //     ->save();
             }
         }
