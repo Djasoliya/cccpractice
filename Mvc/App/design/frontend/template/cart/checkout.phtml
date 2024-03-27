@@ -52,7 +52,7 @@ $addressData = $this->getCustomerAddress();
                             <label for="email">Email : </label>
                             <input type="text" name="address[email]" id="email">
                         </div> -->
-                        
+
                         <div class="user-details">
                             <div class="billing">
                                 <div class="input-box">
@@ -110,25 +110,12 @@ $addressData = $this->getCustomerAddress();
                 </div>
             </div>
             <script type="text/javascript">
-                // Get the div element with the class 'address-cards'
-                var addressCardsDiv = document.getElementById('asdasdasdasd');
-
-                // Get the value of the data-json attribute
-                var jsonData = addressCardsDiv.getAttribute('data-json');
-
-                // Parse the JSON data
-                var jsonDataObj = JSON.parse(jsonData);
-
-                // Log the parsed JSON data to the console
-                console.log(jsonDataObj);
-
                 $('.address-cards').each((i, e) => {
                     console.log($(e).attr('data-json'))
                     $(e).click(() => {
                         var _data = JSON.parse($(e).attr('data-json'))
                         for (var key in _data) {
                             if (_data.hasOwnProperty(key)) {
-                                console.log($('#' + key).val(_data[key]));
                                 $('#' + key).val(_data[key]);
                             }
                         }

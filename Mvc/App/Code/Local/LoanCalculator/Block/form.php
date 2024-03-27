@@ -13,5 +13,5 @@ class LoanCalculator_Block_Form extends Core_Block_Template
     {
         return Mage::getSingleton("core/session")->getId();
     }
-   
+
 }

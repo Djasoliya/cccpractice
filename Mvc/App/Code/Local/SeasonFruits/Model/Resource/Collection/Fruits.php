@@ -1,0 +1,5 @@
+<?php
+class SeasonFruits_Model_Resource_Collection_Fruits extends Core_Model_Resource_Collection_Abstract
+{
+
+}
